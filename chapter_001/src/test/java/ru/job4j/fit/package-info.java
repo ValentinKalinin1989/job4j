@@ -1,6 +1,7 @@
-package ru.job4j.converter;
+package ru.job4j.fit;
+
 /**
- * Package for conveter task
+ * Package for test fit
  *
  *@author Valentin
  *@version 1.00
