@@ -12,7 +12,7 @@ public class ArrayDuplicate {
      * @param array массив
      * @return массив без дубликатов
      */
-    public String[] remove(String[] array) {
+    /*public String[] remove(String[] array) {
         int dubl = 0;
         for (int i = 0; i < array.length; i++) {
             for (int j = i + 1; j < (array.length - 1); j++) {
@@ -26,4 +26,22 @@ public class ArrayDuplicate {
         }
         return Arrays.copyOf(array, (array.length - dubl));
     }
+}
+*/
+    public String[] remove(String[] array) {
+        int unique = array.length;
+        for (int out = 0; out < unique; out++) {
+            String a = array[out];
+            for (int in = out + 1; in < (unique - 1); in++) {
+                if (array[out].equals(array[in])) {
+                    array[in] = null;
+                    array[in] = array[unique - 1];
+                    unique--;
+                    in--;
+                }
+            }
+        }
+        return Arrays.copyOf(array, (unique));
+    }
+
 }
