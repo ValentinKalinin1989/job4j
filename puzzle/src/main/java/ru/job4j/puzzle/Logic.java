@@ -76,7 +76,7 @@ public class Logic {
                 sumHor += table[out][in];
                 sunVert += table[in][out];
             }
-            if ((sumHor == (table.length - 1)) || (sunVert == (table.length - 1))) {
+            if ((sumHor == (table.length)) || (sunVert == (table.length))) {
                 result = true;
                 break;
             }
