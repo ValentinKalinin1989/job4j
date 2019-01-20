@@ -8,7 +8,6 @@ package ru.job4j.condition;
 public class Point {
     private int x;
     private int y;
-
     /**
      * Конструктор
      * @param x координата х
@@ -18,7 +17,6 @@ public class Point {
         this.x = x;
         this.y = y;
     }
-
     /**
      * Расстояние между двумя точками
      * @param that точка до котрой надо унать расстояние

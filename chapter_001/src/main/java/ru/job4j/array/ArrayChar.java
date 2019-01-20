@@ -9,7 +9,6 @@ public class ArrayChar {
     public ArrayChar(String line) {
         this.data = line.toCharArray();
     }
-
     /**
      * Проверяет. что слово начинается с префикса.
      * @param prefix префикс.
@@ -24,7 +23,6 @@ public class ArrayChar {
                 break;
             }
         }
-        // проверить. что массив data имеет первые элементы одинаковые с value
         return result;
     }
 }

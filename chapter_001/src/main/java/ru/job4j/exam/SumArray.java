@@ -5,8 +5,6 @@ public class SumArray {
         int[] sum = new int[firstArray.length + secondArray.length];
         int i = 0, j = 0;
         for (int k = 0; k < sum.length; k++) {
-
-            //если был достигнут последний элемент первого массива
             if (i > firstArray.length - 1) {
                 int a = secondArray[j];
                 sum[k] = a;
