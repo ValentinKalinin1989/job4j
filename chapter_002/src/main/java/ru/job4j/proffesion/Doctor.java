@@ -2,9 +2,7 @@ package ru.job4j.proffesion;
 
 public class Doctor extends Proffesion {
     public Doctor(String name, String job) {
-
-        this.name = name;
-        this.job = job;
+        super(name, job);
     }
 
     /**

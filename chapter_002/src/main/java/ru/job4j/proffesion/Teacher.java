@@ -2,8 +2,7 @@ package ru.job4j.proffesion;
 
 public class Teacher extends Proffesion {
     public Teacher(String name, String job) {
-        this.name = name;
-        this.job = job;
+        super(name, job);
     }
 
     /**

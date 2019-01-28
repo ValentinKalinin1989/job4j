@@ -1,8 +1,13 @@
 package ru.job4j.proffesion;
 
 public class Proffesion {
-    public String job;
-    public String name;
+    private String job;
+    private String name;
+
+    public Proffesion(String name, String job) {
+        this.name = name;
+        this.job = job;
+    }
 
     public String getName() {
         return this.name;
