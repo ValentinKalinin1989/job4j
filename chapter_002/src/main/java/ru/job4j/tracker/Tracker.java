@@ -22,6 +22,7 @@ public class Tracker {
     public boolean replace(String id, Item item) {
         for (int i = 0; i < items.length; i++) {
             if (items[i].getId().equals(id)) {
+                item.setId(id);
                 items[i] = item;
                 return true;
             }
@@ -32,13 +33,11 @@ public class Tracker {
     public boolean delete(String id) {
         for (int out = 0; out < items.length; out++) {
             if (items[out] != null && items[out].getId().equals(id)) {
-                items[out] = null;
-                position--;
-                for (int in = out; in < items.length - 1; in++) {
-                    items[in] = items[in + 1];
+                System.arraycopy(items, out + 1, items, out, items.length - (out + 1));
+                items[99] = null;
+                return true;
                 }
             }
-        }
         return false;
     }
 
