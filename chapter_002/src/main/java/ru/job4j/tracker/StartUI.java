@@ -87,7 +87,7 @@ public class StartUI {
         Item[] items = this.tracker.findAll();
         System.out.println("------------Список всех заявок-------------------");
         for (Item item: items) {
-            printItem(item);
+            System.out.println(item.toString());
         }
     }
 
@@ -96,26 +96,33 @@ public class StartUI {
         String name = this.input.ask("Введите новое имя заявки :");
         String desc = this.input.ask("Введите новое описание заявки :");
         Item item = new Item(name, desc);
-        this.tracker.replace(id, item);
-        System.out.println("Заявка отредактирована.");
+        if (this.tracker.replace(id, item)) {
+            System.out.println("Заявка отредактирована.");
+        } else {
+            System.out.println("Ошибка редактироования");
+        }
     }
 
     private void delItem() {
         String id = this.input.ask("Введите id заявки, которую необходимо удалить:");
-        this.tracker.delete(id);
-        System.out.println("Заявка удалена.");
+        if (this.tracker.delete(id)) {
+            System.out.println("Заявка удалена.");
+        } else {
+            System.out.println("Ошибка удаления.");
+        }
+
     }
 
     private void findById() {
         String id = this.input.ask("Введите id заявки, которую необходимо найти:");
-        printItem(this.tracker.findById(id));
+        System.out.println(this.tracker.findById(id).toString());
     }
 
     private void findByName() {
         String name = this.input.ask("Введите имя заявки, по которому нужно провести поиск:");
         Item[] items = this.tracker.findByName(name);
         for (Item item: items) {
-            printItem(item);
+            System.out.println(item.toString());
         }
     }
 
@@ -127,16 +134,13 @@ public class StartUI {
         System.out.println("3.Удалить заявку.");
         System.out.println("4.Найти заявку по id.");
         System.out.println("5.Найти заявку по имени");
-    }
-
-    private void printItem(Item item) {
-        System.out.println("Имя заявки: " + item.getName() + "|" + " Описание: " + item.getDesc() + "|" +  " id: " + item.getId());
+        System.out.println("Выберите пункт меню:");
     }
 
 
     /**
      * Запускт программы.
-     * @param args
+     * @param args параметры
      */
     public static void main(String[] args) {
         new StartUI(new ConsoleInput(), new Tracker()).init();
