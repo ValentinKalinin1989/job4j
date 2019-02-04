@@ -134,7 +134,7 @@ public class StartUI {
         System.out.println("3.Удалить заявку.");
         System.out.println("4.Найти заявку по id.");
         System.out.println("5.Найти заявку по имени");
-        System.out.println("Выберите пункт меню:");
+        System.out.println("6.Выход из программы.");
     }
 
 
