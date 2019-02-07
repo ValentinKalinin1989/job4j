@@ -66,4 +66,8 @@ public class Tracker {
         }
         return null;
     }
+
+    public String getId (int i) {
+        return this.items[i].getId();
+    }
 }
