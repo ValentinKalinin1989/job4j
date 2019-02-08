@@ -74,26 +74,22 @@ public class StartUITest {
         String id = tracker.getId(0);
         assertThat(this.out.toString(), is(
                 new StringBuilder()
-                        .append("Меню.\\r\\n")
-                        .append("0.Добавить заявку.\\r\\n")
-                        .append("1.Показать все заявки.\\r\\n")
-                        .append("2.Редактировать заявку.\\r\\n")
-                        .append("3.Удалить заявку.\\r\\n")
-                        .append("4.Найти заявку по id.\\r\\n")
-                        .append("5.Найти заявку по имени\\r\\n")
-                        .append("6.Выход из программы.\\r\\n")
-                        .append("------------ Добавление новой заявки --------------\\r\\n")
-                        .append("------------ Новая заявка с getId : " + id + "-----------\\r\\n")
-                        .append("Меню.\\r\\n")
-                        .append("0.Добавить заявку.\\r\\n")
-                        .append("1.Показать все заявки.\\r\\n")
-                        .append("2.Редактировать заявку.\\r\\n")
-                        .append("3.Удалить заявку.\\r\\n")
-                        .append("4.Найти заявку по id.\\r\\n")
-                        .append("5.Найти заявку по имени\\r\\n")
-                        .append("6.Выход из программы.\\r\\n")
+                        .append(MENU)
+                        .append("------------ Добавление новой заявки --------------").append(LS)
+                        .append("------------ Новая заявка с getId : ").append(id).append("-----------").append(LS)
+                        .append(MENU)
                         .toString()
                 )
         );
     }
+    private static final String LS = System.lineSeparator();
+    private static final String MENU = new StringBuilder()
+            .append("Меню.").append(LS)
+            .append("0.Добавить заявку.").append(LS)
+            .append("1.Показать все заявки.").append(LS)
+            .append("2.Редактировать заявку.").append(LS)
+            .append("3.Удалить заявку.").append(LS)
+            .append("4.Найти заявку по id.").append(LS)
+            .append("5.Найти заявку по имени").append(LS)
+            .append("6.Выход из программы.").append(LS).toString();
 }
