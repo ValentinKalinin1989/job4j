@@ -70,4 +70,8 @@ public class Tracker {
     public String getId(int i) {
         return this.items[i].getId();
     }
+
+    public String getItemToString(int i) {
+        return  this.items[i].toString();
+    }
 }

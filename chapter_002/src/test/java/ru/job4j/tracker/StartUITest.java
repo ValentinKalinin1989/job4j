@@ -54,6 +54,18 @@ public class StartUITest {
     // буфер для результата.
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
 
+    private static final String LS = System.lineSeparator();
+    private static final String MENU = new StringBuilder()
+            .append("Меню.").append(LS)
+            .append("0.Добавить заявку.").append(LS)
+            .append("1.Показать все заявки.").append(LS)
+            .append("2.Редактировать заявку.").append(LS)
+            .append("3.Удалить заявку.").append(LS)
+            .append("4.Найти заявку по id.").append(LS)
+            .append("5.Найти заявку по имени").append(LS)
+            .append("6.Выход из программы.").append(LS).toString();
+
+
     @Before
     public void loadOutput() {
         System.out.println("execute before method");
@@ -82,14 +94,65 @@ public class StartUITest {
                 )
         );
     }
-    private static final String LS = System.lineSeparator();
-    private static final String MENU = new StringBuilder()
-            .append("Меню.").append(LS)
-            .append("0.Добавить заявку.").append(LS)
-            .append("1.Показать все заявки.").append(LS)
-            .append("2.Редактировать заявку.").append(LS)
-            .append("3.Удалить заявку.").append(LS)
-            .append("4.Найти заявку по id.").append(LS)
-            .append("5.Найти заявку по имени").append(LS)
-            .append("6.Выход из программы.").append(LS).toString();
+
+
+    @Test
+    public void whenTestFindAll() {
+        Tracker tracker = new Tracker();
+        Input input = new StubInput(new String[]{"0", "test name 1", "desc 1", "0", "test name 2", "desc 2", "1", "6"});
+        new StartUI(input, tracker).init();
+        String id1 = tracker.getId(0);
+        String id2 = tracker.getId(1);
+        assertThat(this.out.toString(), is(
+                new StringBuilder()
+                        .append(MENU)
+                        .append("------------ Добавление новой заявки --------------").append(LS)
+                        .append("------------ Новая заявка с getId : ").append(id1).append("-----------").append(LS)
+                        .append(MENU)
+                        .append("------------ Добавление новой заявки --------------").append(LS)
+                        .append("------------ Новая заявка с getId : ").append(id2).append("-----------").append(LS)
+                        .append(MENU)
+                        .append("------------Список всех заявок-------------------").append(LS)
+                        .append(tracker.getItemToString(0)).append(LS)
+                        .append(tracker.getItemToString(1)).append(LS)
+                        .append(MENU).toString()
+                )
+        );
+    }
+
+    @Test
+    public void whenTestFindByName() {
+        Tracker tracker = new Tracker();
+        Input input = new StubInput(new String[]{"0", "test name 1", "desc 1",
+                "0", "test name 2", "desc 2",
+                "0", "test name 1", "desc 3",
+                "0", "test name 3", "desc 4",
+                "5", "test name 1", "6"});
+        new StartUI(input, tracker).init();
+        String id0 = tracker.getId(0);
+        String id1 = tracker.getId(1);
+        String id2 = tracker.getId(2);
+        String id3 = tracker.getId(3);
+        assertThat(this.out.toString(), is(
+                new StringBuilder()
+                        .append(MENU)
+                        .append("------------ Добавление новой заявки --------------").append(LS)
+                        .append("------------ Новая заявка с getId : ").append(id0).append("-----------").append(LS)
+                        .append(MENU)
+                        .append("------------ Добавление новой заявки --------------").append(LS)
+                        .append("------------ Новая заявка с getId : ").append(id1).append("-----------").append(LS)
+                        .append(MENU)
+                        .append("------------ Добавление новой заявки --------------").append(LS)
+                        .append("------------ Новая заявка с getId : ").append(id2).append("-----------").append(LS)
+                        .append(MENU)
+                        .append("------------ Добавление новой заявки --------------").append(LS)
+                        .append("------------ Новая заявка с getId : ").append(id3).append("-----------").append(LS)
+                        .append(MENU)
+                        .append(tracker.getItemToString(0)).append(LS)
+                        .append(tracker.getItemToString(2)).append(LS)
+                        .append(MENU).toString()
+                )
+        );
+    }
+
 }
