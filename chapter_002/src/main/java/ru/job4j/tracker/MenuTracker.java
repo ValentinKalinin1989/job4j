@@ -1,15 +1,11 @@
 package ru.job4j.tracker;
 
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
-
 public class MenuTracker {
 
     private Input input;
     private Tracker tracker;
 
-    private UserAction[] actions = new UserAction[6];
+    private UserAction[] actions = new UserAction[7];
 
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
@@ -19,13 +15,14 @@ public class MenuTracker {
     /**
      * заполнение массива классами реализующими работу с трекером
      */
-    public void fillActions() {
+    public void fillActions(StartUI ui) {
         this.actions[0] = new AddItem();
         this.actions[1] = new ShowItems();
         this.actions[2] = new EditItem();
         this.actions[3] = new DelItem();
         this.actions[4] = new FindById();
         this.actions[5] = new FindByName();
+        this.actions[6] = new Exit(ui);
     }
 
     /**
@@ -44,7 +41,6 @@ public class MenuTracker {
         for (UserAction action: this.actions) {
             System.out.println(action.info());
         }
-        System.out.println("6.Выход из программы.");
     }
 
 
@@ -175,6 +171,29 @@ public class MenuTracker {
         @Override
         public String info() {
             return String.format("%s.%s", this.key(), "Найти заявку по имени");
+        }
+    }
+
+    private static class Exit implements UserAction {
+        private final StartUI ui;
+
+        private Exit(StartUI ui) {
+            this.ui = ui;
+        }
+
+        @Override
+        public int key() {
+            return 6;
+        }
+
+        @Override
+        public void execute(Input input, Tracker tracker) {
+            this.ui.stop();
+        }
+
+        @Override
+        public String info() {
+            return String.format("%s.%s", this.key(), "Выход из программы.");
         }
     }
 }
