@@ -12,6 +12,9 @@ public class MenuTracker {
         this.tracker = tracker;
     }
 
+    public int[] getNumRangeActions() {
+        return new int[] {0, 1, 2, 3, 4, 5, 6};
+    }
     /**
      * заполнение массива классами реализующими работу с трекером
      */

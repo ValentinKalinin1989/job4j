@@ -26,7 +26,7 @@ public class StartUI {
      */
 
     public static void main(String[] args) {
-        Input input = new ConsoleInput();
+        Input input = new ValidateInput();
         Tracker tracker = new Tracker();
         new StartUI(input, tracker).init();
     }
@@ -36,8 +36,9 @@ public class StartUI {
         menu.fillActions(this);
         do {
             menu.show();
-            String ask = input.ask("Введите пункт меню :");
-            menu.select(Integer.valueOf(ask));
+            //String ask = input.ask("Введите пункт меню :");
+            //menu.select(Integer.valueOf(ask));
+            menu.select(input.ask("Введите пункт меню", menu.getNumRangeActions()));
             } while (this.working);
     }
 
