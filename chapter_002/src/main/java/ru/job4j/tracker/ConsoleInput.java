@@ -19,10 +19,9 @@ public class ConsoleInput implements Input {
                 break;
             }
         }
-        if (exists) {
-            return key;
-        } else {
+        if (!exists) {
             throw new MenuOutException("Выход за пределы значений меню.");
         }
+        return key;
     }
 }
