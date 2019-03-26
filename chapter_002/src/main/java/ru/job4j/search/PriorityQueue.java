@@ -1,9 +1,5 @@
 package ru.job4j.search;
 
-import javafx.scene.control.Label;
-
-import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedList;
 
 public class PriorityQueue {
@@ -16,21 +12,16 @@ public class PriorityQueue {
      * @param task задача
      */
     public void put(Task task) {
-        if (tasks.size() == 0) {
-            tasks.add(task);
-        } else {
-          for (int i = 0; i < tasks.size(); i++) {
-              if (tasks.get(i).getPriority() >= task.getPriority()) {
-                  tasks.add(i, task);
-                  break;
-              } else if (i == (tasks.size() - 1)) {
-                  tasks.add(task);
-              }
-          }
+        int index = 0;
+        for (int i = 0; i <= tasks.size(); i++) {
+            index = i;
+            if (tasks.size() == 0 || (tasks.get(i).getPriority() > task.getPriority())) {
+                break;
+            }
+            tasks.add(index, task);
         }
-
-
     }
+
 
     public Task take() {
         return this.tasks.poll();
