@@ -1,6 +1,10 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -13,7 +17,7 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item item = new Item("test1", "testDescription", 123L);
         tracker.add(item);
-        assertThat(tracker.findAll()[0], is(item));
+        assertThat(tracker.findAll().get(0), is(item));
     }
 
     @Test
@@ -41,16 +45,17 @@ public class TrackerTest {
         tracker.add(new Item("test22", "TestDescrip4", 1235L));
         tracker.add(new Item("test", "TestDescrip15", 1222L));
 
-        Item[] itemstest = new Item[3];
-        itemstest[0] = new Item("test", "TestDescrip1", 12L);
-        itemstest[1] = new Item("test", "TestDescrip2", 123L);
-        itemstest[2] = new Item("test", "TestDescrip15", 1222L);
+        List<Item> itemstest = new ArrayList<>(3);
+        itemstest.add(0, new Item("test", "TestDescrip1", 12L));
+        itemstest.add(1, new Item("test", "TestDescrip2", 123L));
+        itemstest.add(2, new Item("test", "TestDescrip15", 1222L));
         //отбираем все итемы с именем test
-        Item[] result = tracker.findByName("test");
+        //Item[] result = tracker.findByName("test");
+        List<Item> result = tracker.findByName("test");
 
-        assertThat(result[0].getName(), is("test"));
-        assertThat(result[1].getName(), is("test"));
-        assertThat(result[2].getName(), is("test"));
+        assertThat(result.get(0).getName(), is("test"));
+        assertThat(result.get(1).getName(), is("test"));
+        assertThat(result.get(2).getName(), is("test"));
 
     }
 
@@ -64,7 +69,7 @@ public class TrackerTest {
         tracker.delete(previous.getId());
 
         // Проверяем, что осталась одна заявка с именем "test2"
-        assertThat(tracker.findAll()[0].getName(), is("test2"));
+        assertThat(tracker.findAll().get(0).getName(), is("test2"));
     }
 
 

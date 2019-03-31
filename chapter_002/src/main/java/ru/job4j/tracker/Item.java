@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Item {
     private String id;
@@ -63,5 +64,28 @@ public class Item {
     @Override
     public String toString() {
         return "Заявка {" + "id:'" + id + '\'' + ", имя: '" + name + '\'' + ", описание:'" + desc + '\'' + ", created:" + created + ", комментарии:" + Arrays.toString(comments) + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Item item = (Item) o;
+        return created == item.created
+                && Objects.equals(id, item.id)
+                && Objects.equals(name, item.name)
+                && Objects.equals(desc, item.desc)
+                && Arrays.equals(comments, item.comments);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(id, name, desc, created);
+        result = 31 * result + Arrays.hashCode(comments);
+        return result;
     }
 }
