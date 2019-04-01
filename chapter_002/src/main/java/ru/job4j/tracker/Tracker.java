@@ -26,7 +26,7 @@ public class Tracker {
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getId().equals(id)) {
                 item.setId(id);
-                items.add(i, item);
+                items.set(i, item);
                 return true;
             }
         }
@@ -36,14 +36,10 @@ public class Tracker {
     public boolean delete(String id) {
         for (int out = 0; out < items.size(); out++) {
             if (items.get(out) != null && items.get(out).getId().equals(id)) {
-                List<Item> listToCopy = items;
-                for (int k = out; k < 99; k++) {
-                    items.add(k, listToCopy.get(k + 1));
-                }
-                //System.arraycopy(items, out + 1, items, out, items.size() - (out + 1));
-                items.add(99, null);
+                items.remove(out);
                 return true;
                 }
+
             }
         return false;
     }
@@ -57,17 +53,13 @@ public class Tracker {
     public List<Item> findByName(String key) {
         //массив для сохранения найденных итемов
         List<Item> result = new ArrayList<>();
-        int k = 0;
+
         for (Item item: items) {
            if (item != null && item.getName().equals(key)) {
-               result.add(k, item);
-               //result.add(item);
-               k++;
+               result.add(item);
+
            }
         }
-
-        //List<Item> resultCopy = new ArrayList<>();
-        //resultCopy.addAll(0, result);
         return result;
     }
 
