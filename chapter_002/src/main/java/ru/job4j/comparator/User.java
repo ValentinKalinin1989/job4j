@@ -16,7 +16,19 @@ public class User implements Comparable<User>{
         return age;
     }
 
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
     public int compareTo(User o) {
         return this.age.compareTo(o.age);
     }
+
+
 }
