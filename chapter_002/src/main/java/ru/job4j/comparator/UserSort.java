@@ -28,9 +28,10 @@ public class UserSort {
     public List<User> sortByAllFields(List<User> users) {
         users.sort(new Comparator<User>() {
             @Override
-            public int compare(User o1, User o2) {
-                return (o1.getName().compareTo(o2.getName()) == 0
-                        ? o1.getAge().compareTo(o2.getAge()) : o1.getName().compareTo(o2.getName()));
+                public int compare(User o1, User o2) {
+                int numberComp = o1.getName().compareTo(o2.getName());
+                return (numberComp == 0
+                        ? o1.getAge().compareTo(o2.getAge()) : numberComp);
             }
         });
         return users;
