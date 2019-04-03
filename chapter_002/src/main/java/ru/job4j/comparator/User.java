@@ -16,6 +16,10 @@ public class User implements Comparable<User> {
         return age;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public int hashCode() {
         return super.hashCode();

@@ -26,4 +26,48 @@ public class UserSortTest {
         assertThat(34, is(userTest.get(2).getAge()));
         assertThat(60, is(userTest.get(3).getAge()));
     }
+
+    @Test
+    public void whenTestsortNameLength() {
+        List<User> users = new ArrayList<>(4);
+        users.add(new User("Андрей", 11));
+        users.add(new User("Петр", 11));
+        users.add(new User("Евгений", 11));
+        users.add(new User("Василий", 60));
+
+        UserSort sort = new UserSort();
+
+        List<User> userTest = sort.sortNameLength(users);
+
+
+        assertThat("Андрей", is(userTest.get(0).getName()));
+        assertThat("Василий", is(userTest.get(1).getName()));
+        assertThat("Евгений", is(userTest.get(2).getName()));
+        assertThat("Петр", is(userTest.get(3).getName()));
+    }
+
+    @Test
+    public void whenTestsortByAllFields() {
+        List<User> users = new ArrayList<>(4);
+        users.add(new User("Сергей", 25));
+        users.add(new User("Иван", 30));
+        users.add(new User("Сергей", 20));
+        users.add(new User("Иван", 25));
+
+        UserSort sort = new UserSort();
+
+        List<User> userTest = sort.sortByAllFields(users);
+
+
+        assertThat("Иван", is(userTest.get(0).getName()));
+        assertThat("Иван", is(userTest.get(1).getName()));
+        assertThat("Сергей", is(userTest.get(2).getName()));
+        assertThat("Сергей", is(userTest.get(3).getName()));
+
+        assertThat(25, is(userTest.get(0).getAge()));
+        assertThat(30, is(userTest.get(1).getAge()));
+        assertThat(20, is(userTest.get(2).getAge()));
+        assertThat(25, is(userTest.get(3).getAge()));
+    }
+
 }
