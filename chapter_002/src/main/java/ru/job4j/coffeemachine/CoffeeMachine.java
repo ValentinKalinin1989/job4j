@@ -8,9 +8,9 @@ public class CoffeeMachine {
     public int[] changes(int value, int price) {
         List<Integer> change = new ArrayList<>();
         int moneyCh = value - price;
-        int[] COINS = new int[]{10, 5, 2, 1};
+        int[] coins = new int[]{10, 5, 2, 1};
         for (int coin
-             : COINS) {
+             : coins) {
             while ((moneyCh - coin) >= 0) {
                 change.add(coin);
                 moneyCh = moneyCh - coin;
