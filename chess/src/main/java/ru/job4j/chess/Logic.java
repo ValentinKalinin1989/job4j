@@ -27,14 +27,15 @@ public class Logic {
         boolean rst = false;
         int index = this.findBy(source);
         if(index == -1) {
-            new FigureNotFoundException("В данной ячейке нет фигуры");
+            throw new FigureNotFoundException("В данной ячейке нет фигуры");
         }
         Cell[] steps = this.figures[index].way(source, dest);
 
         for (Cell cell : steps)
         {
-            if (this.findBy(cell) != -1);
-            new OccupiedWayException("Путь занят другой фигурой");
+            if (this.findBy(cell) != -1) {
+            throw new OccupiedWayException("Путь занят другой фигурой");
+            }
         }
 
         if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
