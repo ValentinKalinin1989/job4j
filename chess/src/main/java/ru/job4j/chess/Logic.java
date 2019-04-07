@@ -26,13 +26,12 @@ public class Logic {
     public boolean move(Cell source, Cell dest) throws FigureNotFoundException, ImpossibleMoveException, OccupiedWayException {
         boolean rst = false;
         int index = this.findBy(source);
-        if(index == -1) {
+        if (index == -1) {
             throw new FigureNotFoundException("В данной ячейке нет фигуры");
         }
         Cell[] steps = this.figures[index].way(source, dest);
 
-        for (Cell cell : steps)
-        {
+        for (Cell cell : steps) {
             if (this.findBy(cell) != -1) {
             throw new OccupiedWayException("Путь занят другой фигурой");
             }
