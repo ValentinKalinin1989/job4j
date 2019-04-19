@@ -6,16 +6,28 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.StringJoiner;
+import java.util.function.Consumer;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class StartUITest {
 
+    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    private final Consumer<String> output = new Consumer<String>() {
+        private final PrintStream stdout = new PrintStream(out);
+
+        @Override
+        public void accept(String s) {
+            stdout.println(s);
+        }
+    };
+
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Tracker tracker = new Tracker();     // создаём Tracker
         Input input = new StubInput(new String[]{"0", "test name", "desc", "6"});   //создаём StubInput с последовательностью действий
-        new StartUI(input, tracker).init();     //   создаём StartUI и вызываем метод init()
+        new StartUI(input, tracker, output).init();     //   создаём StartUI и вызываем метод init()
         assertThat(tracker.findAll().get(0).getName(), is("test name")); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
     }
 
@@ -28,7 +40,7 @@ public class StartUITest {
         //создаём StubInput с последовательностью действий(производим замену заявки)
         Input input = new StubInput(new String[]{"2", item.getId(), "test replace", "заменили заявку", "6"});
         // создаём StartUI и вызываем метод init()
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
         assertThat(tracker.findById(item.getId()).getName(), is("test replace"));
     }
@@ -50,9 +62,9 @@ public class StartUITest {
 
 
     // поле содержит дефолтный вывод в консоль.
-    private final PrintStream stdout = System.out;
+    //private final PrintStream stdout = System.out;
     // буфер для результата.
-    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    //private final ByteArrayOutputStream out = new ByteArrayOutputStream();
 
     private static final String LS = System.lineSeparator();
     private static final String MENU = new StringBuilder()
@@ -66,23 +78,23 @@ public class StartUITest {
             .append("6.Выход из программы.").append(LS).toString();
 
 
-    @Before
-    public void loadOutput() {
-        System.out.println("execute before method");
-        System.setOut(new PrintStream(this.out));
-    }
+ //   @Before
+ //   public void loadOutput() {
+ //       System.out.println("execute before method");
+ //       System.setOut(new PrintStream(this.out));
+ //   }
 
-    @After
-    public void backOutput() {
-        System.setOut(this.stdout);
-        System.out.println("execute after method");
-    }
+  //  @After
+ //   public void backOutput() {
+ //       System.setOut(this.stdout);
+ //       System.out.println("execute after method");
+  //  }
 
     @Test
     public void whenTestShowItem() {
         Tracker tracker = new Tracker();     // создаём Tracker
         Input input = new StubInput(new String[]{"0", "test name", "desc", "6"});   //создаём StubInput с последовательностью действий
-        new StartUI(input, tracker).init();     //   создаём StartUI и вызываем метод init()
+        new StartUI(input, tracker, output).init();     //   создаём StartUI и вызываем метод init()
         String id = tracker.getId(0);
         assertThat(this.out.toString(), is(
                 new StringBuilder()
@@ -100,7 +112,7 @@ public class StartUITest {
     public void whenTestFindAll() {
         Tracker tracker = new Tracker();
         Input input = new StubInput(new String[]{"0", "test name 1", "desc 1", "0", "test name 2", "desc 2", "1", "6"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         String id1 = tracker.getId(0);
         String id2 = tracker.getId(1);
         assertThat(this.out.toString(), is(
@@ -128,7 +140,7 @@ public class StartUITest {
                 "0", "test name 1", "desc 3",
                 "0", "test name 3", "desc 4",
                 "5", "test name 1", "6"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         String id0 = tracker.getId(0);
         String id1 = tracker.getId(1);
         String id2 = tracker.getId(2);
