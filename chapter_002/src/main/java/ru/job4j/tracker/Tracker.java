@@ -3,6 +3,9 @@ package ru.job4j.tracker;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Tracker {
     private final List<Item> items = new ArrayList<>(100);
@@ -23,25 +26,32 @@ public class Tracker {
     }
 
     public boolean replace(String id, Item item) {
-        for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getId().equals(id)) {
-                item.setId(id);
-                items.set(i, item);
-                return true;
-            }
-        }
-        return false;
-
+        AtomicBoolean result = new AtomicBoolean(false);
+        IntStream.range(0, this.items.size())
+                .filter(i -> items.get(i).getId().equals(id))
+                .findFirst()
+                .ifPresent(
+                        i -> {
+                            result.set(true);
+                            items.set(i, item);
+                        }
+                );
+        return result.get();
     }
-    public boolean delete(String id) {
-        for (int out = 0; out < items.size(); out++) {
-            if (items.get(out) != null && items.get(out).getId().equals(id)) {
-                items.remove(out);
-                return true;
-                }
 
-            }
-        return false;
+
+    public boolean delete(String id) {
+        AtomicBoolean result = new AtomicBoolean(false);
+        IntStream.range(0, this.items.size())
+                .filter(i -> items.get(i).getId().equals(id))
+                .findFirst()
+                .ifPresent(
+                        i -> {
+                            result.set(true);
+                            items.remove(i);
+                        }
+                );
+        return result.get();
     }
 
     public List<Item> findAll() {
@@ -51,25 +61,16 @@ public class Tracker {
     }
 
     public List<Item> findByName(String key) {
-        //массив для сохранения найденных итемов
-        List<Item> result = new ArrayList<>();
 
-        for (Item item: items) {
-           if (item != null && item.getName().equals(key)) {
-               result.add(item);
-
-           }
-        }
-        return result;
+        return items.stream().filter(itemFilter -> itemFilter.getName().equals(key)).collect(Collectors.toList());
     }
 
     public Item findById(String id) {
-        for (Item item : items) {
-            if (item != null && item.getId().equals(id)) {
-                return item;
-            }
+        try {
+           return items.stream().filter(itemFilter -> itemFilter.getId().equals(id)).findFirst().get();
+        } catch (Exception e) {
+            return null;
         }
-        return null;
     }
 
     public String getId(int i) {

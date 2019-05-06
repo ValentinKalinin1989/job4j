@@ -18,37 +18,28 @@ public class Bank {
     }
 
     public void addAccountToUser(String passport, Account account) {
-        this.usersTree.forEach((key, value) -> {
-            if (key.getPassport().equals(passport)) {
-                value.add(account);
-                return;
-            }
-        });
+            this.usersTree.entrySet().stream()
+                    .filter(e -> e.getKey().getPassport().equals(passport))
+                    .findFirst()
+                    .map(Map.Entry::getValue)
+                    .orElse(null).add(account);
     }
 
     public List<Account> getUserAccounts(String passport) {
-        List<Account> listAcc = new ArrayList<Account>();
-        for (Map.Entry<User, ArrayList<Account>> entry : usersTree.entrySet()) {
-            if (entry.getKey().getPassport().equals(passport)) {
-                listAcc = entry.getValue();
-            }
-        }
-        return listAcc;
+        return this.usersTree.entrySet().stream()
+                .filter(e -> e.getKey().getPassport().equals(passport))
+                .findFirst()
+                .map(Map.Entry::getValue).orElse(null);
     }
 
     public Account getUserAccountForRequisite(String userPassport, String userRequisite) {
-        List<Account> listAcc = getUserAccounts(userPassport);
-        int index = -1;
-        for (Account account
-                : listAcc) {
-            if (account.getRequisites().equals(userRequisite)) {
-                index = listAcc.indexOf(account);
-            }
-        }
-        if (index == -1) {
-            return null; // если у юзера нет такого счета
-        }
-        return listAcc.get(index);
+        return this.usersTree.entrySet().stream()
+                .filter(e -> e.getKey().getPassport().equals(userPassport))
+                .findFirst()
+                .map(Map.Entry::getValue)
+                .orElse(new ArrayList<>())
+                .stream()
+                .filter(e -> e.getRequisites().equals(userRequisite)).findFirst().orElse(null);
     }
 
     public boolean transferMoney(String srcPassport, String srcRequisite,
@@ -69,10 +60,8 @@ public class Bank {
             return false;
         }
 
-        BigDecimal subStract = srcAccount.getValue().subtract(new BigDecimal(amount));
-        BigDecimal sum = dstAccount.getValue().add(new BigDecimal(amount));
-        srcAccount.setValue(subStract);
-        dstAccount.setValue(sum);
+        srcAccount.transferAmount(dstAccount, amount);
+
         return true;
     }
 
