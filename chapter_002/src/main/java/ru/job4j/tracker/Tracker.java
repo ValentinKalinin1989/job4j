@@ -61,16 +61,11 @@ public class Tracker {
     }
 
     public List<Item> findByName(String key) {
-
         return items.stream().filter(itemFilter -> itemFilter.getName().equals(key)).collect(Collectors.toList());
     }
 
     public Item findById(String id) {
-        try {
-           return items.stream().filter(itemFilter -> itemFilter.getId().equals(id)).findFirst().get();
-        } catch (Exception e) {
-            return null;
-        }
+        return items.stream().filter(itemFilter -> itemFilter.getId().equals(id)).findFirst().orElse(null);
     }
 
     public String getId(int i) {

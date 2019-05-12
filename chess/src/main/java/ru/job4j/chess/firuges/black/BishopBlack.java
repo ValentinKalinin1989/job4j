@@ -25,17 +25,18 @@ public class BishopBlack implements Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException {
-        if(!isDiagonal(source, dest)) {
+        if (!isDiagonal(source, dest)) {
             return new Cell[]{source};
            // throw new ImpossibleMoveException ("Движение по данному пути не возможно");
         }
         int deltaX = Integer.compare(dest.x, source.x);
         int deltaY = Integer.compare(dest.y, source.y);
         int move = Math.abs(source.y - dest.y);
-        Cell steps[] = new Cell[move];
+        Cell[] steps;
+        steps = new Cell[move];
         steps[0] = Cell.findCell(source.x + deltaX, source.y + deltaY);
         for (int index = 1; index < steps.length; index++) {
-            steps[index] = Cell.findCell(steps[index -1].x + deltaX, steps[index-1 ].y + deltaY);
+            steps[index] = Cell.findCell(steps[index - 1].x + deltaX, steps[index - 1 ].y + deltaY);
         }
         return steps;
     }

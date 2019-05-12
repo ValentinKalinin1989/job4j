@@ -18,26 +18,24 @@ public class UserSort {
 
     public List<User> sortNameLength(List<User> users) {
 
-        users.stream().sorted(new Comparator<User>() {
+        return users.stream().sorted(new Comparator<User>() {
             @Override
             public int compare(User o1, User o2) {
                 return o1.getName().compareTo(o2.getName());
             }
         }).collect(Collectors.toList());
-        return users;
 
 
     }
 
     public List<User> sortByAllFields(List<User> users) {
-        users.stream().sorted(new Comparator<User>() {
+        return users.stream().sorted(new Comparator<User>() {
             @Override
             public int compare(User o1, User o2) {
                 int numberComp = o1.getName().compareTo(o2.getName());
-                return (numberComp == 0
+                return ((numberComp == 0)
                         ? o1.getAge().compareTo(o2.getAge()) : numberComp);
             }
         }).collect(Collectors.toList());
-        return users;
     }
 }

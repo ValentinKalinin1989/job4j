@@ -1,11 +1,8 @@
 package ru.job4j.tracker;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.StringJoiner;
 import java.util.function.Consumer;
 
 import static org.hamcrest.core.Is.is;
@@ -27,7 +24,7 @@ public class StartUITest {
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Tracker tracker = new Tracker();     // создаём Tracker
         Input input = new StubInput(new String[]{"0", "test name", "desc", "6"});   //создаём StubInput с последовательностью действий
-        new StartUI(input, tracker, output).init();     //   создаём StartUI и вызываем метод init()
+        new StartUI(input, tracker, output).init(); //   создаём StartUI и вызываем метод init()
         assertThat(tracker.findAll().get(0).getName(), is("test name")); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
     }
 
@@ -42,8 +39,14 @@ public class StartUITest {
         // создаём StartUI и вызываем метод init()
         new StartUI(input, tracker, output).init();
         // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
-        assertThat(tracker.findById(item.getId()).getName(), is("test replace"));
+        try {
+            assertThat(tracker.findById(item.getId()).getName(), is("test replace"));
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
     }
+
 
     @Test
     public void whenDelete() {
@@ -60,12 +63,6 @@ public class StartUITest {
         assertThat(tracker.findAll().get(0).getName(), is("test2"));
     }
 
-
-    // поле содержит дефолтный вывод в консоль.
-    //private final PrintStream stdout = System.out;
-    // буфер для результата.
-    //private final ByteArrayOutputStream out = new ByteArrayOutputStream();
-
     private static final String LS = System.lineSeparator();
     private static final String MENU = new StringBuilder()
             .append("Меню.").append(LS)
@@ -76,19 +73,6 @@ public class StartUITest {
             .append("4.Найти заявку по id.").append(LS)
             .append("5.Найти заявку по имени").append(LS)
             .append("6.Выход из программы.").append(LS).toString();
-
-
- //   @Before
- //   public void loadOutput() {
- //       System.out.println("execute before method");
- //       System.setOut(new PrintStream(this.out));
- //   }
-
-  //  @After
- //   public void backOutput() {
- //       System.setOut(this.stdout);
- //       System.out.println("execute after method");
-  //  }
 
     @Test
     public void whenTestShowItem() {

@@ -20,6 +20,7 @@ public class User implements Comparable<User> {
         return name;
     }
 
+
     @Override
     public int hashCode() {
         return super.hashCode();
@@ -33,6 +34,7 @@ public class User implements Comparable<User> {
     public int compareTo(User o) {
         return this.age.compareTo(o.age);
     }
+
 
 
 }
