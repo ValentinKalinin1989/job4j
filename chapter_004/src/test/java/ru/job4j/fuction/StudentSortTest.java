@@ -23,17 +23,15 @@ public class StudentSortTest {
         students.add(new Student("Саня", 89));
         students.add(null);
         students.add(new Student("Толик", 80));
-        try {
-            StudentSort studSort = new StudentSort();
 
-            List<Student> studentAfterSort = studSort.levelOf(students, 80);
+        StudentSort studSort = new StudentSort();
 
-            assertThat(120, is(studentAfterSort.get(0).getScope()));
-            assertThat(99, is(studentAfterSort.get(1).getScope()));
-            assertThat(89, is(studentAfterSort.get(2).getScope()));
-            assertThat(81, is(studentAfterSort.get(3).getScope()));
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
+        List<Student> studentAfterSort = studSort.levelOf(students, 80);
+
+        assertThat(120, is(studentAfterSort.get(0).getScope()));
+        assertThat(99, is(studentAfterSort.get(1).getScope()));
+        assertThat(89, is(studentAfterSort.get(2).getScope()));
+        assertThat(81, is(studentAfterSort.get(3).getScope()));
+
     }
 }

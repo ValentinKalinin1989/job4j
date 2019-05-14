@@ -16,17 +16,10 @@ public class StudentSort {
     };
 
     List<Student> levelOf(List<Student> students, int bound) {
-
-
-        try {
-            return students.stream().sorted(comparator)
+        return students.stream().sorted(comparator)
                     .flatMap(Stream::ofNullable)
                     .takeWhile(e -> e.getScope() > bound)
                     .collect(Collectors.toList());
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-            return null;
-        }
     }
 }
 
