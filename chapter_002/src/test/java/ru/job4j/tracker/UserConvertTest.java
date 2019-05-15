@@ -14,10 +14,11 @@ import static org.junit.Assert.assertThat;
 public class UserConvertTest {
     @Test
     public void whenTestUser() {
-        List<User> listUser = new ArrayList<>();
-        listUser.add(new User(12, "Ivan", "Tula"));
-        listUser.add(new User(22, "Petr", "Moscow"));
-        listUser.add(new User(345, "Jems", "London"));
+        List<User> listUser = List.of(
+                new User(12, "Ivan", "Tula"),
+                new User(22, "Petr", "Moscow"),
+                new User(345, "Jems", "London")
+        );
 
         UserConvert userConvert = new UserConvert();
 

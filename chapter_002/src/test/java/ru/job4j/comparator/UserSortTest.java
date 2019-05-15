@@ -9,11 +9,12 @@ import static org.junit.Assert.assertThat;
 public class UserSortTest {
     @Test
     public void whenTestComparator() {
-        List<User> users = new ArrayList<>(4);
-        users.add(new User("", 34));
-        users.add(new User("", 22));
-        users.add(new User("", 25));
-        users.add(new User("", 60));
+        List<User> users = List.of(
+                new User("", 34),
+                new User("", 22),
+                new User("", 25),
+                new User("", 60)
+        );
 
         UserSort sort = new UserSort();
 
@@ -29,11 +30,12 @@ public class UserSortTest {
 
     @Test
     public void whenTestsortNameLength() {
-        List<User> users = new ArrayList<>(4);
-        users.add(new User("Андрей", 11));
-        users.add(new User("Петр", 11));
-        users.add(new User("Евгений", 11));
-        users.add(new User("Василий", 60));
+        List<User> users = List.of(
+                new User("Андрей", 11),
+                new User("Петр", 11),
+                new User("Евгений", 11),
+                new User("Василий", 60)
+        );
 
         UserSort sort = new UserSort();
 
@@ -48,11 +50,12 @@ public class UserSortTest {
 
     @Test
     public void whenTestsortByAllFields() {
-        List<User> users = new ArrayList<>(4);
-        users.add(new User("Сергей", 25));
-        users.add(new User("Иван", 30));
-        users.add(new User("Сергей", 20));
-        users.add(new User("Иван", 25));
+        List<User> users = List.of(
+                new User("Сергей", 25),
+                new User("Иван", 30),
+                new User("Сергей", 20),
+                new User("Иван", 25)
+        );
 
         UserSort sort = new UserSort();
 

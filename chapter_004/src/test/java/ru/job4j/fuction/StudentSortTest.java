@@ -12,17 +12,15 @@ import static org.junit.Assert.assertThat;
 public class StudentSortTest {
     @Test
     public void whenTestStudentSortWithOutNullObjects() {
-        List<Student> students = new ArrayList<>(4);
-        students.add(new Student("Вася", 79));
-        students.add(new Student("Федя", 81));
-        students.add(null);
-        students.add(new Student("Коля", 45));
-        students.add(new Student("Оля", 120));
-        students.add(null);
-        students.add(new Student("Таня", 99));
-        students.add(new Student("Саня", 89));
-        students.add(null);
-        students.add(new Student("Толик", 80));
+        List<Student> students = List.of(
+                new Student("Вася", 79),
+                new Student("Федя", 81),
+                new Student("Коля", 45),
+                new Student("Оля", 120),
+                new Student("Таня", 99),
+                new Student("Саня", 89),
+                new Student("Толик", 80)
+        );
 
         StudentSort studSort = new StudentSort();
 
