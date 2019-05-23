@@ -8,7 +8,7 @@ public class ArrayIterator implements Iterator {
     private int index = 0;
     private int arrayLenght = 0;
     
-    public ArrayIterator (final int [][] arrayInt) {
+    public ArrayIterator(final int[][] arrayInt) {
         this.arrayInt = arrayInt;
         for (int[] arrayOut: arrayInt) {
             for (int in : arrayOut) {
