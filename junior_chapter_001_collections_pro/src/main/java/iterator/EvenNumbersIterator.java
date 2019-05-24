@@ -14,9 +14,10 @@ public class EvenNumbersIterator implements Iterator {
     @Override
     public boolean hasNext() {
         boolean result = false;
-        for (int i = index; i < arrayInt.length; i++) {
+        for (int i = this.index; i < arrayInt.length; i++) {
             if (hasElement(i)) {
                 result = true;
+                this.index = i;
                 break;
             }
         }
@@ -25,18 +26,10 @@ public class EvenNumbersIterator implements Iterator {
 
     @Override
     public Integer next() {
-        Integer result = null;
-        for (int i = index; i < arrayInt.length; i++) {
-            if (hasElement(i)) {
-                result = this.arrayInt[i];
-                index = i + 1;
-                break;
-            }
+        if (!hasNext()) {
+            throw new NoSuchElementException("Отсутствует четный элемент.");
         }
-        if (result == null) {
-            throw new NoSuchElementException();
-        }
-        return result;
+        return this.arrayInt[this.index++];
     }
 
     @Override
