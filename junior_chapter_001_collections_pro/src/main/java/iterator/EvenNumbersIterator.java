@@ -14,6 +14,7 @@ public class EvenNumbersIterator implements Iterator {
     @Override
     public boolean hasNext() {
         boolean result = false;
+
         for (int i = this.index; i < arrayInt.length; i++) {
             if (hasElement(i)) {
                 result = true;
@@ -30,6 +31,7 @@ public class EvenNumbersIterator implements Iterator {
             throw new NoSuchElementException("Отсутствует четный элемент.");
         }
         return this.arrayInt[this.index++];
+
     }
 
     @Override
