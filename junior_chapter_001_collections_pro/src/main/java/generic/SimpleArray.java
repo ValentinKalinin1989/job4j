@@ -18,12 +18,14 @@ public class SimpleArray<T> implements Iterable<T> {
     /**
      * добавление объектов
      * @param model объект для добавления
+     * @return true если операция успешна
      */
-    public void add(T model) {
+    public boolean add(T model) {
         if (this.index >= objects.length) {
             throw new NullPointerException("Массив заполнен");
         }
         this.objects[this.index++] = model;
+        return true;
     }
 
     /**
@@ -32,42 +34,43 @@ public class SimpleArray<T> implements Iterable<T> {
      * @return true - если такой инденкс есть в массиве
      */
     private boolean checkIdex(int index) {
-       return index >= 0 && index < this.objects.length;
+        if (index <= 0 && index >= this.objects.length) {
+            throw new NullPointerException("Выход за границы массива");
+        }
+        return true;
     }
 
     /**
      * замена объекта
      * @param index индекс заменяемого объекта
      * @param model объект
+     * @return true если операция успешна
      */
-    public void set(int index, T model) {
-        if (!checkIdex(index)) {
-            throw new NullPointerException("Выход за границы массива");
-        }
+    public boolean set(int index, T model) {
+        checkIdex(index);
         this.objects[index] = model;
+        return true;
     }
 
     /**
      * удаление объекта из массива
      * @param index индекс удаляемого объекта
+     * @return true если операция успешна
      */
-    public void remove(int index) {
-        if (!checkIdex(index)) {
-            throw new NullPointerException("Выход за границы массива");
-        }
+    public boolean remove(int index) {
+        checkIdex(index);
         System.arraycopy(this.objects, index, this.objects, index + 1, this.objects.length - index - 1);
         this.objects[this.objects.length - 1] = null;
+        return true;
     }
 
     /**
      * получение объекта из массива
      * @param index идекс объекта
-     * @return
+     * @return объект
      */
     public T get(int index) {
-        if (!checkIdex(index)) {
-            throw new NullPointerException("Выход за границы массива");
-        }
+        checkIdex(index);
         return (T) this.objects[index];
     }
 
