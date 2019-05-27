@@ -75,6 +75,14 @@ public class SimpleArray<T> implements Iterable<T> {
         return (T) this.objects[index];
     }
 
+    /**
+     * получение индекса элемента
+     * @return индекс элемента
+     */
+    public int getIndexE() {
+        return this.index;
+    }
+
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {

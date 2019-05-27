@@ -1,12 +1,12 @@
 package generic;
 
-public interface Store<T extends Base> {
+public interface Store<E extends Base> {
 
-    void add(T model);
+    void add(E model);
 
-    boolean replace(String id, T model);
+    boolean replace(String id, E model);
 
     boolean delete(String id);
 
-    T findById(String id);
+    E findById(String id);
 }
