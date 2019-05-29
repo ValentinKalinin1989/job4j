@@ -1,6 +1,5 @@
 package generic;
 
-
 public abstract class AbstractStore<E extends Base> implements Store<E> {
 
     private SimpleArray<E> simpleArray;
@@ -8,6 +7,7 @@ public abstract class AbstractStore<E extends Base> implements Store<E> {
     public AbstractStore(int size) {
         this.simpleArray = new SimpleArray<E>(size);
     }
+
     @Override
     public void add(E model) {
         simpleArray.add(model);
@@ -49,6 +49,7 @@ public abstract class AbstractStore<E extends Base> implements Store<E> {
 
     /**
      * поиск объекта по id
+     *
      * @param id
      * @return индекс элемента, если он есть
      */
@@ -64,5 +65,6 @@ public abstract class AbstractStore<E extends Base> implements Store<E> {
         }
         return index;
     }
-
 }
+
+
