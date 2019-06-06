@@ -28,7 +28,7 @@ public class MapTest {
     @Before
     public void beforeTestAddTwoUsersInMap() {
        map.put(new User("Федя", 2, new GregorianCalendar(1989, 1, 4)), "Федя");
-       map.put(new User("Ваня", 2, new GregorianCalendar(2001, 12, 9)), "Ваня");
+       map.put(new User("Федя", 2, new GregorianCalendar(1989, 1, 4)), "Федя");
     }
 
 
