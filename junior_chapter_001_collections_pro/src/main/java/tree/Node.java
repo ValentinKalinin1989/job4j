@@ -9,7 +9,7 @@ import java.util.List;
  * @since 0.1
  */
 public class Node<E extends Comparable<E>> {
-    //public E parent;
+
     public List<Node<E>> children = new ArrayList<>();
     public E value;
 

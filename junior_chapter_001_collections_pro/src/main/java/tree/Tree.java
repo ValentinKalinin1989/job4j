@@ -22,12 +22,10 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         Node<E> childIn = findBy(child).orElse(null);
 
         if (childIn != null) {
-            System.out.println("Элемент уже есть");
             return false;
         }
 
         if (!findBy(parent).isPresent()) {
-            System.out.println("Такого родителя нет");
             return false;
         }
 
@@ -83,17 +81,37 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
                     arrayList = arrayChildre;
                     index = 0;
                 }
-                if (index <= arrayList.size()) {
+                if (index < arrayList.size()) {
                     result = true;
                 }
+
+                if (arrayList.isEmpty()) {
+                    return false;
+                }
+
                 return result;
             }
 
             @Override
             public E next() {
-                hasNext();
+                if (!hasNext()) {
+                    throw new NoSuchElementException("Нет элементов");
+                }
                 return arrayList.get(index++).value;
             }
+
         };
+    }
+
+    public boolean isBinary() {
+        boolean result = true;
+        Iterator iterBin = this.iterator();
+        while (iterBin.hasNext()) {
+                if (findBy((E) iterBin.next()).get().children.stream().count() > 2) {
+                    result = false;
+                    break;
+               }
+        }
+        return result;
     }
 }

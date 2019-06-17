@@ -98,8 +98,16 @@ public class SimpleHashMap<K, V> implements Iterable<V> {
                 }
                 return (V) container[indexIter++].getValue();
             }
+
+            public Node<K, V> nextFBin() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException("Отсутвует элементы");
+                }
+                return (Node<K, V>) container[indexIter++];
+            }
         };
     }
+
 
     private static class Node<K, V> {
         K key;
