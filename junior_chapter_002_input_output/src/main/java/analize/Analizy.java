@@ -7,7 +7,6 @@ import java.util.List;
 public class Analizy {
     public void unavailable(String source, String target) {
 
-        //List<String> listLog = new ArrayList<>();
         List<String> listRes = new ArrayList<>();
 
         try (BufferedReader read = new BufferedReader(new FileReader(source))) {
