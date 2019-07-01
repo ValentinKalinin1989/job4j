@@ -22,6 +22,7 @@
        <module>chapter_004</module>
        <module>tictactoe</module>
         <module>junior_chapter_001_collections_pro</module>
+        <module>junior_chapter_002_input_output</module>
     </modules>
 
     <build>
