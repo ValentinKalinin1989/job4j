@@ -13,7 +13,7 @@ public class Chat  {
 
 
     public static void main(String[] args) {
-        Chat chat = new Chat("C:\\projects\\job4j\\Answer.txt");
+        Chat chat = new Chat("Answer.txt");
         chat.chat();
     }
 
@@ -105,5 +105,28 @@ public class Chat  {
             }
             end = analyziRequest(request);
         } while (end);
+    }
+
+    /**
+     * запуск чата для теста
+     * @param strings ввод пользователя
+     * @return содержимое лога
+     */
+    public List<String> chatT(List<String> strings) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        boolean end = true;
+        String request = null;
+            do {
+                for (String string: strings) {
+
+                    System.out.println("Введите сообщение:");
+                    request = string;
+                    end = analyziRequest(request);
+                    if (!end) {
+                        break;
+                    }
+                }
+            } while (end);
+        return log;
     }
 }

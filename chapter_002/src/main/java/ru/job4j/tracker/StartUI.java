@@ -28,8 +28,6 @@ public class StartUI {
         this.tracker = tracker;
         this.output = output;
     }
-
-
     /**
      * Основой цикл программы.
      */
