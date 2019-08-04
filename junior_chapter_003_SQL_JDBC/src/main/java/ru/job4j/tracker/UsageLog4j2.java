@@ -1,4 +1,4 @@
-package ru.job4j;
+package ru.job4j.tracker;
 
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;

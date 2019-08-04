@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Tracker {
+public class Tracker implements ITracker {
     private final List<Item> items = new ArrayList<>(100);
 
     private int position = 0;
