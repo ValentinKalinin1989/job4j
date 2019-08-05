@@ -44,11 +44,14 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     public Item add(Item item) {
         try {
             item.setId(String.valueOf(RN.nextInt(Integer.MAX_VALUE)));
+            PreparedStatement stCr = this.connection.prepareStatement("create table if not exists item(id serial primary key, description varchar(2000), comment_id int references comments(id)");
+            stCr.close();
             PreparedStatement st = this.connection.prepareStatement("insert into item(id, description, comment_id) values (?, ?, ?)");
             st.setInt(1, parseInt(item.getId()));
             st.setString(2, item.getName());
             st.setInt(3, 1);
             st.executeUpdate();
+            st.close();
         } catch (SQLException e) {
             LOG.error(e.getMessage(), e);
         }
@@ -62,6 +65,7 @@ public class TrackerSQL implements ITracker, AutoCloseable {
             st.setString(1, item.getName());
             st.setInt(2, parseInt(id));
             st.executeUpdate();
+            st.close();
             result = true;
         } catch (SQLException e) {
             LOG.error(e.getMessage(), e);
@@ -75,6 +79,7 @@ public class TrackerSQL implements ITracker, AutoCloseable {
             PreparedStatement st = this.connection.prepareStatement("delete from item where id = ?");
             st.setInt(1, parseInt(id));
             st.executeUpdate();
+            st.close();
             result = true;
         } catch (SQLException e) {
             LOG.error(e.getMessage(), e);
@@ -88,6 +93,8 @@ public class TrackerSQL implements ITracker, AutoCloseable {
             Statement st = this.connection.createStatement();
             ResultSet rs = st.executeQuery("select * from item");
             writeItemInList(rs, items);
+            st.close();
+            rs.close();
         } catch (SQLException e) {
             LOG.error(e.getMessage(), e);
         }
@@ -102,6 +109,8 @@ public class TrackerSQL implements ITracker, AutoCloseable {
             st.setString(1, key);
             ResultSet rs = st.executeQuery();
             writeItemInList(rs, items);
+            st.close();
+            rs.close();
         } catch (SQLException e) {
             LOG.error(e.getMessage(), e);
         }
@@ -118,10 +127,11 @@ public class TrackerSQL implements ITracker, AutoCloseable {
             rs.next();
             resultItem = new Item(rs.getString("description"), "коммент", 1);
             resultItem.setId(rs.getString("id"));
+            st.close();
+            rs.close();
         } catch (SQLException e) {
             LOG.error(e.getMessage(), e);
         }
-
         return resultItem;
     }
 
