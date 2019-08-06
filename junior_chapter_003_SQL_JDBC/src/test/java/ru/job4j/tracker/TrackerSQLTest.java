@@ -21,35 +21,43 @@ public class TrackerSQLTest {
         Item itemFinded = sql.findById(itemAdded.getId());
         assertThat(itemAdded.getId(), is(itemFinded.getId()));
         assertThat(itemAdded.getName(), is(itemFinded.getName()));
-    }
-    @Test
-    public void testFindItem() {
-        TrackerSQL sql = new TrackerSQL();
-        sql.init();
-        Item itemFinded = sql.findById("624995469");
-        assertThat("624995469", is(itemFinded.getId()));
+        assertThat(sql.delete(itemAdded.getId()), is(true));
     }
     @Test
     public void testFindAllItem() {
         TrackerSQL sql = new TrackerSQL();
         sql.init();
+        Item itemAdded0 = sql.add(new Item("ItemSQLTest0", "Description", 120));
+        Item itemAdded1 = sql.add(new Item("ItemSQLTest1", "Description", 120));
+        Item itemAdded2 = sql.add(new Item("ItemSQLTest2", "Description", 120));
+        Item itemAdded3 = sql.add(new Item("ItemSQLTest3", "Description", 120));
+        Item itemAdded4 = sql.add(new Item("ItemSQLTest4", "Description", 120));
         List<Item> items = sql.findAll();
-        assertThat(items.get(0).getName(), is("item1"));
-        assertThat(items.get(1).getName(), is("item2"));
-        assertThat(items.get(2).getName(), is("item1"));
-        assertThat(items.get(3).getName(), is("item2"));
-        assertThat(items.get(4).getName(), is("item1"));
-        assertThat(items.get(5).getName(), is("item2"));
-        assertThat(items.get(6).getName(), is("итемтест"));
+        assertThat(items.get(0).getName(), is("ItemSQLTest0"));
+        assertThat(items.get(1).getName(), is("ItemSQLTest1"));
+        assertThat(items.get(2).getName(), is("ItemSQLTest2"));
+        assertThat(items.get(3).getName(), is("ItemSQLTest3"));
+        assertThat(items.get(4).getName(), is("ItemSQLTest4"));
+        assertThat(sql.delete(itemAdded0.getId()), is(true));
+        assertThat(sql.delete(itemAdded1.getId()), is(true));
+        assertThat(sql.delete(itemAdded2.getId()), is(true));
+        assertThat(sql.delete(itemAdded3.getId()), is(true));
+        assertThat(sql.delete(itemAdded4.getId()), is(true));
     }
     @Test
     public void testFindByName() {
         TrackerSQL sql = new TrackerSQL();
         sql.init();
-        List<Item> items = sql.findByName("item1");
-        assertThat(items.get(0).getName(), is("item1"));
-        assertThat(items.get(1).getName(), is("item1"));
-        assertThat(items.get(2).getName(), is("item1"));
+        Item itemAdded0 = sql.add(new Item("ItemSQLTest", "Description", 120));
+        Item itemAdded1 = sql.add(new Item("ItemSQLTest", "Description", 120));
+        Item itemAdded2 = sql.add(new Item("ItemSQLTest", "Description", 120));
+        List<Item> items = sql.findByName("ItemSQLTest");
+        assertThat(items.get(0).getName(), is("ItemSQLTest"));
+        assertThat(items.get(1).getName(), is("ItemSQLTest"));
+        assertThat(items.get(2).getName(), is("ItemSQLTest"));
+        assertThat(sql.delete(itemAdded0.getId()), is(true));
+        assertThat(sql.delete(itemAdded1.getId()), is(true));
+        assertThat(sql.delete(itemAdded2.getId()), is(true));
     }
     @Test
     public void testReplaceItemAndDell() {

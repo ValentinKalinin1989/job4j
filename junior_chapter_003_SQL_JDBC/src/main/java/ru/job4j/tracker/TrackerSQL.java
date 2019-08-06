@@ -44,12 +44,15 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     public Item add(Item item) {
         try {
             item.setId(String.valueOf(RN.nextInt(Integer.MAX_VALUE)));
-            PreparedStatement stCr = this.connection.prepareStatement("create table if not exists item(id serial primary key, description varchar(2000), comment_id int references comments(id)");
+            PreparedStatement stCr = this.connection.prepareStatement(
+                    "create table if not exists item(id serial primary key, name_item varchar(50), description varchar(100), time_create int) ");
+            stCr.executeUpdate();
             stCr.close();
-            PreparedStatement st = this.connection.prepareStatement("insert into item(id, description, comment_id) values (?, ?, ?)");
+            PreparedStatement st = this.connection.prepareStatement("insert into item(id, name_item, description, time_create) values (?, ?, ?, ?)");
             st.setInt(1, parseInt(item.getId()));
             st.setString(2, item.getName());
-            st.setInt(3, 1);
+            st.setString(3, item.getDesc());
+            st.setLong(4, item.getCreated());
             st.executeUpdate();
             st.close();
         } catch (SQLException e) {
@@ -61,9 +64,11 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     public boolean replace(String id, Item item) {
         boolean result = false;
         try {
-            PreparedStatement st = this.connection.prepareStatement("update item set description = ? where id = ?");
+            PreparedStatement st = this.connection.prepareStatement("update item set name_item = ?, description = ?, time_create = ? where id = ?");
             st.setString(1, item.getName());
-            st.setInt(2, parseInt(id));
+            st.setString(2, item.getName());
+            st.setLong(3, item.getCreated());
+            st.setInt(4, parseInt(id));
             st.executeUpdate();
             st.close();
             result = true;
@@ -100,12 +105,11 @@ public class TrackerSQL implements ITracker, AutoCloseable {
         }
         return items;
     }
-
     @Override
     public List<Item> findByName(String key) {
         List<Item> items = new ArrayList<>();
         try {
-            PreparedStatement st = this.connection.prepareStatement("select * from item where description = ?");
+            PreparedStatement st = this.connection.prepareStatement("select * from item where name_item = ?");
             st.setString(1, key);
             ResultSet rs = st.executeQuery();
             writeItemInList(rs, items);
@@ -116,7 +120,6 @@ public class TrackerSQL implements ITracker, AutoCloseable {
         }
         return items;
     }
-
     @Override
     public Item findById(String id) {
         Item resultItem = null;
@@ -125,7 +128,7 @@ public class TrackerSQL implements ITracker, AutoCloseable {
             st.setInt(1, parseInt(id));
             ResultSet rs = st.executeQuery();
             rs.next();
-            resultItem = new Item(rs.getString("description"), "коммент", 1);
+            resultItem = new Item(rs.getString("name_item"), rs.getString("description"), rs.getLong("time_create"));
             resultItem.setId(rs.getString("id"));
             st.close();
             rs.close();
@@ -134,12 +137,38 @@ public class TrackerSQL implements ITracker, AutoCloseable {
         }
         return resultItem;
     }
-
+    /**
+     * add Item in List
+     * @param rs ResultSet
+     * @param items list of Item for add finded Items
+     * @throws SQLException
+     */
     private void writeItemInList(ResultSet rs, List<Item> items) throws SQLException {
         while (rs.next()) {
-            Item item = new Item(rs.getString("description"), "коммент", 1);
+            Item item = new Item(rs.getString("name_item"), rs.getString("description"), rs.getLong("time_create"));
             item.setId(String.valueOf(rs.getInt("id")));
             items.add(item);
         }
+    }
+    /**
+     * генерация id для item и проверка совпадения с id в базе данных,
+     * если совпадает то генерируется новый id пока он не будет иметь совпадений
+     * @return String id
+     */
+    public String generetaId() {
+        boolean check = true;
+        String id ="";
+        do {
+            id = String.valueOf(RN.nextInt(Integer.MAX_VALUE));
+            try {
+                PreparedStatement st = this.connection.prepareStatement("exists (select i.id from item where id = ?)");
+                st.setString(1, id);
+                ResultSet rs = st.executeQuery();
+                check = rs.next();
+            } catch (SQLException e) {
+                LOG.error(e.getMessage(), e);
+            }
+        } while(check);
+        return id;
     }
 }
