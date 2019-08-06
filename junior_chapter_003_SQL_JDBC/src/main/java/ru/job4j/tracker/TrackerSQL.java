@@ -150,25 +150,4 @@ public class TrackerSQL implements ITracker, AutoCloseable {
             items.add(item);
         }
     }
-    /**
-     * генерация id для item и проверка совпадения с id в базе данных,
-     * если совпадает то генерируется новый id пока он не будет иметь совпадений
-     * @return String id
-     */
-    public String generetaId() {
-        boolean check = true;
-        String id ="";
-        do {
-            id = String.valueOf(RN.nextInt(Integer.MAX_VALUE));
-            try {
-                PreparedStatement st = this.connection.prepareStatement("exists (select i.id from item where id = ?)");
-                st.setString(1, id);
-                ResultSet rs = st.executeQuery();
-                check = rs.next();
-            } catch (SQLException e) {
-                LOG.error(e.getMessage(), e);
-            }
-        } while(check);
-        return id;
-    }
 }
