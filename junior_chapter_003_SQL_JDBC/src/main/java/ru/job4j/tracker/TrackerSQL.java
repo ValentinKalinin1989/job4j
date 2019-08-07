@@ -25,6 +25,10 @@ public class TrackerSQL implements ITracker, AutoCloseable {
                     config.getProperty("username"),
                     config.getProperty("password")
             );
+            PreparedStatement stCr = this.connection.prepareStatement(
+                    "create table if not exists item(id serial primary key, name_item varchar(50), description varchar(100), time_create int) ");
+            stCr.executeUpdate();
+            stCr.close();
         } catch (Exception e) {
             throw new IllegalStateException(e);
         }
@@ -42,19 +46,13 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     }
     @Override
     public Item add(Item item) {
-        try {
-            item.setId(String.valueOf(RN.nextInt(Integer.MAX_VALUE)));
-            PreparedStatement stCr = this.connection.prepareStatement(
-                    "create table if not exists item(id serial primary key, name_item varchar(50), description varchar(100), time_create int) ");
-            stCr.executeUpdate();
-            stCr.close();
-            PreparedStatement st = this.connection.prepareStatement("insert into item(id, name_item, description, time_create) values (?, ?, ?, ?)");
-            st.setInt(1, parseInt(item.getId()));
-            st.setString(2, item.getName());
-            st.setString(3, item.getDesc());
-            st.setLong(4, item.getCreated());
-            st.executeUpdate();
-            st.close();
+        try (PreparedStatement st = this.connection.prepareStatement("insert into item(name_item, description, time_create) values (?, ?, ?) returning id")) {
+            st.setString(1, item.getName());
+            st.setString(2, item.getDesc());
+            st.setLong(3, item.getCreated());
+            ResultSet rs = st.executeQuery();
+            rs.next();
+            item.setId(String.valueOf(rs.getInt("id")));
         } catch (SQLException e) {
             LOG.error(e.getMessage(), e);
         }
@@ -63,10 +61,9 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     @Override
     public boolean replace(String id, Item item) {
         boolean result = false;
-        try {
-            PreparedStatement st = this.connection.prepareStatement("update item set name_item = ?, description = ?, time_create = ? where id = ?");
+        try (PreparedStatement st = this.connection.prepareStatement("update item set name_item = ?, description = ?, time_create = ? where id = ?")) {
             st.setString(1, item.getName());
-            st.setString(2, item.getName());
+            st.setString(2, item.getDesc());
             st.setLong(3, item.getCreated());
             st.setInt(4, parseInt(id));
             st.executeUpdate();
@@ -80,8 +77,7 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     @Override
     public boolean delete(String id) {
         boolean result = false;
-        try {
-            PreparedStatement st = this.connection.prepareStatement("delete from item where id = ?");
+        try (PreparedStatement st = this.connection.prepareStatement("delete from item where id = ?");) {
             st.setInt(1, parseInt(id));
             st.executeUpdate();
             st.close();
@@ -94,8 +90,7 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     @Override
     public List<Item> findAll() {
         List<Item> items = new ArrayList<>();
-        try {
-            Statement st = this.connection.createStatement();
+        try (Statement st = this.connection.createStatement()) {
             ResultSet rs = st.executeQuery("select * from item");
             writeItemInList(rs, items);
             st.close();
@@ -108,8 +103,7 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     @Override
     public List<Item> findByName(String key) {
         List<Item> items = new ArrayList<>();
-        try {
-            PreparedStatement st = this.connection.prepareStatement("select * from item where name_item = ?");
+        try (PreparedStatement st = this.connection.prepareStatement("select * from item where name_item = ?");) {
             st.setString(1, key);
             ResultSet rs = st.executeQuery();
             writeItemInList(rs, items);
@@ -123,8 +117,7 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     @Override
     public Item findById(String id) {
         Item resultItem = null;
-        try {
-            PreparedStatement st = this.connection.prepareStatement("select * from item where id = ?");
+        try (PreparedStatement st = this.connection.prepareStatement("select * from item where id = ?")) {
             st.setInt(1, parseInt(id));
             ResultSet rs = st.executeQuery();
             rs.next();

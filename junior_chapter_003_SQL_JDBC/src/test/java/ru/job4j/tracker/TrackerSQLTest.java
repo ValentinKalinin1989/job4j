@@ -12,6 +12,11 @@ public class TrackerSQLTest {
     public void checkConnection() {
         TrackerSQL sql = new TrackerSQL();
         assertThat(sql.init(), is(true));
+        try {
+            sql.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     @Test
     public void testAddItem() {
@@ -22,6 +27,11 @@ public class TrackerSQLTest {
         assertThat(itemAdded.getId(), is(itemFinded.getId()));
         assertThat(itemAdded.getName(), is(itemFinded.getName()));
         assertThat(sql.delete(itemAdded.getId()), is(true));
+        try {
+            sql.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     @Test
     public void testFindAllItem() {
@@ -43,6 +53,11 @@ public class TrackerSQLTest {
         assertThat(sql.delete(itemAdded2.getId()), is(true));
         assertThat(sql.delete(itemAdded3.getId()), is(true));
         assertThat(sql.delete(itemAdded4.getId()), is(true));
+        try {
+            sql.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     @Test
     public void testFindByName() {
@@ -58,6 +73,11 @@ public class TrackerSQLTest {
         assertThat(sql.delete(itemAdded0.getId()), is(true));
         assertThat(sql.delete(itemAdded1.getId()), is(true));
         assertThat(sql.delete(itemAdded2.getId()), is(true));
+        try {
+            sql.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     @Test
     public void testReplaceItemAndDell() {
@@ -68,5 +88,10 @@ public class TrackerSQLTest {
         assertThat(result, is(true));
         assertThat(sql.findById(itemAdded.getId()).getName(), is("ItemSQLUpdate"));
         assertThat(sql.delete(itemAdded.getId()), is(true));
+        try {
+            sql.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
