@@ -14,7 +14,7 @@ public class StartUI {
     /**
      * Хранилище заявок.
      */
-    private static Tracker tracker;
+    private static ITracker tracker;
     /**
      * метод вводв данных
      * */
@@ -23,7 +23,7 @@ public class StartUI {
      * Конструтор инициализирующий поля.
      * @param input ввод данных.
      */
-    public StartUI(Input input, Tracker tracker, Consumer<String> output) {
+    public StartUI(Input input, ITracker tracker, Consumer<String> output) {
         this.input = input;
         this.tracker = tracker;
         this.output = output;
@@ -34,7 +34,7 @@ public class StartUI {
 
     public static void main(String[] args) {
         Input input = new ValidateInput(new ConsoleInput());
-        Tracker tracker = new Tracker();
+        ITracker tracker = new Tracker();
         new StartUI(input, tracker, System.out::println).init();
     }
 
