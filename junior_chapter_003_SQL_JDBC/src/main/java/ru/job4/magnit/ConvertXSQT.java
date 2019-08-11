@@ -9,16 +9,11 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
-
 public class ConvertXSQT {
     public static void convert(File source, File dest, File scheme) {
         try {
-
             String stringSource = Files.readString(source.toPath(), StandardCharsets.US_ASCII);
             String stringScheme = Files.readString(scheme.toPath(), StandardCharsets.US_ASCII);
-            System.out.println(stringSource);
-            System.out.println(stringScheme);
-
             TransformerFactory factory = TransformerFactory.newInstance();
             Transformer transformer = factory.newTransformer(
                     new StreamSource(

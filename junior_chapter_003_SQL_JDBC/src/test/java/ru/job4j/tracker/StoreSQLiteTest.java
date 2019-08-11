@@ -19,7 +19,7 @@ public class StoreSQLiteTest {
         ConfigSQLite configSQLite = new ConfigSQLite();
         configSQLite.init();
         StoreSQLite sql = new StoreSQLite(configSQLite);
-        sql.generate(100);
+        sql.generate(100000);
         List<StoreSQLite.Entry> list = sql.load();
         try {
             sql.close();

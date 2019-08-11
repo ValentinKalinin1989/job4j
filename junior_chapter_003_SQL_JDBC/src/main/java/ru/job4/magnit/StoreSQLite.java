@@ -3,11 +3,9 @@ package ru.job4.magnit;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ru.job4j.tracker.UsageLog4j2;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class StoreSQLite implements AutoCloseable {
     private static final Logger LOG = LogManager.getLogger(UsageLog4j2.class.getName());

@@ -7,11 +7,32 @@
      <name>junior</name>
      <url>http://job4j.ru/</url>
 
+    <profiles>
+        <profile>
+            <id>test</id>
+            <properties>
+                <db.url>jdbc:postgresql://127.0.0.1:5432/tracker</db.url>
+                <db.username>postgres</db.username>
+                <db.password>root</db.password>
+                <db.driver>org.postgresql.Driver</db.driver>
+            </properties>
+        </profile>
+        <profile>
+            <id>production</id>
+            <properties>
+                <db.url>jdbc:postgresql://127.0.0.1:5432/tracker</db.url>
+                <db.username>postgres</db.username>
+                <db.password>root</db.password>
+                <db.driver>org.postgresql.Driver</db.driver>
+            </properties>
+        </profile>
+    </profiles>
+
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-     </properties>
+    </properties>
 
     <modules>
        <module>chapter_001</module>
@@ -21,9 +42,9 @@
        <module>chapter_003</module>
        <module>chapter_004</module>
        <module>tictactoe</module>
-        <module>junior_chapter_001_collections_pro</module>
-        <module>junior_chapter_002_input_output</module>
-        <module>junior_chapter_003_SQL_JDBC</module>
+       <module>junior_chapter_001_collections_pro</module>
+       <module>junior_chapter_002_input_output</module>
+       <module>junior_chapter_003_SQL_JDBC</module>
     </modules>
 
     <build>
@@ -96,28 +117,24 @@
             <version>2.23.4</version>
             <scope>test</scope>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-fxml -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
             <version>11</version>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-graphics -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-graphics</artifactId>
             <version>11</version>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-base -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-base</artifactId>
             <version>11</version>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-controls -->
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -166,8 +183,6 @@
             <artifactId>jaxb-runtime</artifactId>
             <version>2.4.0-b180830.0438</version>
         </dependency>
-
-
     </dependencies>
 
 </project>

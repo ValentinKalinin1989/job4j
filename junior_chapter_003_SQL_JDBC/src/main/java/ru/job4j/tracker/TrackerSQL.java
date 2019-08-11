@@ -13,18 +13,22 @@ public class TrackerSQL implements ITracker, AutoCloseable {
 
     private static final Random RN = new Random();
     private static final Logger LOG = LogManager.getLogger(UsageLog4j2.class.getName());
-    private Connection connection;
+    private final Connection connection;
+
+    public TrackerSQL (Connection connection) {
+        this.connection = connection;
+    }
 
     public boolean init() {
         try (InputStream in = TrackerSQL.class.getClassLoader().getResourceAsStream("app.properties")) {
             Properties config = new Properties();
             config.load(in);
             Class.forName(config.getProperty("driver-class-name"));
-            this.connection = DriverManager.getConnection(
-                    config.getProperty("url"),
-                    config.getProperty("username"),
-                    config.getProperty("password")
-            );
+            //this.connection = DriverManager.getConnection(
+             //       config.getProperty("url"),
+             //       config.getProperty("username"),
+             //       config.getProperty("password")
+            //);
             PreparedStatement stCr = this.connection.prepareStatement(
                     "create table if not exists item(id serial primary key, name_item varchar(50), description varchar(100), time_create int) ");
             stCr.executeUpdate();
