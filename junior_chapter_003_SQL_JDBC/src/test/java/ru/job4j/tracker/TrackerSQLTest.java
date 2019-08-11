@@ -52,8 +52,7 @@ public class TrackerSQLTest {
     }
     @Test
     public void testFindAllItem() {
-        try (TrackerSQL tracker = new TrackerSQL(ConnectionRollback.create(this.init())))
-        {
+        try (TrackerSQL tracker = new TrackerSQL(ConnectionRollback.create(this.init()))) {
             tracker.init();
             Item itemAdded0 = tracker.add(new Item("ItemSQLTest0", "Description", 120));
             Item itemAdded1 = tracker.add(new Item("ItemSQLTest1", "Description", 120));
@@ -77,8 +76,7 @@ public class TrackerSQLTest {
     }
     @Test
     public void testFindByName() {
-        try (TrackerSQL tracker = new TrackerSQL(ConnectionRollback.create(this.init())))
-        {
+        try (TrackerSQL tracker = new TrackerSQL(ConnectionRollback.create(this.init()))) {
             tracker.init();
             Item itemAdded0 = tracker.add(new Item("ItemSQLTest", "Description", 120));
             Item itemAdded1 = tracker.add(new Item("ItemSQLTest", "Description", 120));
@@ -96,8 +94,7 @@ public class TrackerSQLTest {
     }
     @Test
     public void testReplaceItemAndDell() {
-        try (TrackerSQL tracker = new TrackerSQL(ConnectionRollback.create(this.init())))
-        {
+        try (TrackerSQL tracker = new TrackerSQL(ConnectionRollback.create(this.init()))) {
             tracker.init();
             Item itemAdded = tracker.add(new Item("ItemSQLTest", "Description", 120));
             boolean result = tracker.replace(itemAdded.getId(), new Item("ItemSQLUpdate", "Description", 120));
