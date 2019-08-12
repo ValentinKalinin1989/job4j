@@ -24,17 +24,15 @@ public class StoreSQLite implements AutoCloseable {
         this.size = size;
         try {
             this.connect = DriverManager.getConnection(config.get("url"));
-            PreparedStatement st = this.connect.prepareStatement("create table if not exists entry(field integer)");
-            st.executeUpdate();
-        } catch (SQLException e) {
-            LOG.error(e.getMessage(), e);
-        }
-        try {
-            for (int i = 1; i <= size; i++) {
-                PreparedStatement st = this.connect.prepareStatement("insert into entry(field) values (?)");
-                st.setInt(1, i);
-                st.execute();
-                st.close();
+            try (PreparedStatement st = this.connect.prepareStatement("create table if not exists entry(field integer)")) {
+                st.executeUpdate();
+                try (PreparedStatement stAdd = this.connect.prepareStatement("insert into entry(field) values (?)")) {
+                    for (int i = 1; i <= size; i++) {
+                        stAdd.setInt(1, i);
+                        stAdd.addBatch();
+                    }
+                    stAdd.executeBatch();
+                }
             }
         } catch (SQLException e) {
             LOG.error(e.getMessage(), e);

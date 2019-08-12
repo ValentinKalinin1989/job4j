@@ -19,7 +19,7 @@ public class StoreSQLiteTest {
         ConfigSQLite configSQLite = new ConfigSQLite();
         configSQLite.init();
         StoreSQLite sql = new StoreSQLite(configSQLite);
-        sql.generate(100000);
+        sql.generate(100);
         List<StoreSQLite.Entry> list = sql.load();
         try {
             sql.close();
@@ -32,5 +32,10 @@ public class StoreSQLiteTest {
         assertThat(list.get(0).getValue(), is(1));
         assertThat(list.get(50).getValue(), is(51));
         assertThat(list.get(99).getValue(), is(100));
+        try {
+            sql.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
