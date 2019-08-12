@@ -30,12 +30,13 @@ public class StoreSQLite implements AutoCloseable {
             LOG.error(e.getMessage(), e);
         }
         try {
+            PreparedStatement st = this.connect.prepareStatement("insert into entry(field) values (?)");
             for (int i = 1; i <= size; i++) {
-                PreparedStatement st = this.connect.prepareStatement("insert into entry(field) values (?)");
                 st.setInt(1, i);
-                st.execute();
-                st.close();
+                st.addBatch();
             }
+            st.executeBatch();
+            st.close();
         } catch (SQLException e) {
             LOG.error(e.getMessage(), e);
         }
