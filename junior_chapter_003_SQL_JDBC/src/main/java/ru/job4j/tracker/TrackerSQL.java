@@ -24,11 +24,6 @@ public class TrackerSQL implements ITracker, AutoCloseable {
             Properties config = new Properties();
             config.load(in);
             Class.forName(config.getProperty("driver-class-name"));
-            //this.connection = DriverManager.getConnection(
-             //       config.getProperty("url"),
-             //       config.getProperty("username"),
-             //       config.getProperty("password")
-            //);
             PreparedStatement stCr = this.connection.prepareStatement(
                     "create table if not exists item(id serial primary key, name_item varchar(50), description varchar(100), time_create int) ");
             stCr.executeUpdate();
