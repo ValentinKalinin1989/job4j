@@ -1,4 +1,4 @@
-package ru.job4.magnit;
+package ru.job4j.magnit;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

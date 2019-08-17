@@ -1,10 +1,10 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
-import ru.job4.magnit.ConfigSQLite;
-import ru.job4.magnit.ConvertXSQT;
-import ru.job4.magnit.StoreSQLite;
-import ru.job4.magnit.StoreXML;
+import ru.job4j.magnit.ConfigSQLite;
+import ru.job4j.magnit.ConvertXSQT;
+import ru.job4j.magnit.StoreSQLite;
+import ru.job4j.magnit.StoreXML;
 
 import java.io.File;
 import java.util.List;
