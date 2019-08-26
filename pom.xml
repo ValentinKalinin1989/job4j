@@ -58,6 +58,7 @@
        <module>junior_chapter_001_collections_pro</module>
        <module>junior_chapter_002_input_output</module>
        <module>junior_chapter_003_SQL_JDBC</module>
+        <module>junior_chapter_004_SOLID</module>
     </modules>
 
     <build>
