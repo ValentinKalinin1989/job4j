@@ -1,9 +1,6 @@
 package calculator.calculators;
 
-import calculator.operators.DivideOperation;
-import calculator.operators.MinusOperation;
-import calculator.operators.MultipOperation;
-import calculator.operators.SumOperation;
+import calculator.operators.*;
 
 public class InteractCalc extends Calculator {
     /**
@@ -15,6 +12,9 @@ public class InteractCalc extends Calculator {
         calculator.addOperation(new MinusOperation());
         calculator.addOperation(new DivideOperation());
         calculator.addOperation(new MultipOperation());
+        calculator.addOperation(new CosOperation());
+        calculator.addOperation(new SinOperation());
+        calculator.addOperation(new TanOperation());
         calculator.start();
     }
 }

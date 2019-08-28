@@ -31,6 +31,10 @@ public class Calculator {
             System.out.print(result);
             try {
                 str = result + reader.readLine();
+                if (str.contains("сброс")) {
+                    result = "";
+                    continue;
+                }
                 for (CalcOperation oper: this.listOper) {
                     if (str.contains(oper.nameOper())) {
                         result = oper.operation(str);
