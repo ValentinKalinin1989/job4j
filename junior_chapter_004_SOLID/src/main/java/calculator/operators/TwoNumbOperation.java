@@ -2,7 +2,7 @@ package calculator.operators;
 
 import java.math.BigDecimal;
 
-public abstract class TwoNumbOperation implements CalcOperation{
+public abstract class TwoNumbOperation implements CalcOperation {
     /**
      * проведение операции над строкой и вывод результато
      * @param task строка для извлечения переменных
@@ -35,8 +35,7 @@ public abstract class TwoNumbOperation implements CalcOperation{
             try {
                 bigDecimals[0] = new BigDecimal(strings[0]);
                 bigDecimals[1] = new BigDecimal(strings[2]);
-            } catch (Exception e)
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

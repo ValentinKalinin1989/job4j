@@ -31,12 +31,12 @@ public class Calculator {
             System.out.print(result);
             try {
                 str = result + reader.readLine();
-                for(CalcOperation oper: this.listOper) {
+                for (CalcOperation oper: this.listOper) {
                     if (str.contains(oper.nameOper())) {
                         result = oper.operation(str);
                     }
                 }
-            }catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         } while (!str.contains("стоп"));

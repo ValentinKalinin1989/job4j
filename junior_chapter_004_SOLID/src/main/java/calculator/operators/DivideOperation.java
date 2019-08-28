@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 
-public class DivideOperation extends TwoNumbOperation{
+public class DivideOperation extends TwoNumbOperation {
     private String name = "/";
     private String example = "1 / 2";
 

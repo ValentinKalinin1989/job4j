@@ -2,7 +2,7 @@ package calculator.operators;
 
 import java.math.BigDecimal;
 
-public class MultipOperation extends TwoNumbOperation{
+public class MultipOperation extends TwoNumbOperation {
     private String name = "*";
     private String example = "1 * 2";
     @Override
