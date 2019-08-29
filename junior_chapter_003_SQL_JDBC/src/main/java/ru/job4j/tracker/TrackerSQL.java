@@ -12,7 +12,7 @@ import static java.lang.Integer.parseInt;
 public class TrackerSQL implements ITracker, AutoCloseable {
 
     private static final Random RN = new Random();
-    private static final Logger LOG = LogManager.getLogger(UsageLog4j2.class.getName());
+    private static final Logger LOG = LogManager.getLogger(TrackerSQL.class.getName());
     private final Connection connection;
 
     public TrackerSQL(Connection connection) {

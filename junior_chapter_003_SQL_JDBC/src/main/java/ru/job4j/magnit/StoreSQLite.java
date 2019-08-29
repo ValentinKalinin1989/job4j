@@ -1,4 +1,4 @@
-package ru.job4.magnit;
+package ru.job4j.magnit;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
