@@ -10,7 +10,6 @@ public class Warehouse<T extends Food> extends Store {
         float procentTrash = ((Food) obj).procTrash(date);
         if (procentTrash < 25) {
             this.foodList.add(obj);
-            //list.remove(obj);
         }
     }
 

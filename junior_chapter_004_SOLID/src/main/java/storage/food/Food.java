@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 
-public class Food {
+public class Food implements Vegetable, Reproduction {
     @Setter @Getter private String name;
     @Setter @Getter private LocalDate expaireDate;
     @Setter @Getter private LocalDate createDate;
@@ -31,7 +31,17 @@ public class Food {
             float daysLate = (float) ChronoUnit.DAYS.between(this.getCreateDate(), date);
             return (daysLate / dayzAllStore) * 100;
         }
+
+    @Override
+    public boolean isCanReproduction() {
+        return false;
     }
+
+    @Override
+    public boolean isVegetable() {
+        return false;
+    }
+}
 
 
 

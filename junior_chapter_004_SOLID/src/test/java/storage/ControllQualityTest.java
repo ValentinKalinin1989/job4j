@@ -5,15 +5,13 @@ import storage.food.Cheese;
 import storage.food.Food;
 import storage.food.Meat;
 import storage.food.Milk;
+import storage.food.Flour;
+import storage.food.Potatoes;
 import storage.sort.ControllQuality;
-import storage.store.Shop;
-import storage.store.Trash;
-import storage.store.Warehouse;
+import storage.store.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
@@ -24,16 +22,28 @@ public class ControllQualityTest {
         Shop shop = new Shop();
         Trash trash = new Trash();
         Warehouse warehouse = new Warehouse();
+        RefreshWarehouse refreshWarehouse = new RefreshWarehouse<>(warehouse);
+        RestoreWare restoreWare = new RestoreWare(trash);
         ControllQuality controllQuality = new ControllQuality();
         controllQuality.addStore(shop);
-        controllQuality.addStore(trash);
-        controllQuality.addStore(warehouse);
+        controllQuality.addStore(restoreWare);
+        controllQuality.addStore(refreshWarehouse);
         Milk milk = new Milk("MilkSuper",
                 LocalDate.of(2060, 7, 9),
                 LocalDate.of(2019, 8, 3),
                 456,
                 (short) 0);
+        Potatoes potatoes = new Potatoes("Potatoes",
+                LocalDate.of(2060, 7, 9),
+                LocalDate.of(2019, 8, 3),
+                456,
+                (short) 0);
         Meat meat = new Meat("MeatSuper",
+                LocalDate.of(2018, 7, 9),
+                LocalDate.of(2008, 8, 3),
+                456,
+                (short) 0);
+        Flour flour = new Flour("SuperFlour",
                 LocalDate.of(2018, 7, 9),
                 LocalDate.of(2008, 8, 3),
                 456,
@@ -50,7 +60,9 @@ public class ControllQualityTest {
                 (short) 0);
         LinkedList<Food> listFood = new LinkedList<>();
         listFood.add(milk);
+        listFood.add(potatoes);
         listFood.add(meat);
+        listFood.add(flour);
         listFood.add(cheese);
         listFood.add(cheeseS);
         controllQuality.sort(listFood, LocalDate.of(2019, 8, 24));
@@ -59,5 +71,7 @@ public class ControllQualityTest {
         assertThat(((Cheese) shop.getFood(0)).getName(), is("Cheese"));
         assertThat(((Cheese) shop.getFood(1)).getName(), is("CheeseSuper"));
         assertThat(((Cheese) shop.getFood(0)).getDisscount(), is((short) 50));
+        assertThat(((Flour) restoreWare.getFood(0)).getName(), is("SuperFlour"));
+        assertThat(((Potatoes) refreshWarehouse.getFood(0)).getName(), is("Potatoes"));
     }
 }
