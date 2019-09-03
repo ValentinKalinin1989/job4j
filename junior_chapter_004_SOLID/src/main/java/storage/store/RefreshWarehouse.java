@@ -13,12 +13,11 @@ public class RefreshWarehouse<T extends Food> extends Store {
         this.store = store;
     }
 
-    public void predicateSort(LinkedList list, Object obj, LocalDate date) {
-        float procentTrash = ((Food) obj).procTrash(date);
-        if (procentTrash < 25 && ((Food) obj).isVegetable()) {
+    public boolean predicateSort(LinkedList list, Object obj, LocalDate date) {
+        boolean result = false;
+        if (store.predicateSort(list, obj, date) && ((Food) obj).isVegetable()) {
             this.foodList.add(obj);
-        } else {
-            store.addFood(list, date);
         }
+        return result;
     }
 }

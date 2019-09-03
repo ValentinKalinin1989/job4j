@@ -12,12 +12,11 @@ public class RestoreWare<T extends Food> extends Store {
         this.store = store;
     }
 
-    public void predicateSort(LinkedList list, Object obj, LocalDate date) {
-        float procentTrash = ((Food) obj).procTrash(date);
-        if (procentTrash >= 100 && ((Food) obj).isCanReproduction()) {
-            this.foodList.add(obj);
-        } else {
-            store.addFood(list, date);
+    public boolean predicateSort(LinkedList list, Object obj, LocalDate date) {
+        boolean result = false;
+        if (store.predicateSort(list, obj, date) && ((Food) obj).isCanReproduction()) {
+            result = true;
         }
+        return result;
     }
 }

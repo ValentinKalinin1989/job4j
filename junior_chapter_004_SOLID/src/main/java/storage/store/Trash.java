@@ -6,10 +6,12 @@ import java.time.LocalDate;
 import java.util.LinkedList;
 
 public class Trash<T extends Food> extends Store {
-    public void predicateSort(LinkedList list, Object obj, LocalDate date) {
+    public boolean predicateSort(LinkedList list, Object obj, LocalDate date) {
+        boolean result = false;
         float procentTrash = ((Food) obj).procTrash(date);
         if (procentTrash >= 100) {
-            this.foodList.add(obj);
+            result = true;
         }
+        return result;
     }
 }

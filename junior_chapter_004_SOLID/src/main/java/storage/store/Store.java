@@ -12,15 +12,29 @@ public abstract class Store<Food> {
 
     public void addFood(LinkedList<Food> list, LocalDate date) {
         if (!list.isEmpty()) {
-            list.stream().forEach(food -> predicateSort(list, food, date));
+            list.forEach(food -> {
+                if (predicateSort(list, food, date)) {
+                    foodList.add(food);
+                }
+            });
         }
     }
 
-    public void predicateSort(LinkedList<Food> list, Food food, LocalDate date) {
+    public boolean predicateSort(LinkedList<Food> list, Food food, LocalDate date) {
+        return false;
     }
 
     public Food getFood(int index) {
         return foodList.get(index);
+    }
+
+    public LinkedList<Food> getFoodList() {
+
+        return this.foodList;
+    }
+
+    public void toClearStore() {
+        this.foodList.clear();
     }
 
 }

@@ -19,8 +19,17 @@ public class ControllQuality {
     }
 
     public void sort(LinkedList<Food> foodList, LocalDate date) {
-        this.listStores.stream().forEach(store -> {
+        this.listStores.forEach(store -> {
             store.addFood(foodList, date);
         });
+    }
+
+    public void resort(LocalDate date) {
+        LinkedList<Food> foodList = new LinkedList<>();
+        listStores.forEach(store -> {
+            foodList.addAll(store.getFoodList());
+            store.toClearStore();
+        });
+        sort(foodList, date);
     }
 }
