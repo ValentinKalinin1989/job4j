@@ -60,6 +60,7 @@
        <module>junior_chapter_003_SQL_JDBC</module>
         <module>job_parser</module>
         <module>junior_chapter_004_SOLID</module>
+        <module>junior_chapter_005_GC</module>
     </modules>
 
     <build>
@@ -217,7 +218,6 @@
             <version>1.18.8</version>
             <scope>provided</scope>
         </dependency>
-
     </dependencies>
 
 </project>
