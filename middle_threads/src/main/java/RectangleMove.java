@@ -2,29 +2,27 @@ import javafx.scene.shape.Rectangle;
 
 public class RectangleMove implements Runnable {
     private final Rectangle rect;
+    private int x;
+    private int y;
 
-    public RectangleMove(Rectangle rect) {
+    public RectangleMove(Rectangle rect, int x, int y) {
         this.rect = rect;
+        this.x = x;
+        this.y = y;
     }
 
     @Override
     public void run() {
-        int x = 1;
-        int y = 1;
+        int deltaX = 1;
+        int deltaY = 1;
         while (true) {
-            this.rect.setX(this.rect.getX() + x);
-            this.rect.setY(this.rect.getY() + y);
-            if ((rect.getX() >= 300)) {
-                x *= -1;
+            this.rect.setX(this.rect.getX() + deltaX);
+            this.rect.setY(this.rect.getY() + deltaY);
+            if ((rect.getX() >= this.x) || (rect.getX() <= 0)) {
+                deltaX *= -1;
             }
-            if ((rect.getX() <= 0)) {
-                x *= -1;
-            }
-            if ((rect.getY() >= 300)) {
-                y *= -1;
-            }
-            if ((rect.getY() <= 0)) {
-                y *= -1;
+            if ((rect.getY() >= this.y) || (rect.getY() <= 0)) {
+                deltaY *= -1;
             }
             try {
                 Thread.sleep(50);
