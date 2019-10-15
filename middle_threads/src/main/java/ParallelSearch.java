@@ -28,11 +28,11 @@ public class ParallelSearch {
                 }
 
         ).start();
-
-        while (consumer.isAlive()) {
-           if (Thread.activeCount() <= 2) {
-               consumer.interrupt();
-           }
+        while (true) {
+            if (Thread.activeCount() <= 2) {
+                consumer.interrupt();
+                break;
+            }
         }
     }
 }
