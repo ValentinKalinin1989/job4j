@@ -62,6 +62,7 @@
         <module>junior_chapter_004_SOLID</module>
         <module>junior_chapter_005_GC</module>
         <module>middle_threads</module>
+        <module>middle_servlet_jsp</module>
     </modules>
 
     <build>

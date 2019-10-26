@@ -1,4 +1,5 @@
 import org.junit.Test;
+import threadpool.SimpleBlockingQueue;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
