@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentSkipListSet;
 
 public interface Store {
     boolean add(User user);
-    boolean update(int id, User user);
+    boolean update(User user);
     boolean delete(int id);
     ConcurrentSkipListSet<User> findAll();
     User findById(int id);

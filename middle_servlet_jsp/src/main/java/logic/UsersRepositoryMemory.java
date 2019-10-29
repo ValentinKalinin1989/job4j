@@ -31,9 +31,9 @@ public class UsersRepositoryMemory implements Store {
     }
 
     @Override
-    public boolean update(int id, User user) {
+    public boolean update(User user) {
         boolean result = false;
-        User userFinded = findById(id);
+        User userFinded = findById(user.getId());
         if (userFinded != null) {
             userFinded.setName(user.getName());
             userFinded.setLogin(user.getLogin());

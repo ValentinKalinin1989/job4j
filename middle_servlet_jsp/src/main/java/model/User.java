@@ -1,17 +1,61 @@
 package model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.time.LocalDate;
 
-@AllArgsConstructor public class User implements Comparable<User> {
-    @Setter @Getter private int id;
-    @Setter @Getter private String name;
-    @Setter @Getter private String login;
-    @Setter @Getter private String email;
-    @Setter @Getter private LocalDate createDate;
+public class User implements Comparable<User> {
+    private int id;
+    private String name;
+    private String login;
+    private String email;
+    private LocalDate createDate;
+
+    public User(int id, String name, String login, String email, LocalDate createDate) {
+        this.id = id;
+        this.name = name;
+        this.login = login;
+        this.email = email;
+        this.createDate = createDate;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setCreateDate(LocalDate createDate) {
+        this.createDate = createDate;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public LocalDate getCreateDate() {
+        return createDate;
+    }
 
     @Override
     public int hashCode() {

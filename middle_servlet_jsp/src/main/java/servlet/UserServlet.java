@@ -3,7 +3,6 @@ package servlet;
 import logic.UsersRepositoryMemory;
 import model.User;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +33,7 @@ public class UserServlet extends HttpServlet {
         }
         if (typeOperation.equals("update")) {
             int id = Integer.parseInt(req.getParameter("id"));
-            usersRepositoryMemory.update(id, getUserOfParam(id, req));
+            usersRepositoryMemory.update(getUserOfParam(id, req));
         }
         if (typeOperation.equals("delete")) {
             int id = Integer.parseInt(req.getParameter("id"));
