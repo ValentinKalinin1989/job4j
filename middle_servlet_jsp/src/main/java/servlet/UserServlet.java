@@ -3,50 +3,69 @@ package servlet;
 import logic.UsersRepositoryMemory;
 import model.User;
 
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDate;
 import java.util.concurrent.ConcurrentSkipListSet;
 
-@WebServlet("/user")
 public class UserServlet extends HttpServlet {
     private final UsersRepositoryMemory usersRepositoryMemory = UsersRepositoryMemory.getInstance();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         ConcurrentSkipListSet<User> userList = usersRepositoryMemory.findAll();
         PrintWriter printWriter = resp.getWriter();
-        printWriter.write("<h1>" + "List of users." + "</h1>");
+        StringBuilder stringBuilder = new StringBuilder("<!DOCTYPE html> ");
+        stringBuilder.append("<html lang=\"en\">");
+        stringBuilder.append("<head>");
+        stringBuilder.append("<meta charset=\"UTF-8\">");
+        stringBuilder.append("<title>Title</title>");
+        stringBuilder.append("</head>");
+        stringBuilder.append("<body>");
+        stringBuilder.append("<table>");
         for (User user: userList) {
-            printWriter.write("<h2>" + user.toString() + "</h2>");
+            stringBuilder.append("<tr> <form action = ' ");
+            stringBuilder.append(req.getContextPath().concat("/update"));
+            stringBuilder.append(" ' method = 'get'>");
+            stringBuilder.append("Name : ");
+            stringBuilder.append(user.getName());
+            stringBuilder.append(" <input type = 'hidden' name = 'name' value = ");
+            stringBuilder.append(user.getName());
+            stringBuilder.append(">");
+            stringBuilder.append("LOGIN : ");
+            stringBuilder.append(user.getLogin());
+            stringBuilder.append("  <input type = 'hidden' name = 'login' value = ");
+            stringBuilder.append(user.getLogin());
+            stringBuilder.append(">");
+            stringBuilder.append("E-MAIL : ");
+            stringBuilder.append(user.getEmail());
+            stringBuilder.append(" <input type = 'hidden' name = 'email' value = ");
+            stringBuilder.append(user.getEmail());
+            stringBuilder.append(">");
+            stringBuilder.append("<input type = 'hidden' name = 'id' value = '");
+            stringBuilder.append(user.getId());
+            stringBuilder.append("'>");
+            stringBuilder.append("<input type = 'submit' value = 'UPDATE'>");
+            stringBuilder.append("</form>");
+            stringBuilder.append("<form action = ' ");
+            stringBuilder.append(req.getContextPath().concat("/users"));
+            stringBuilder.append(" ' method = 'post'>");
+            stringBuilder.append("<input type = 'hidden' name = 'id' value = '");
+            stringBuilder.append(user.getId());
+            stringBuilder.append("'>");
+            stringBuilder.append("<input type = 'submit' value = 'DELETE'>");
+            stringBuilder.append("</form> </tr> <br/>");
         }
+        stringBuilder.append("</table>");
+        stringBuilder.append("</body>");
+        stringBuilder.append("</html>");
+        printWriter.append(stringBuilder);
+        printWriter.flush();
     }
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
-        String typeOperation = req.getParameter("action");
-        if (typeOperation.equals("add")) {
-            int id = usersRepositoryMemory.findAll().size() + 1;
-            usersRepositoryMemory.add(getUserOfParam(id, req));
-        }
-        if (typeOperation.equals("update")) {
-            int id = Integer.parseInt(req.getParameter("id"));
-            usersRepositoryMemory.update(getUserOfParam(id, req));
-        }
-        if (typeOperation.equals("delete")) {
-            int id = Integer.parseInt(req.getParameter("id"));
-            usersRepositoryMemory.delete(id);
-        }
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        usersRepositoryMemory.delete(Integer.parseInt(req.getParameter("id")));
+        doGet(req, resp);
     }
-    private User getUserOfParam(int id, HttpServletRequest req) {
-        String name = req.getParameter("name");
-        String login = req.getParameter("login");
-        String email = req.getParameter("email");
-        LocalDate createDate = LocalDate.parse(req.getParameter("email"));
-        return new User(id, name, login, email, createDate);
-    }
-
-
 }
