@@ -3,13 +3,13 @@ package logic;
 import model.User;
 
 import java.time.LocalDate;
-import java.util.concurrent.ConcurrentSkipListSet;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class UsersRepositoryMemory implements Store {
-    private ConcurrentSkipListSet<User> userList;
+    private CopyOnWriteArrayList<User> userList;
 
     private UsersRepositoryMemory() {
-        this.userList = new ConcurrentSkipListSet<>();
+        this.userList = new CopyOnWriteArrayList<>();
         this.userList.add(new User(1, "Feday", "Assasin", "f_1990@yandex.ru", LocalDate.of(1990, 12, 31)));
         this.userList.add(new User(2, "Sanay", "Killer", "rty_1990@yandex.ru", LocalDate.of(1967, 12, 31)));
         this.userList.add(new User(3, "Vova", "Gamer", "jol_1990@yandex.ru", LocalDate.of(1954, 12, 31)));
@@ -56,7 +56,7 @@ public class UsersRepositoryMemory implements Store {
     }
 
     @Override
-    public ConcurrentSkipListSet<User> findAll() {
+    public CopyOnWriteArrayList<User> findAll() {
         return this.userList;
     }
 

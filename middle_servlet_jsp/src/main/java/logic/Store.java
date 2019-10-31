@@ -2,12 +2,12 @@ package logic;
 
 import model.User;
 
-import java.util.concurrent.ConcurrentSkipListSet;
+import java.util.List;
 
 public interface Store {
     boolean add(User user);
     boolean update(User user);
     boolean delete(int id);
-    ConcurrentSkipListSet<User> findAll();
+    List<User> findAll();
     User findById(int id);
 }
