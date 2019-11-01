@@ -1,5 +1,5 @@
 <%@ page import="model.User" %>
-<%@ page import="java.util.concurrent.CopyOnWriteArrayList" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--
   Created by IntelliJ IDEA.
@@ -14,7 +14,7 @@
 </head>
 <body>
 <%
-    CopyOnWriteArrayList<User> userArrayList = (CopyOnWriteArrayList<User>) request.getAttribute("usersFromServer");
+    ArrayList<User> userArrayList = (ArrayList<User>) request.getAttribute("usersFromServer");
 %>
 <table>
     <% for (User user: userArrayList) { %>

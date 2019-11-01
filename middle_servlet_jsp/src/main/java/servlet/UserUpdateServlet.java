@@ -1,5 +1,7 @@
 package servlet;
 
+import database.DbStore;
+import logic.Store;
 import logic.UsersRepositoryMemory;
 import model.User;
 
@@ -13,7 +15,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class UserUpdateServlet extends HttpServlet  {
-    private final UsersRepositoryMemory usersRepositoryMemory = UsersRepositoryMemory.getInstance();
+    private final Store store = DbStore.getInstance();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         RequestDispatcher requestDispatcher = req.getServletContext().getRequestDispatcher("/update.jsp");
@@ -27,8 +29,8 @@ public class UserUpdateServlet extends HttpServlet  {
                 req.getParameter("login"),
                 req.getParameter("email"),
                 LocalDate.now());
-        usersRepositoryMemory.update(userToUpdate);
-        List<User> userList = (List<User>) usersRepositoryMemory.findAll();
+        store.update(userToUpdate);
+        List<User> userList = (List<User>) store.findAll();
         req.setAttribute("usersFromServer", userList);
         RequestDispatcher requestDispatcher = req.getServletContext().getRequestDispatcher("/users.jsp");
         requestDispatcher.forward(req, resp);

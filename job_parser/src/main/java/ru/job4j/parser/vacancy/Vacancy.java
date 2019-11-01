@@ -9,12 +9,51 @@ import java.util.Objects;
 public class Vacancy extends Object implements Comparable {
 
     private static final String LN = System.lineSeparator();
-    @Getter @Setter private int id;
-    @Getter @Setter private String name;
-    @Getter @Setter private String info;
-    @Getter @Setter private String link;
-    @Getter @Setter private LocalDate localDate; //equals DATE in Postgres SQL
+    private int id;
+    private String name;
+    private String info;
+    private String link;
+    private LocalDate localDate; //equals DATE in Postgres SQL
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public void setLocalDate(LocalDate localDate) {
+        this.localDate = localDate;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public LocalDate getLocalDate() {
+        return localDate;
+    }
 
     public Vacancy(String name, String info, String link, LocalDate localDate) {
         this.name = name;
