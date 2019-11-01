@@ -4,7 +4,6 @@ import database.DbStore;
 import logic.Store;
 import model.User;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,8 +19,7 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         List<User> userList = (ArrayList<User>) store.findAll();
         req.setAttribute("usersFromServer", userList);
-        RequestDispatcher requestDispatcher = req.getServletContext().getRequestDispatcher("/users.jsp");
-        requestDispatcher.forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/users.jsp").forward(req, resp);
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {

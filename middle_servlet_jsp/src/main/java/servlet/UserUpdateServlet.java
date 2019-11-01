@@ -18,8 +18,7 @@ public class UserUpdateServlet extends HttpServlet  {
     private final Store store = DbStore.getInstance();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        RequestDispatcher requestDispatcher = req.getServletContext().getRequestDispatcher("/update.jsp");
-        requestDispatcher.forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/views/update.jsp").forward(req, resp);
     }
 
     @Override
@@ -32,7 +31,6 @@ public class UserUpdateServlet extends HttpServlet  {
         store.update(userToUpdate);
         List<User> userList = (List<User>) store.findAll();
         req.setAttribute("usersFromServer", userList);
-        RequestDispatcher requestDispatcher = req.getServletContext().getRequestDispatcher("/users.jsp");
-        requestDispatcher.forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/views/users.jsp").forward(req, resp);
     }
 }

@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action = '<%=String.format("%s/create", request.getContextPath())%>' method = 'post'>
+<form action = '${pageContext.servletContext.contextPath}/create' method = 'post'>
     Name : <input type = 'text' name = 'name'/>
     LOGIN : <input type = 'text' name = 'login'/>
     E-MAIL : <input type = 'text' name = 'email'/>
