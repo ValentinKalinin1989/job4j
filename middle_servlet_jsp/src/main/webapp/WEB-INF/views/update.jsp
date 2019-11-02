@@ -20,7 +20,7 @@
     E-MAIL : <input type = 'text' name = 'email' value = '${param["email"]}'>
     <input type = 'hidden' name = 'id' value = '${param["id"]}'>
     <input type = 'submit' value = 'SAVE'>
-    </form>
+</form>
 <br/>
 
 </body>

@@ -56,8 +56,8 @@ public class DbStore implements Store {
         boolean result = false;
         LOG.info("Start to delete user.");
         try (Connection connection = SOURCE.getConnection();
-            PreparedStatement st = connection.prepareStatement("UPDATE users SET name = ?, login = ?, email = ?, createdate = ?"
-                    + "WHERE id = ?");
+             PreparedStatement st = connection.prepareStatement("UPDATE users SET name = ?, login = ?, email = ?, createdate = ?"
+                     + "WHERE id = ?");
         ) {
             st.setString(1, user.getName());
             st.setString(2, user.getLogin());
@@ -77,7 +77,7 @@ public class DbStore implements Store {
         boolean result = false;
         LOG.info("Start to delete user.");
         try (Connection connection = SOURCE.getConnection();
-            PreparedStatement st = connection.prepareStatement("DELETE FROM users WHERE id = ?");
+             PreparedStatement st = connection.prepareStatement("DELETE FROM users WHERE id = ?");
         ) {
             st.setInt(1, id);
             st.executeUpdate();
@@ -93,8 +93,8 @@ public class DbStore implements Store {
     public List<User> findAll() {
         List<User> userList = new ArrayList<>();
         try (Connection connection = SOURCE.getConnection();
-            Statement st = connection.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM users");
+             Statement st = connection.createStatement();
+             ResultSet rs = st.executeQuery("SELECT * FROM users");
         ) {
             while (rs.next()) {
                 User user = new User(
@@ -116,7 +116,7 @@ public class DbStore implements Store {
     public User findById(int id) {
         User findedUser;
         try (Connection connection = SOURCE.getConnection();
-        PreparedStatement st = connection.prepareStatement("SELECT * FROM users WHERE id = ?")
+             PreparedStatement st = connection.prepareStatement("SELECT * FROM users WHERE id = ?")
         ) {
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();

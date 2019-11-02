@@ -21,23 +21,23 @@
     <c:forEach items="${usersFromServer}" var="user">
         <tr>
             <th>
-            <form action = '${pageContext.servletContext.contextPath}/update'  method = "get">
+                <form action = '${pageContext.servletContext.contextPath}/update'  method = "get">
             <th> Name : </th> <th> <c:out value="${user.name}"></c:out>  <input type = 'hidden' name = 'name' value = <c:out value="${user.name}"></c:out>> </th>
             <th> LOGIN :</th> <th> <c:out value="${user.login}"></c:out>  <input type = 'hidden' name = 'login' value = <c:out value="${user.login}"></c:out>> </th>
             <th> E-MAIL :</th> <th> <c:out value="${user.email}"></c:out>  <input type = 'hidden' name = 'email' value = <c:out value="${user.email}"></c:out>> </th>
-               <th>
+            <th>
                 <input type = 'hidden' name = 'id' value = '<c:out value="${user.id}"></c:out>'>
                 <input type = 'submit' value = 'UPDATE'>
-               </th>
+            </th>
             </form>
             </th>
 
             <th>
-            <form action = "${pageContext.servletContext.contextPath}/" method = "post">
-                <th>
+                <form action = "${pageContext.servletContext.contextPath}/" method = "post">
+            <th>
                 <input type = 'hidden' name = 'id' value = '<c:out value="${user.id}"></c:out>'>
                 <input type = 'submit' value = 'DELETE'>
-                </th>
+            </th>
             </form>
             </th>
         </tr>
