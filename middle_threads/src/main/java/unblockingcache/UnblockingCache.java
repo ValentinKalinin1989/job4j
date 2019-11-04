@@ -14,13 +14,12 @@ public class UnblockingCache {
     }
 
     public void update(Base base) {
-        final int getId = base.getId();
-        final int getVersion = base.getVesion();
-        cache.computeIfPresent(getId, (idFuc, baseFunc) -> {
-            if (getVersion != baseFunc.getVesion()) {
-                throw new OptimisticException("OptimisticException");
+        final int originalVersio = base.getVersionBase();
+        cache.computeIfPresent(base.getId(), (idFuc, baseFunc) -> {
+            if(originalVersio != baseFunc.getVersionBase()) {
+                runException();
             }
-            return new Base(getId, getVersion + 1 );
+            return new Base(idFuc, baseFunc.getVersionBase() + 1);
         });
     }
 

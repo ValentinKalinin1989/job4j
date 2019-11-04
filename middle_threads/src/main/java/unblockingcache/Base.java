@@ -4,27 +4,27 @@ import java.util.Objects;
 
 public class Base {
     private int id;
-    private int vesion;
+    private int versionBase;
 
-    public Base(int id, int vesion) {
+    public Base(int id, int vesionBase) {
         this.id = id;
-        this.vesion = vesion;
+        this.versionBase = vesionBase;
     }
 
     public int getId() {
         return id;
     }
 
-    public int getVesion() {
-        return vesion;
+    public int getVersionBase() {
+        return versionBase;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setVesion(int vesion) {
-        this.vesion = vesion;
+    public void setVersionBase(int versionBase) {
+        this.versionBase = versionBase;
     }
 
     @Override
@@ -37,11 +37,11 @@ public class Base {
         }
         Base base = (Base) o;
         return id == base.id
-                && vesion == base.vesion;
+                && versionBase == base.versionBase;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, vesion);
+        return Objects.hash(id, versionBase);
     }
 }
