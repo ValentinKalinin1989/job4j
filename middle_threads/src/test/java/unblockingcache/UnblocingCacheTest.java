@@ -34,6 +34,8 @@ public class UnblocingCacheTest {
                         }
                     }
             );
+
+
             Thread thirdThread = new Thread(
                     () -> {
                         try {
@@ -52,14 +54,15 @@ public class UnblocingCacheTest {
                         }
                     }
             );
+
             firstThread.start();
             secondThread.start();
-            thirdThread.start();
-            fourThread.start();
-            firstThread.join();
-            secondThread.join();
-            fourThread.join();
-            thirdThread.join();
+            //thirdThread.start();
+            //fourThread.start();
+            //firstThread.join();
+            //secondThread.join();
+            //fourThread.join();
+            //thirdThread.join();
             assertThat(ex.get().getMessage(), is("OptimisticException"));
         }
 }

@@ -1,12 +1,24 @@
-
-import lombok.Getter;
-import lombok.Setter;
-
 import java.util.Objects;
 
 public class User {
-    @Getter @Setter private int id;
-    @Getter @Setter private int amount;
+    private int id;
+    private int amount;
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
 
     public User(int id, int amount) {
         this.id = id;

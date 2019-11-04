@@ -14,17 +14,21 @@ public class UnblockingCache {
     }
 
     public void update(Base base) {
-        int baseId = base.getId();
-        Base etalonBase = cache.get(baseId);
-        Base updateBase = new Base(etalonBase.getId(), etalonBase.getVesion() + 1);
-        if (etalonBase.equals(cache.get(baseId))) {
-            cache.computeIfPresent(baseId, (id, version) -> version = updateBase);
-        } else {
-            throw new OptimisticException("OptimisticException");
-        }
+        final int getId = base.getId();
+        final int getVersion = base.getVesion();
+        cache.computeIfPresent(getId, (idFuc, baseFunc) -> {
+            if (getVersion != baseFunc.getVesion()) {
+                throw new OptimisticException("OptimisticException");
+            }
+            return new Base(getId, getVersion + 1 );
+        });
     }
 
     public void delete(Base base) {
         cache.remove(base.getId());
+    }
+
+    private void runException() {
+        throw new OptimisticException("OptimisticException");
     }
 }
