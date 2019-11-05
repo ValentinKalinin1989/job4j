@@ -3,31 +3,23 @@ package unblockingcache;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class UnblockingCache {
-    private ConcurrentHashMap<Integer, Base> cache;
-
-    public UnblockingCache() {
-        this.cache = new ConcurrentHashMap<>();
-    }
+    private final ConcurrentHashMap<Integer, Base> cache = new ConcurrentHashMap<>();
 
     public void add(Base base) {
         cache.putIfAbsent(base.getId(), base);
     }
 
-    public void update(Base base) {
-        final int originalVersio = base.getVersionBase();
-        cache.computeIfPresent(base.getId(), (idFuc, baseFunc) -> {
-            if(originalVersio != baseFunc.getVersionBase()) {
-                runException();
+    public void update(Base base) throws  OptimisticException {
+        cache.computeIfPresent(base.getId(), (k, v) -> {
+            if (v.getVersion() != base.getVersion()) {
+                throw new OptimisticException("OptimisticException");
             }
-            return new Base(idFuc, baseFunc.getVersionBase() + 1);
+            base.setVersion(base.getVersion() + 1);
+            return base;
         });
     }
 
     public void delete(Base base) {
         cache.remove(base.getId());
-    }
-
-    private void runException() {
-        throw new OptimisticException("OptimisticException");
     }
 }

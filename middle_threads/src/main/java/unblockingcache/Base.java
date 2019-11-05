@@ -1,47 +1,27 @@
 package unblockingcache;
 
-import java.util.Objects;
-
 public class Base {
     private int id;
-    private int versionBase;
+    private int version;
 
-    public Base(int id, int vesionBase) {
+    public Base(int id, int vesion) {
         this.id = id;
-        this.versionBase = vesionBase;
+        this.version = vesion;
     }
 
     public int getId() {
         return id;
     }
 
-    public int getVersionBase() {
-        return versionBase;
+    public int getVersion() {
+        return version;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setVersionBase(int versionBase) {
-        this.versionBase = versionBase;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Base base = (Base) o;
-        return id == base.id
-                && versionBase == base.versionBase;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, versionBase);
+    public void setVersion(int version) {
+        this.version = version;
     }
 }

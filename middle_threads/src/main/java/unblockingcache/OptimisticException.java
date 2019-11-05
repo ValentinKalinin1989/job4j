@@ -1,6 +1,7 @@
 package unblockingcache;
 
 public class OptimisticException extends RuntimeException {
-    public OptimisticException(String optimisticException) {
+    public OptimisticException(String message) {
+        super(message);
     }
 }
