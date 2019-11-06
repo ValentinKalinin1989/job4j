@@ -2,10 +2,8 @@ package servlet;
 
 import database.DbStore;
 import logic.Store;
-import logic.UsersRepositoryMemory;
 import model.User;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

@@ -41,12 +41,10 @@ public class DbStore implements Store {
             st.setString(3, user.getEmail());
             st.setDate(4, Date.valueOf(user.getCreateDate()));
             st.executeUpdate();
-            st.close();
             result = true;
             LOG.info("New user was added.");
         } catch (SQLException e) {
-            LOG.error("Error adding user");
-            e.printStackTrace();
+            LOG.error("Error adding user", e);
         }
         return result;
     }
@@ -65,9 +63,10 @@ public class DbStore implements Store {
             st.setDate(4, Date.valueOf(user.getCreateDate()));
             st.setInt(5, user.getId());
             st.executeUpdate();
+            result = true;
+            LOG.info("User was updated.");
         } catch (SQLException e) {
-            LOG.error("Error deleting user.");
-            e.printStackTrace();
+            LOG.error("Error updating user.", e);
         }
         return result;
     }
@@ -82,15 +81,16 @@ public class DbStore implements Store {
             st.setInt(1, id);
             st.executeUpdate();
             result = true;
+            LOG.info("User was deleted.");
         } catch (SQLException e) {
-            LOG.error("Error deleting user.");
-            e.printStackTrace();
+            LOG.error("Error deleting user.", e);
         }
         return result;
     }
 
     @Override
     public List<User> findAll() {
+        LOG.info("Start to get all users.");
         List<User> userList = new ArrayList<>();
         try (Connection connection = SOURCE.getConnection();
              Statement st = connection.createStatement();
@@ -106,14 +106,16 @@ public class DbStore implements Store {
                 );
                 userList.add(user);
             }
+            LOG.info("All users is getting.");
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("Error to get all users", e);
         }
         return userList;
     }
 
     @Override
     public User findById(int id) {
+        LOG.info("Start to find user.");
         User findedUser;
         try (Connection connection = SOURCE.getConnection();
              PreparedStatement st = connection.prepareStatement("SELECT * FROM users WHERE id = ?")
@@ -128,7 +130,7 @@ public class DbStore implements Store {
                     LocalDate.parse((CharSequence) rs.getDate("createdate"))
             );
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("Error to find user", e);
         }
         return null;
     }
