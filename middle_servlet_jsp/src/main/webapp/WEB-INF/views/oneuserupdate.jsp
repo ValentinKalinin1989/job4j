@@ -19,11 +19,7 @@
     LOGIN : <input type = 'text' name = 'login' value = '${param["login"]}'/>
     E-MAIL : <input type = 'text' name = 'email' value = '${param["email"]}'/>
     PASSWORD : <input type = 'text' name = 'password' value = '${param["password"]}'/>
-    ROLE :
-    <select name="role" >
-        <option value="User">User</option>
-        <option value="Admin">Admin</option>
-    </select>
+    <input type = 'hidden' name = 'role' value= 'User'>
     <input type = 'hidden' name = 'id' value = '${param["id"]}'>
     <input type = 'submit' value = 'SAVE'>
 </form>
@@ -36,3 +32,4 @@
 
 </body>
 </html>
+

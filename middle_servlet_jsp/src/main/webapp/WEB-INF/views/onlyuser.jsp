@@ -18,7 +18,7 @@
 
 <table>
 
-    <c:forEach items="${usersFromServer}" var="user">
+
         <tr>
             <th>
                 <form action = '${pageContext.servletContext.contextPath}/update'  method = "get">
@@ -26,7 +26,6 @@
             <th> LOGIN :</th> <th> <c:out value="${user.login}"></c:out>  <input type = 'hidden' name = 'login' value = <c:out value="${user.login}"></c:out>> </th>
             <th> E-MAIL :</th> <th> <c:out value="${user.email}"></c:out>  <input type = 'hidden' name = 'email' value = <c:out value="${user.email}"></c:out>> </th>
             <th> PASSWORD :</th> <th> <c:out value="${user.password}"></c:out>  <input type = 'hidden' name = 'password' value = <c:out value="${user.password}"></c:out>> </th>
-            <th> ROLE :</th> <th> <c:out value="${user.role}"></c:out>  <input type = 'hidden' name = 'role' value = <c:out value="${user.role}"></c:out>> </th>
             <th>
                 <input type = 'hidden' name = 'id' value = '<c:out value="${user.id}"></c:out>'>
                 <input type = 'submit' value = 'UPDATE'>
@@ -34,22 +33,10 @@
             </form>
             </th>
 
-            <th>
-                <form action = "${pageContext.servletContext.contextPath}/" method = "post">
-            <th>
-                <input type = 'hidden' name = 'id' value = '<c:out value="${user.id}"></c:out>'>
-                <input type = 'submit' value = 'DELETE'>
-            </th>
-            </form>
-            </th>
         </tr>
-    </c:forEach>
+
 
 </table>
-
-<form action = '${pageContext.servletContext.contextPath}/create'  method = "get">
-    <input type = 'submit' value = 'CREATE'>
-</form>
 
 <form action="${pageContext.servletContext.contextPath}/logout" method="get">
     <input type="submit" value="LOGOUT">

@@ -2,6 +2,7 @@ package servlet;
 
 import database.DbStore;
 import logic.Store;
+import model.Role;
 import model.User;
 
 import javax.servlet.ServletException;
@@ -17,7 +18,9 @@ public class UserCreateServlet extends HttpServlet {
     private final Store store = DbStore.getInstance();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        req.getRequestDispatcher("/WEB-INF/views/create.jsp").forward(req, resp);
+        if (req.getSession(false).getAttribute("role").toString().equals("Admin")) {
+            req.getRequestDispatcher("/WEB-INF/views/create.jsp").forward(req, resp);
+        }
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
@@ -25,7 +28,9 @@ public class UserCreateServlet extends HttpServlet {
                 req.getParameter("name"),
                 req.getParameter("login"),
                 req.getParameter("email"),
-                LocalDate.now());
+                LocalDate.now(),
+                req.getParameter("password"),
+                Role.valueOf(req.getParameter("role")));
         store.add(userToAdd);
         List<User> userList = (List<User>) store.findAll();
         req.setAttribute("usersFromServer", userList);

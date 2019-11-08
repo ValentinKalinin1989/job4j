@@ -8,13 +8,17 @@ public class User implements Comparable<User> {
     private String login;
     private String email;
     private LocalDate createDate;
+    private String password;
+    private Role role;
 
-    public User(int id, String name, String login, String email, LocalDate createDate) {
+    public User(int id, String name, String login, String email, LocalDate createDate, String password, Role role) {
         this.id = id;
         this.name = name;
         this.login = login;
         this.email = email;
         this.createDate = createDate;
+        this.password = password;
+        this.role = role;
     }
 
     public void setId(int id) {
@@ -37,6 +41,16 @@ public class User implements Comparable<User> {
         this.createDate = createDate;
     }
 
+
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     public int getId() {
         return id;
     }
@@ -55,6 +69,14 @@ public class User implements Comparable<User> {
 
     public LocalDate getCreateDate() {
         return createDate;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     @Override

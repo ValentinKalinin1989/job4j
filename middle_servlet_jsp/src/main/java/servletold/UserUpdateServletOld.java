@@ -1,6 +1,7 @@
 package servletold;
 
 import logic.UsersRepositoryMemory;
+import model.Role;
 import model.User;
 
 import javax.servlet.http.HttpServlet;
@@ -53,7 +54,9 @@ public class UserUpdateServletOld extends HttpServlet {
                 req.getParameter("name"),
                 req.getParameter("login"),
                 req.getParameter("email"),
-                LocalDate.now());
+                LocalDate.now(),
+                req.getParameter("password"),
+                Role.valueOf(req.getParameter("role")));
         usersRepositoryMemory.update(userToUpdate);
     }
 }

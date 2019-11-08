@@ -1,5 +1,6 @@
 package logic;
 
+import model.Role;
 import model.User;
 
 import java.time.LocalDate;
@@ -10,11 +11,11 @@ public class UsersRepositoryMemory implements Store {
 
     private UsersRepositoryMemory() {
         this.userList = new CopyOnWriteArrayList<>();
-        this.userList.add(new User(1, "Feday", "Assasin", "f_1990@yandex.ru", LocalDate.of(1990, 12, 31)));
-        this.userList.add(new User(2, "Sanay", "Killer", "rty_1990@yandex.ru", LocalDate.of(1967, 12, 31)));
-        this.userList.add(new User(3, "Vova", "Gamer", "jol_1990@yandex.ru", LocalDate.of(1954, 12, 31)));
-        this.userList.add(new User(4, "Kolay", "WhyWhat", "toy_1990@yandex.ru", LocalDate.of(1955, 12, 31)));
-        this.userList.add(new User(5, "Vanay", "Edfrwse", "free_1990@yandex.ru", LocalDate.of(1988, 12, 31)));
+        this.userList.add(new User(1, "Feday", "Assasin", "f_1990@yandex.ru", LocalDate.of(1990, 12, 31), "", Role.User));
+        this.userList.add(new User(2, "Sanay", "Killer", "rty_1990@yandex.ru", LocalDate.of(1967, 12, 31), "", Role.User));
+        this.userList.add(new User(3, "Vova", "Gamer", "jol_1990@yandex.ru", LocalDate.of(1954, 12, 31), "", Role.User));
+        this.userList.add(new User(4, "Kolay", "WhyWhat", "toy_1990@yandex.ru", LocalDate.of(1955, 12, 31), "", Role.User));
+        this.userList.add(new User(5, "Vanay", "Edfrwse", "free_1990@yandex.ru", LocalDate.of(1988, 12, 31), "", Role.User));
     }
 
     private static final class Holder {
@@ -39,6 +40,8 @@ public class UsersRepositoryMemory implements Store {
             userFinded.setLogin(user.getLogin());
             userFinded.setEmail(user.getEmail());
             userFinded.setCreateDate(user.getCreateDate());
+            userFinded.setPassword(user.getPassword());
+            userFinded.setRole(user.getRole());
             result = true;
         }
         return result;
@@ -69,5 +72,17 @@ public class UsersRepositoryMemory implements Store {
             }
         }
         return userResult;
+    }
+
+    @Override
+    public boolean isCredentional(String login, String password) {
+        boolean result = false;
+        for (User user: this.userList) {
+            if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
+                result = true;
+                break;
+            }
+        }
+        return false;
     }
 }

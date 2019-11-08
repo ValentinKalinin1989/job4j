@@ -15,8 +15,19 @@
     Name : <input type = 'text' name = 'name'/>
     LOGIN : <input type = 'text' name = 'login'/>
     E-MAIL : <input type = 'text' name = 'email'/>
+    PASSWORD : <input type = 'text' name = 'password'/>
+    ROLE :
+    <select name="role" >
+        <option value="User">User</option>
+        <option value="Admin">Admin</option>
+    </select>
     <input type = 'submit'>
 </form>
 <br/>
+
+<form action="${pageContext.servletContext.contextPath}/logout" method="get">
+    <input type="submit" value="LOGOUT">
+</form>
+
 </body>
 </html>

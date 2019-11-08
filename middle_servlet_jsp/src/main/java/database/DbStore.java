@@ -1,5 +1,6 @@
 package database;
 import logic.Store;
+import model.Role;
 import model.User;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.logging.log4j.LogManager;
@@ -34,12 +35,14 @@ public class DbStore implements Store {
         LOG.info("Start to add new user in DB");
         boolean result = false;
         try (Connection connection = SOURCE.getConnection();
-             PreparedStatement st = connection.prepareStatement("INSERT INTO users (name, login, email, createdate) values (?, ?, ?, ?)");
+             PreparedStatement st = connection.prepareStatement("INSERT INTO users (name, login, email, createdate, password, role) values (?, ?, ?, ?, ?, ?)");
         ) {
             st.setString(1, user.getName());
             st.setString(2, user.getLogin());
             st.setString(3, user.getEmail());
             st.setDate(4, Date.valueOf(user.getCreateDate()));
+            st.setString(5, user.getPassword());
+            st.setString(6, user.getRole().toString());
             st.executeUpdate();
             result = true;
             LOG.info("New user was added.");
@@ -54,14 +57,16 @@ public class DbStore implements Store {
         boolean result = false;
         LOG.info("Start to delete user.");
         try (Connection connection = SOURCE.getConnection();
-             PreparedStatement st = connection.prepareStatement("UPDATE users SET name = ?, login = ?, email = ?, createdate = ?"
+             PreparedStatement st = connection.prepareStatement("UPDATE users SET name = ?, login = ?, email = ?, createdate = ?, password = ?, role = ?"
                      + "WHERE id = ?");
         ) {
             st.setString(1, user.getName());
             st.setString(2, user.getLogin());
             st.setString(3, user.getEmail());
             st.setDate(4, Date.valueOf(user.getCreateDate()));
-            st.setInt(5, user.getId());
+            st.setString(5, user.getPassword());
+            st.setString(6, user.getRole().toString());
+            st.setInt(7, user.getId());
             st.executeUpdate();
             result = true;
             LOG.info("User was updated.");
@@ -102,7 +107,9 @@ public class DbStore implements Store {
                         rs.getString("name"),
                         rs.getString("login"),
                         rs.getString("email"),
-                        rs.getDate("createDate").toLocalDate()
+                        rs.getDate("createDate").toLocalDate(),
+                        rs.getString("password"),
+                        Role.valueOf(rs.getString("role"))
                 );
                 userList.add(user);
             }
@@ -127,11 +134,24 @@ public class DbStore implements Store {
                     rs.getString("name"),
                     rs.getString("login"),
                     rs.getString("email"),
-                    LocalDate.parse((CharSequence) rs.getDate("createdate"))
+                    LocalDate.parse((CharSequence) rs.getDate("createdate")),
+                    rs.getString("password"),
+                    Role.valueOf(rs.getString("role"))
             );
         } catch (Exception e) {
             LOG.error("Error to find user", e);
         }
         return null;
+    }
+
+    @Override
+    public boolean isCredentional(String login, String password) {
+        boolean result = false;
+        for (User user: findAll()) {
+            if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
+                result = true;
+            }
+        }
+        return result;
     }
 }

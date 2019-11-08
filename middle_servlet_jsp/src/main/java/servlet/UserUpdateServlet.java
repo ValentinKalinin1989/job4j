@@ -2,6 +2,7 @@ package servlet;
 
 import database.DbStore;
 import logic.Store;
+import model.Role;
 import model.User;
 
 import javax.servlet.ServletException;
@@ -14,9 +15,15 @@ import java.util.List;
 
 public class UserUpdateServlet extends HttpServlet  {
     private final Store store = DbStore.getInstance();
+    private List<User> userList = store.findAll();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        req.getRequestDispatcher("WEB-INF/views/update.jsp").forward(req, resp);
+        if (req.getSession(false).getAttribute("role").toString().equals("Admin")) {
+            req.getRequestDispatcher("WEB-INF/views/update.jsp").forward(req, resp);
+        } else {
+            req.getRequestDispatcher("/WEB-INF/views/oneuserupdate.jsp").forward(req, resp);
+        }
+
     }
 
     @Override
@@ -25,10 +32,18 @@ public class UserUpdateServlet extends HttpServlet  {
                 req.getParameter("name"),
                 req.getParameter("login"),
                 req.getParameter("email"),
-                LocalDate.now());
+                LocalDate.now(),
+                req.getParameter("password"),
+                Role.valueOf(req.getParameter("role")));
         store.update(userToUpdate);
         List<User> userList = (List<User>) store.findAll();
-        req.setAttribute("usersFromServer", userList);
-        req.getRequestDispatcher("WEB-INF/views/users.jsp").forward(req, resp);
+        if (req.getSession(false).getAttribute("role").toString().equals("Admin")) {
+            req.setAttribute("usersFromServer", userList);
+            req.getRequestDispatcher("WEB-INF/views/users.jsp").forward(req, resp);
+        } else {
+            req.setAttribute("user", userToUpdate);
+            req.getRequestDispatcher("WEB-INF/views/onlyuser.jsp").forward(req, resp);
+        }
+
     }
 }
