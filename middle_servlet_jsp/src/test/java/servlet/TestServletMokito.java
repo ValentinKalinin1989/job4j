@@ -21,7 +21,7 @@ import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@PowerMockIgnore({"com.sun.org.apache.xerces.*", "javax.xml.*", "org.xml.*", "org.w3c.*", "javax.management.*", "java.lang.NullPointerException"})
+@PowerMockIgnore({"com.sun.org.apache.xerces.*", "javax.xml.*", "org.xml.*", "org.w3c.*", "javax.management.*"})
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(DbStore.class)
 public class TestServletMokito {
@@ -46,7 +46,6 @@ public class TestServletMokito {
                 break;
             }
         }
-        User userTest = dbStore.findAll().iterator().next();
         assertThat(addedUser.getName(), is("Jonh Dow"));
         assertThat(addedUser.getLogin(), is("kilchen"));
         assertThat(addedUser.getEmail(), is("kitchen_kit@mail.ru"));
