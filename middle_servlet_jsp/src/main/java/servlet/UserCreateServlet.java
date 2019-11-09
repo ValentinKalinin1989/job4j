@@ -34,6 +34,6 @@ public class UserCreateServlet extends HttpServlet {
         store.add(userToAdd);
         List<User> userList = (List<User>) store.findAll();
         req.setAttribute("usersFromServer", userList);
-        req.getRequestDispatcher("WEB-INF/views/users.jsp").forward(req, resp);
+        //req.getRequestDispatcher("WEB-INF/views/users.jsp").forward(req, resp);
     }
 }

@@ -44,6 +44,5 @@ public class UserUpdateServlet extends HttpServlet  {
             req.setAttribute("user", userToUpdate);
             req.getRequestDispatcher("WEB-INF/views/onlyuser.jsp").forward(req, resp);
         }
-
     }
 }
