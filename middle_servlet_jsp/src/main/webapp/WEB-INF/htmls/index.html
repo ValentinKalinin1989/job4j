@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Bootstrap Example</title>
     <meta charset="utf-8">
@@ -7,6 +7,26 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script>
+        function validate() {
+            var nameV = document.getElementById("name").value;
+            var surnameV = document.getElementById("surname").value;
+            var descripV = document.getElementById("descrip").value;
+            if (nameV == '') {
+                alert("Input Name");
+                return false;
+            }
+            if (surnameV == '') {
+                alert("Input Surname");
+                return false;
+            }
+            if (descripV == '') {
+                alert("Input Descrip");
+                return false;
+            }
+            return false;
+        }
+    </script>
 </head>
 <body>
 <form action="/action_page.php">
@@ -18,17 +38,16 @@
         <label for="surname">Surname:</label>
         <input type="text" class="form-control" id="surname">
     </div>
-    <div class="checkbox">
-        <label><input type="checkbox"> Male</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox"> Female</label>
+    <div>
+    Sex:
+        <label><input type="radio" name = "sex"> Male</label>
+        <label><input type="radio" name = "sex"> Female</label>
     </div>
     <div class="form-group">
         <label for="descrip">Description:</label>
         <input type="text" class="form-control" id="descrip">
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="button" class="btn btn-default" onclick = "return validate();">Submit</button>
 </form>
 
 <table class="table table-condensed">
