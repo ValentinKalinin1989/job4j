@@ -27,6 +27,33 @@
             return false;
         }
     </script>
+    <script>
+        function addRow() {
+            var nameV = document.getElementById("name").value;
+            var surnameV = document.getElementById("surname").value;
+            var descripV = document.getElementById("descrip").value;
+            var sexV = document.querySelector('input[name="sex"]:checked').value;
+            if (nameV == '') {
+                alert("Input Name");
+                return false;
+            }
+            if (surnameV == '') {
+                alert("Input Surname");
+                return false;
+            }
+            if (descripV == '') {
+                alert("Input Descrip");
+                return false;
+            }
+            $('#table tr:last').after(
+                '<tr><td>' + nameV
+                + '</td><td>' + surnameV
+                + '</td><td>' + sexV
+                + '</td><td>' + descripV
+                + '</td></tr>');
+            return false;
+        }
+    </script>
 </head>
 <body>
 <form action="/action_page.php">
@@ -40,17 +67,18 @@
     </div>
     <div>
     Sex:
-        <label><input type="radio" name = "sex"> Male</label>
-        <label><input type="radio" name = "sex"> Female</label>
+        <label><input type="radio" name = "sex" value="Male"> Male</label>
+        <label><input type="radio" name = "sex" value="Female"> Female</label>
     </div>
     <div class="form-group">
         <label for="descrip">Description:</label>
         <input type="text" class="form-control" id="descrip">
     </div>
-    <button type="button" class="btn btn-default" onclick = "return validate();">Submit</button>
+    <button type="button" class="btn btn-default" onclick = "return validate();">Submit </button>
+    <button type="button" class="btn btn-default" onclick = "return addRow();">AddRow </button>
 </form>
 
-<table class="table table-condensed">
+<table class="table table-condensed" id = "table">
     <thead>
     <tr>
         <th>Name</th>
