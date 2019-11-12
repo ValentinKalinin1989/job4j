@@ -9,9 +9,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script>
         function validate() {
-            var nameV = document.getElementById("name").value;
-            var surnameV = document.getElementById("surname").value;
-            var descripV = document.getElementById("descrip").value;
+            var nameV = $('#name').val();
+            var surnameV = $('#surname').val();
+            var descripV = $('#descrip').val();
             if (nameV == '') {
                 alert("Input Name");
                 return false;
@@ -29,10 +29,10 @@
     </script>
     <script>
         function addRow() {
-            var nameV = document.getElementById("name").value;
-            var surnameV = document.getElementById("surname").value;
-            var descripV = document.getElementById("descrip").value;
-            var sexV = document.querySelector('input[name="sex"]:checked').value;
+            var nameV = $('#name').val();
+            var surnameV = $('#surname').val();
+            var descripV = $('#descrip').val();
+            var sexV = $('input[name="sex"]:checked').val();
             if (nameV == '') {
                 alert("Input Name");
                 return false;
@@ -56,7 +56,8 @@
     </script>
 </head>
 <body>
-<form action="/action_page.php">
+<div class="container">
+<form action="">
     <div class="form-group">
         <label for="name">Name:</label>
         <input type="text" class="form-control" id="name">
@@ -106,5 +107,6 @@
     </tr>
     </thead>
 </table>
+</div>
 </body>
 </html>
