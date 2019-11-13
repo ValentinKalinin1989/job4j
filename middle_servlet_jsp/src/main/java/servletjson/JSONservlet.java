@@ -18,7 +18,6 @@ public class JSONservlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/WEB-INF/htmls/index.html").forward(req, resp);
     }
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         BufferedReader reader = req.getReader();
@@ -26,6 +25,5 @@ public class JSONservlet extends HttpServlet {
         reader.lines().forEach(stringBuilder::append);
         JsonUser jsonUser = objectMapper.readValue(stringBuilder.toString(), JsonUser.class);
         jsonMap.addJsonUser(jsonUser);
-        req.setAttribute("jsonUser", jsonUser);
     }
 }
