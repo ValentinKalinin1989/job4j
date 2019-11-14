@@ -6,6 +6,9 @@ public class JsonUser {
     private String descrip;
     private String sex;
 
+    public JsonUser() {
+    }
+
     public JsonUser(String name, String surname, String descrip, String sex) {
         this.name = name;
         this.surname = surname;
