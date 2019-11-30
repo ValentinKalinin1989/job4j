@@ -15,10 +15,9 @@ import java.util.List;
 
 public class UserServlet extends HttpServlet {
     private final Store store = DbStore.getInstance();
-    private List<User> userList = (ArrayList<User>) store.findAll();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-
+        List<User> userList = (ArrayList<User>) store.findAll();
         User userThisLoggin = null;
         if (req.getSession(false).getAttribute("role").toString().equals("Admin")) {
             req.setAttribute("usersFromServer", userList);

@@ -1,6 +1,5 @@
 <web-app>
 
- <!--
      <filter>
         <filter-name>AuthFilter</filter-name>
         <filter-class>servlet.AuthFilter</filter-class>
@@ -10,7 +9,15 @@
         <filter-name>AuthFilter</filter-name>
         <url-pattern>*</url-pattern>
     </filter-mapping>
-    -->
+
+    <servlet>
+        <servlet-name>GetTownsServlet</servlet-name>
+        <servlet-class>servlet.GetTownsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetTownsServlet</servlet-name>
+        <url-pattern>/town</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>JSONservlet</servlet-name>
@@ -39,7 +46,6 @@
         <url-pattern>/singin</url-pattern>
     </servlet-mapping>
 
-<!--
     <servlet>
         <servlet-name>UserServlet</servlet-name>
         <servlet-class>servlet.UserServlet</servlet-class>
@@ -48,7 +54,6 @@
         <servlet-name>UserServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-    -->
 
     <servlet>
         <servlet-name>EchoServlet</servlet-name>

@@ -10,6 +10,8 @@ public class User implements Comparable<User> {
     private LocalDate createDate;
     private String password;
     private Role role;
+    private String country;
+    private String town;
 
     public User(int id, String name, String login, String email, LocalDate createDate, String password, Role role) {
         this.id = id;
@@ -19,6 +21,18 @@ public class User implements Comparable<User> {
         this.createDate = createDate;
         this.password = password;
         this.role = role;
+    }
+
+    public User(int id, String name, String login, String email, LocalDate createDate, String password, Role role, String country, String town) {
+        this.id = id;
+        this.name = name;
+        this.login = login;
+        this.email = email;
+        this.createDate = createDate;
+        this.password = password;
+        this.role = role;
+        this.country = country;
+        this.town = town;
     }
 
     public void setId(int id) {
@@ -41,14 +55,20 @@ public class User implements Comparable<User> {
         this.createDate = createDate;
     }
 
-
-
     public void setPassword(String password) {
         this.password = password;
     }
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setTown(String town) {
+        this.town = town;
     }
 
     public int getId() {
@@ -79,6 +99,14 @@ public class User implements Comparable<User> {
         return password;
     }
 
+    public String getCountry() {
+        return country;
+    }
+
+    public String getTown() {
+        return town;
+    }
+
     @Override
     public int hashCode() {
         return super.hashCode();
@@ -97,9 +125,17 @@ public class User implements Comparable<User> {
 
     @Override
     public String toString() {
-        return "id: " + this.id + " Name: " + this.getName() + " Login: "
-                + this.login + " E-mail: " + this.email + "  Date: "
-                + this.createDate;
+        return "User{"
+                + "id=" + id
+                + ", name='" + name + '\''
+                + ", login='" + login + '\''
+                + ", email='" + email + '\''
+                + ", createDate=" + createDate
+                + ", password='" + password + '\''
+                + ", role=" + role
+                + ", country='" + country + '\''
+                + ", town='" + town + '\''
+                + '}';
     }
 
     @Override

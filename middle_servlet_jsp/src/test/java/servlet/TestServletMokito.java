@@ -1,6 +1,8 @@
 package servlet;
 
+import com.google.gson.Gson;
 import database.DbStore;
+import logic.Store;
 import model.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -51,6 +53,16 @@ public class TestServletMokito {
         assertThat(addedUser.getEmail(), is("kitchen_kit@mail.ru"));
         assertThat(addedUser.getPassword(), is("qwerty228"));
         assertThat(addedUser.getRole().toString(), is("User"));
+    }
+
+    @Test
+    public void justTest() {
+       Store store = DbStore.getInstance();
+       List<String> list = store.getTowns("Russia");
+        for (String string: list) {
+            System.out.println(string);
+        }
+        System.out.println(new Gson().toJson(list));
     }
 
 }

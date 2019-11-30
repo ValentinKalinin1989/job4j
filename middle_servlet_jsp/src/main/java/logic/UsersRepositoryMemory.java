@@ -4,6 +4,7 @@ import model.Role;
 import model.User;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class UsersRepositoryMemory implements Store {
@@ -84,5 +85,15 @@ public class UsersRepositoryMemory implements Store {
             }
         }
         return false;
+    }
+
+    @Override
+    public List<String> getCountries() {
+        return null;
+    }
+
+    @Override
+    public List<String> getTowns(String country) {
+        return null;
     }
 }

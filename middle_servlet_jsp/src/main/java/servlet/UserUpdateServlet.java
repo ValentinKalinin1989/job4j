@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserUpdateServlet extends HttpServlet  {
@@ -18,12 +19,8 @@ public class UserUpdateServlet extends HttpServlet  {
     private List<User> userList = store.findAll();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        if (req.getSession(false).getAttribute("role").toString().equals("Admin")) {
-            req.getRequestDispatcher("WEB-INF/views/update.jsp").forward(req, resp);
-        } else {
-            req.getRequestDispatcher("/WEB-INF/views/oneuserupdate.jsp").forward(req, resp);
-        }
-
+        req.setAttribute("countries", (ArrayList<String>) store.getCountries());
+        req.getRequestDispatcher("WEB-INF/views/update.jsp").forward(req, resp);
     }
 
     @Override
@@ -34,7 +31,10 @@ public class UserUpdateServlet extends HttpServlet  {
                 req.getParameter("email"),
                 LocalDate.now(),
                 req.getParameter("password"),
-                Role.valueOf(req.getParameter("role")));
+                Role.valueOf(req.getParameter("role")),
+                req.getParameter("country"),
+                req.getParameter("town")
+        );
         store.update(userToUpdate);
         List<User> userList = (List<User>) store.findAll();
         if (req.getSession(false).getAttribute("role").toString().equals("Admin")) {

@@ -17,6 +17,7 @@ public class SingInServlet extends HttpServlet {
     private List<User> userList = store.findAll();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("welcome", "Please, input login and password.");
         req.getRequestDispatcher("/WEB-INF/views/singin.jsp").forward(req, resp);
     }
     @Override
@@ -36,7 +37,7 @@ public class SingInServlet extends HttpServlet {
             session.setAttribute("role", role);
             resp.sendRedirect(String.format("%s/", req.getContextPath()));
         } else {
-            req.setAttribute("error", "Credentional invalid");
+            req.setAttribute("error", "Credentional invalid. Please, input login and password. Again.");
             doGet(req, resp);
         }
     }

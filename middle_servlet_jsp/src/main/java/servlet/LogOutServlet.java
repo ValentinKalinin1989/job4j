@@ -10,6 +10,7 @@ public class LogOutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getSession(false).invalidate();
+        req.setAttribute("welcome", "Please, input login and password.");
         req.getRequestDispatcher("WEB-INF/views/singin.jsp").forward(req, resp);
     }
 }

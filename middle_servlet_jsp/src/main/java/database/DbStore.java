@@ -35,7 +35,10 @@ public class DbStore implements Store {
         LOG.info("Start to add new user in DB");
         boolean result = false;
         try (Connection connection = SOURCE.getConnection();
-             PreparedStatement st = connection.prepareStatement("INSERT INTO users (name, login, email, createdate, password, role) values (?, ?, ?, ?, ?, ?)");
+             PreparedStatement st = connection.prepareStatement(
+                     "INSERT INTO users (name, login, email, createdate, password, role, name_country, name_town)"
+                             + "values (?, ?, ?, ?, ?, ?, ?, ?)"
+             );
         ) {
             st.setString(1, user.getName());
             st.setString(2, user.getLogin());
@@ -43,6 +46,8 @@ public class DbStore implements Store {
             st.setDate(4, Date.valueOf(user.getCreateDate()));
             st.setString(5, user.getPassword());
             st.setString(6, user.getRole().toString());
+            st.setString(7, user.getCountry());
+            st.setString(8, user.getTown());
             st.executeUpdate();
             result = true;
             LOG.info("New user was added.");
@@ -57,8 +62,11 @@ public class DbStore implements Store {
         boolean result = false;
         LOG.info("Start to delete user.");
         try (Connection connection = SOURCE.getConnection();
-             PreparedStatement st = connection.prepareStatement("UPDATE users SET name = ?, login = ?, email = ?, createdate = ?, password = ?, role = ?"
-                     + "WHERE id = ?");
+             PreparedStatement st = connection.prepareStatement(
+                     "UPDATE users SET name = ?, login = ?, email = ?,"
+                             + " createdate = ?, password = ?, role = ?, name_country = ?, name_town = ?"
+                     + "WHERE id = ?"
+             );
         ) {
             st.setString(1, user.getName());
             st.setString(2, user.getLogin());
@@ -66,7 +74,9 @@ public class DbStore implements Store {
             st.setDate(4, Date.valueOf(user.getCreateDate()));
             st.setString(5, user.getPassword());
             st.setString(6, user.getRole().toString());
-            st.setInt(7, user.getId());
+            st.setString(7, user.getCountry());
+            st.setString(8, user.getTown());
+            st.setInt(9, user.getId());
             st.executeUpdate();
             result = true;
             LOG.info("User was updated.");
@@ -109,7 +119,9 @@ public class DbStore implements Store {
                         rs.getString("email"),
                         rs.getDate("createDate").toLocalDate(),
                         rs.getString("password"),
-                        Role.valueOf(rs.getString("role"))
+                        Role.valueOf(rs.getString("role")),
+                        rs.getString("name_country"),
+                        rs.getString("name_town")
                 );
                 userList.add(user);
             }
@@ -136,7 +148,9 @@ public class DbStore implements Store {
                     rs.getString("email"),
                     LocalDate.parse((CharSequence) rs.getDate("createdate")),
                     rs.getString("password"),
-                    Role.valueOf(rs.getString("role"))
+                    Role.valueOf(rs.getString("role")),
+                    rs.getString("name_country"),
+                    rs.getString("name_town")
             );
         } catch (Exception e) {
             LOG.error("Error to find user", e);
@@ -153,5 +167,39 @@ public class DbStore implements Store {
             }
         }
         return result;
+    }
+
+    @Override
+    public List<String> getCountries() {
+        List<String> listContries = new ArrayList<>();
+        try (Connection connection = SOURCE.getConnection();
+             Statement st = connection.createStatement();
+             ResultSet rs = st.executeQuery("SELECT name_country FROM country")
+        ) {
+            while (rs.next()) {
+                listContries.add(rs.getString("name_country"));
+            }
+        } catch (SQLException e) {
+            LOG.error("Ошибка получения списка стран", e);
+        }
+        return listContries;
+    }
+
+    @Override
+    public List<String> getTowns(String country) {
+        List<String> listTowns = new ArrayList<>();
+        try (Connection connection = SOURCE.getConnection();
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery("SELECT name_town FROM town INNER JOIN country\n"
+                    + "ON town.country_id = country.id\n"
+                    + "WHERE country.name_country = '" + country + "';")
+        ) {
+            while (rs.next()) {
+                listTowns.add(rs.getString("name_town"));
+            }
+        } catch (SQLException e) {
+            LOG.error("Ошибка получения списка городов", e);
+        }
+        return listTowns;
     }
 }
