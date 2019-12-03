@@ -26,19 +26,37 @@ public class UserCreateServlet extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        User userToAdd = new User(store.findAll().size() + 1,
-                req.getParameter("name"),
-                req.getParameter("login"),
-                req.getParameter("email"),
-                LocalDate.now(),
-                req.getParameter("password"),
-                Role.valueOf(req.getParameter("role")),
-                req.getParameter("country"),
-                req.getParameter("town")
-        );
-        store.add(userToAdd);
-        List<User> userList = (List<User>) store.findAll();
-        req.setAttribute("usersFromServer", userList);
-        req.getRequestDispatcher("WEB-INF/views/users.jsp").forward(req, resp);
+        String name = req.getParameter("name");
+        String login = req.getParameter("login");
+        String email = req.getParameter("email");
+        String password = req.getParameter("password");
+        String country = req.getParameter("country");
+        String town = req.getParameter("town");
+        if (name.equals("")
+                || login.equals("")
+                || email.equals("")
+                || password.equals("")
+                || req.getParameter("role").equals("")
+                || country.equals("")
+                || town.equals("")) {
+            req.setAttribute("createError", "Input all fields");
+            req.getRequestDispatcher("WEB-INF/views/create.jsp").forward(req, resp);
+        } else {
+            Role role = Role.valueOf(req.getParameter("role"));
+            User userToAdd = new User(store.findAll().size() + 1,
+                    name,
+                    login,
+                    email,
+                    LocalDate.now(),
+                    password,
+                    role,
+                    country,
+                    town
+            );
+            store.add(userToAdd);
+            List<User> userList = (List<User>) store.findAll();
+            req.setAttribute("usersFromServer", userList);
+            req.getRequestDispatcher("WEB-INF/views/users.jsp").forward(req, resp);
+        }
     }
 }

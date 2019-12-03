@@ -25,24 +25,41 @@ public class UserUpdateServlet extends HttpServlet  {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        User userToUpdate = new User(Integer.parseInt(req.getParameter("id")),
-                req.getParameter("name"),
-                req.getParameter("login"),
-                req.getParameter("email"),
-                LocalDate.now(),
-                req.getParameter("password"),
-                Role.valueOf(req.getParameter("role")),
-                req.getParameter("country"),
-                req.getParameter("town")
-        );
-        store.update(userToUpdate);
-        List<User> userList = (List<User>) store.findAll();
-        if (req.getSession(false).getAttribute("role").toString().equals("Admin")) {
-            req.setAttribute("usersFromServer", userList);
-            req.getRequestDispatcher("WEB-INF/views/users.jsp").forward(req, resp);
+        String name = req.getParameter("name");
+        String login = req.getParameter("login");
+        String email = req.getParameter("email");
+        String password = req.getParameter("password");
+        String country = req.getParameter("country");
+        String town = req.getParameter("town");
+        if (name.equals("")
+                || login.equals("")
+                || email.equals("")
+                || password.equals("")
+                || req.getParameter("role").equals("")
+                || country.equals("")
+                || town.equals("")) {
+            req.setAttribute("createError", "Input all fields");
+            req.getRequestDispatcher("WEB-INF/views/update.jsp").forward(req, resp);
         } else {
-            req.setAttribute("user", userToUpdate);
-            req.getRequestDispatcher("WEB-INF/views/onlyuser.jsp").forward(req, resp);
+            Role role = Role.valueOf(req.getParameter("role"));
+            User userToUpdate = new User(Integer.parseInt(req.getParameter("id")),
+                    name,
+                    login,
+                    email,
+                    LocalDate.now(),
+                    password,
+                    role,
+                    country,
+                    town
+            );
+            store.update(userToUpdate);
+            if (req.getSession(false).getAttribute("role").toString().equals("Admin")) {
+                req.setAttribute("usersFromServer", store.findAll());
+                req.getRequestDispatcher("WEB-INF/views/users.jsp").forward(req, resp);
+            } else {
+                req.setAttribute("user", userToUpdate);
+                req.getRequestDispatcher("WEB-INF/views/onlyuser.jsp").forward(req, resp);
+            }
         }
     }
 }

@@ -14,7 +14,6 @@ import java.util.List;
 
 public class SingInServlet extends HttpServlet {
     private final Store store = DbStore.getInstance();
-    private List<User> userList = store.findAll();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("welcome", "Please, input login and password.");
@@ -24,17 +23,12 @@ public class SingInServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
-        String role = "User";
-        for (User user: userList) {
-            if (login.equals(user.getLogin())) {
-                role = user.getRole().toString();
-                break;
-            }
-        }
-        if (store.isCredentional(login, password)) {
+
+        User findedUser = store.isCredentional(login, password);
+        if (findedUser != null) {
             HttpSession session = req.getSession();
             session.setAttribute("login", login);
-            session.setAttribute("role", role);
+            session.setAttribute("role", findedUser.getRole().toString());
             resp.sendRedirect(String.format("%s/", req.getContextPath()));
         } else {
             req.setAttribute("error", "Credentional invalid. Please, input login and password. Again.");

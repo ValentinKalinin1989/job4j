@@ -17,6 +17,9 @@
 
 </head>
 <body>
+<div class="form-style-9">
+    <c:out value="${ createError != null ? createError: 'Create user'}"/>
+</div>
 <div class="form-style-8">
     <form action = '${pageContext.servletContext.contextPath}/create' method = 'post'>
         Name : <input type = 'text' name = 'name'/>

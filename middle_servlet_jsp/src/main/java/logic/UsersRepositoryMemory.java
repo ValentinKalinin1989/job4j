@@ -76,15 +76,14 @@ public class UsersRepositoryMemory implements Store {
     }
 
     @Override
-    public boolean isCredentional(String login, String password) {
-        boolean result = false;
+    public User isCredentional(String login, String password) {
+        User findedUser = null;
         for (User user: this.userList) {
             if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
-                result = true;
-                break;
+                findedUser = user;
             }
         }
-        return false;
+        return findedUser;
     }
 
     @Override

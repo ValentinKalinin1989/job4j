@@ -10,7 +10,7 @@ public interface Store {
     boolean delete(int id);
     List<User> findAll();
     User findById(int id);
-    boolean isCredentional(String login, String password);
+    User isCredentional(String login, String password);
     List<String> getCountries();
     List<String> getTowns(String country);
 }

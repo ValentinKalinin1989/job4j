@@ -146,7 +146,7 @@ public class DbStore implements Store {
                     rs.getString("name"),
                     rs.getString("login"),
                     rs.getString("email"),
-                    LocalDate.parse((CharSequence) rs.getDate("createdate")),
+                    rs.getDate("createdate").toLocalDate(),
                     rs.getString("password"),
                     Role.valueOf(rs.getString("role")),
                     rs.getString("name_country"),
@@ -159,14 +159,35 @@ public class DbStore implements Store {
     }
 
     @Override
-    public boolean isCredentional(String login, String password) {
-        boolean result = false;
-        for (User user: findAll()) {
-            if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
-                result = true;
-            }
+    public User isCredentional(String login, String password) {
+        User findedUser = null;
+        try (Connection connection = SOURCE.getConnection();
+             PreparedStatement st = connection.prepareStatement("SELECT * FROM users WHERE login = ? AND password = ?")
+        ) {
+            st.setString(1, login);
+            st.setString(2, password);
+            ResultSet rs = st.executeQuery();
+            rs.next();
+            findedUser = new User(
+                    rs.getInt("id"),
+                    rs.getString("name"),
+                    rs.getString("login"),
+                    rs.getString("email"),
+                    rs.getDate("createdate").toLocalDate(),
+                    rs.getString("password"),
+                    Role.valueOf(rs.getString("role")),
+                    rs.getString("name_country"),
+                    rs.getString("name_town")
+            );
+        } catch (SQLException e) {
+            LOG.error("Пользователь с такими данными отсутствует в бд", e);
         }
-        return result;
+
+        //for (User user: findAll()) {
+         //   if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
+         //       findedUser = user;
+         //   }
+        return findedUser;
     }
 
     @Override
