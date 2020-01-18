@@ -10,13 +10,21 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class UsersRepositoryMemory implements Store {
     private CopyOnWriteArrayList<User> userList;
 
-    private UsersRepositoryMemory() {
+    private int id;
+
+    public UsersRepositoryMemory() {
         this.userList = new CopyOnWriteArrayList<>();
-        this.userList.add(new User(1, "Feday", "Assasin", "f_1990@yandex.ru", LocalDate.of(1990, 12, 31), "", Role.User));
-        this.userList.add(new User(2, "Sanay", "Killer", "rty_1990@yandex.ru", LocalDate.of(1967, 12, 31), "", Role.User));
-        this.userList.add(new User(3, "Vova", "Gamer", "jol_1990@yandex.ru", LocalDate.of(1954, 12, 31), "", Role.User));
-        this.userList.add(new User(4, "Kolay", "WhyWhat", "toy_1990@yandex.ru", LocalDate.of(1955, 12, 31), "", Role.User));
-        this.userList.add(new User(5, "Vanay", "Edfrwse", "free_1990@yandex.ru", LocalDate.of(1988, 12, 31), "", Role.User));
+        this.userList.add(new User(1, "Feday", "Assasin", "f_1990@yandex.ru",
+                LocalDate.of(1990, 12, 31), "", Role.User, "Russia", "Tula"));
+        this.userList.add(new User(2, "Sanay", "Killer", "rty_1990@yandex.ru",
+                LocalDate.of(1967, 12, 31), "", Role.User, "Russia", "Moscow"));
+        this.userList.add(new User(3, "Vova", "Gamer", "jol_1990@yandex.ru",
+                LocalDate.of(1954, 12, 31), "", Role.User, "USA", "New York"));
+        this.userList.add(new User(4, "Kolay", "WhyWhat", "toy_1990@yandex.ru",
+                LocalDate.of(1955, 12, 31), "", Role.User, "Russia", "Moscow"));
+        this.userList.add(new User(5, "Vanay", "Edfrwse", "free_1990@yandex.ru",
+                LocalDate.of(1988, 12, 31), "", Role.User, "Russia", "Tula"));
+        this.id = 6;
     }
 
     private static final class Holder {
@@ -37,12 +45,16 @@ public class UsersRepositoryMemory implements Store {
         boolean result = false;
         User userFinded = findById(user.getId());
         if (userFinded != null) {
+            userFinded.setId(this.id);
             userFinded.setName(user.getName());
             userFinded.setLogin(user.getLogin());
             userFinded.setEmail(user.getEmail());
             userFinded.setCreateDate(user.getCreateDate());
             userFinded.setPassword(user.getPassword());
             userFinded.setRole(user.getRole());
+            userFinded.setCountry(user.getCountry());
+            userFinded.setTown(user.getTown());
+            id++;
             result = true;
         }
         return result;

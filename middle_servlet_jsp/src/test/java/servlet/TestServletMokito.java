@@ -3,6 +3,7 @@ package servlet;
 import com.google.gson.Gson;
 import database.DbStore;
 import logic.Store;
+import logic.UsersRepositoryMemory;
 import model.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,14 +26,13 @@ import static org.mockito.Mockito.*;
 
 @PowerMockIgnore({"com.sun.org.apache.xerces.*", "javax.xml.*", "org.xml.*", "org.w3c.*", "javax.management.*"})
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(DbStore.class)
+@PrepareForTest(UsersRepositoryMemory.class)
 public class TestServletMokito {
     @Test
     public void whenAddUserThenDbStoreIt() throws ServletException, IOException {
-        DbStore dbStore = new DbStore();
-        UserCreateServlet servlet = new UserCreateServlet();
-        PowerMockito.mockStatic(DbStore.class);
-        Mockito.when(DbStore.getInstance()).thenReturn(dbStore);
+        UsersRepositoryMemory dbStore = new UsersRepositoryMemory();
+        PowerMockito.mockStatic(UsersRepositoryMemory.class);
+        Mockito.when(UsersRepositoryMemory.getInstance()).thenReturn(dbStore);
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
         RequestDispatcher requestDispatcher = mock(RequestDispatcher.class);
@@ -41,12 +41,10 @@ public class TestServletMokito {
         when(request.getParameter("email")).thenReturn("kitchen_kit@mail.ru");
         when(request.getParameter("password")).thenReturn("qwerty228");
         when(request.getParameter("role")).thenReturn("User");
-        when(request.getParameter("country")).thenReturn("USA");
-        when(request.getParameter("town")).thenReturn("New York");
+        when(request.getParameter("country")).thenReturn("Russia");
+        when(request.getParameter("town")).thenReturn("Tomsk");
         when(request.getRequestDispatcher("WEB-INF/views/users.jsp")).thenReturn(requestDispatcher);
-
-        servlet.doPost(request, response);
-
+        new UserCreateServletReposInMem().doPost(request, response);
         List<User> userList = dbStore.findAll();
         User addedUser = null;
         for (User user: userList) {
@@ -62,6 +60,8 @@ public class TestServletMokito {
         assertThat(addedUser.getRole().toString(), is("User"));
     }
 
+
+
     @Test
     public void justTest() {
        Store store = DbStore.getInstance();
@@ -71,5 +71,6 @@ public class TestServletMokito {
         }
         System.out.println(new Gson().toJson(list));
     }
+
 
 }

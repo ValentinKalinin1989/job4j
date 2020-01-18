@@ -7,7 +7,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +15,7 @@ public class DbStore implements Store {
     private static final DbStore INSTANCE = new DbStore();
     private static final Logger LOG = LogManager.getLogger(DbStore.class.getName());
 
-    public DbStore() {
+    private DbStore() {
         SOURCE.setDriverClassName("org.postgresql.Driver");
         SOURCE.setUrl("jdbc:postgresql://127.0.0.1:5432/users_servlet");
         SOURCE.setUsername("postgres");
