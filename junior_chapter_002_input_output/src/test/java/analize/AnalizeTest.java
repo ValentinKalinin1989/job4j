@@ -2,7 +2,9 @@ package analize;
 
 import config.Config;
 import org.junit.Test;
-import java.io.*;
+
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;

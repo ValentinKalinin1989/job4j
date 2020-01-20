@@ -17,6 +17,7 @@ import java.util.List;
 
 public class UserCreateServlet extends HttpServlet {
     private final Store store = DbStore.getInstance();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         if (req.getSession(false).getAttribute("role").toString().equals("Admin")) {
@@ -24,6 +25,7 @@ public class UserCreateServlet extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/views/create.jsp").forward(req, resp);
         }
     }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String name = req.getParameter("name");

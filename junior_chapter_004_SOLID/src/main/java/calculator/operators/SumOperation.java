@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 public class SumOperation extends TwoNumbOperation {
     private String name = "+";
     private String example = "1 + 2";
+
     @Override
     public String operation(String task) {
         String result = "Неправильно введены данные";

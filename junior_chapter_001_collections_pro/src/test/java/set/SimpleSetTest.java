@@ -2,11 +2,11 @@ package set;
 
 import org.junit.Before;
 import org.junit.Test;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-
 
 import java.util.Iterator;
+
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
 public class SimpleSetTest {
     private SimpleSet<Integer> set;

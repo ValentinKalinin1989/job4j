@@ -1,9 +1,6 @@
 package generic;
 
 
-import java.util.Iterator;
-
-
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -11,7 +8,7 @@ import static org.hamcrest.Matchers.is;
 
 public class SimpleArrayTest {
 
-    @Test (expected = NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void testSimpleArrayInteger() {
         SimpleArray<Integer> integerSimpleArray = new SimpleArray<Integer>(10);
         integerSimpleArray.add(1);

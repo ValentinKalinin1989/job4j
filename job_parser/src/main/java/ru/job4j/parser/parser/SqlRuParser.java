@@ -6,8 +6,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import ru.job4j.parser.vacancy.Vacancy;
 import ru.job4j.parser.utill.DateConverter;
+import ru.job4j.parser.vacancy.Vacancy;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,8 +25,8 @@ public class SqlRuParser {
     }
 
     private Document getPage(String url) throws IOException {
-       Document page = Jsoup.parse(new URL(url), 2000);
-       return page;
+        Document page = Jsoup.parse(new URL(url), 2000);
+        return page;
     }
 
     public List<Vacancy> parse() {
@@ -42,7 +42,7 @@ public class SqlRuParser {
             do {
                 Document pageIn = getPage("https://www.sql.ru/forum/job-offers/".concat(String.valueOf(i)));
                 Elements tableJobs = pageIn.select("tr");
-                for (Element element: tableJobs) {
+                for (Element element : tableJobs) {
                     String jobName = element.select("td[class=postslisttopic]").select("a").text();
                     if (!jobName.contains("Javascript")
                             & !jobName.contains("Java script")
@@ -66,8 +66,10 @@ public class SqlRuParser {
         LOG.info("Парсинг вакансий закончен");
         return vacancyList;
     }
+
     /**
      * Get info about vacancy from link
+     *
      * @param link link in string
      * @return info about vacancy
      */

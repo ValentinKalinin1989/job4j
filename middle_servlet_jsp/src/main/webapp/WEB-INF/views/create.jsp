@@ -11,7 +11,9 @@
 <html>
 <head>
     <title>Title</title>
-    <style><%@include file="/css/styles.css"%></style>
+    <style>
+        <%@include file="/css/styles.css" %>
+    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
@@ -21,13 +23,13 @@
     <c:out value="${ createError != null ? createError: 'Create user'}"/>
 </div>
 <div class="form-style-8">
-    <form action = '${pageContext.servletContext.contextPath}/create' method = 'post'>
-        Name : <input type = 'text' name = 'name'/>
-        LOGIN : <input type = 'text' name = 'login'/>
-        E-MAIL : <input type = 'text' name = 'email'/>
-        PASSWORD : <input type = 'text' name = 'password'/>
+    <form action='${pageContext.servletContext.contextPath}/create' method='post'>
+        Name : <input type='text' name='name'/>
+        LOGIN : <input type='text' name='login'/>
+        E-MAIL : <input type='text' name='email'/>
+        PASSWORD : <input type='text' name='password'/>
         ROLE :
-        <select class="role" name="role" >
+        <select class="role" name="role">
             <option value="User">User</option>
             <option value="Admin">Admin</option>
         </select>
@@ -50,7 +52,7 @@
                     url: '${pageContext.servletContext.contextPath}/town',
                     data: 'contry=' + selectedCountry,
                     dataType: 'json',
-                    success: function(data) {
+                    success: function (data) {
                         var listItems = "";
                         $.each(data, function (key, value) {
                             listItems += "<option value='" + value + "'>" + value + "</option>";
@@ -60,7 +62,7 @@
                 });
             })
         </script>
-        <input type = 'submit'>
+        <input type='submit'>
     </form>
 </div>
 <br/>

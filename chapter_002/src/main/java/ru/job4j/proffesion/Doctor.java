@@ -7,6 +7,7 @@ public class Doctor extends Proffesion {
 
     /**
      * лечение пациента
+     *
      * @param patient пациент
      * @return Diagnose (возвращает диагноз)
      */

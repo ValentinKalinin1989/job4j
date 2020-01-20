@@ -2,8 +2,8 @@ package menu;
 
 import menu.action.MenuAction;
 
-
-import java.util.*;
+import java.util.List;
+import java.util.StringJoiner;
 
 public class ExampleActionMenu implements Action {
 
@@ -23,7 +23,7 @@ public class ExampleActionMenu implements Action {
     public String getFullMenu() {
         StringBuilder actual = new StringBuilder();
         List<SimpleMenu> fullMenu = this.menu.getSubMenuTree();
-        for (SimpleMenu menu: fullMenu
+        for (SimpleMenu menu : fullMenu
         ) {
             actual.append(getPrintName(menu));
         }
@@ -32,6 +32,7 @@ public class ExampleActionMenu implements Action {
 
     /**
      * Get name in format (--- name 4.1.1)
+     *
      * @return formatted name
      */
     public String getPrintName(SimpleMenu menu) {

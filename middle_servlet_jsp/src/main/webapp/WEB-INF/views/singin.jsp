@@ -11,7 +11,9 @@
 
 <head>
     <title>Title</title>
-    <style><%@include file="/css/styles.css"%></style>
+    <style>
+        <%@include file="/css/styles.css" %>
+    </style>
 </head>
 
 <body>
@@ -20,12 +22,12 @@
 </div>
 
 <div class="form-style-8">
-<form action="${pageContext.servletContext.contextPath}/singin" method = "post">
- LOGIN : <input type = 'text' name = 'login'/>
- <br/>
- PASSWORD : <input type = 'password' name = 'password'/>
- <input type="submit" value = "SingIn">
-</form>
+    <form action="${pageContext.servletContext.contextPath}/singin" method="post">
+        LOGIN : <input type='text' name='login'/>
+        <br/>
+        PASSWORD : <input type='password' name='password'/>
+        <input type="submit" value="SingIn">
+    </form>
 </div>
 
 </body>

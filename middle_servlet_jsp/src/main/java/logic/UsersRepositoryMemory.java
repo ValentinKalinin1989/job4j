@@ -79,7 +79,7 @@ public class UsersRepositoryMemory implements Store {
     @Override
     public User findById(int id) {
         User userResult = null;
-        for (User user: this.userList) {
+        for (User user : this.userList) {
             if (user.getId() == id) {
                 userResult = user;
             }
@@ -90,7 +90,7 @@ public class UsersRepositoryMemory implements Store {
     @Override
     public User isCredentional(String login, String password) {
         User findedUser = null;
-        for (User user: this.userList) {
+        for (User user : this.userList) {
             if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
                 findedUser = user;
             }

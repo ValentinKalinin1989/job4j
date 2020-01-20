@@ -16,6 +16,7 @@ public class SimpleHashMap<K, V> implements Iterable<V> {
 
     /**
      * получение индекса элемента на основе хэш-кода
+     *
      * @param key ключ для получениея индеса элемента в массиве
      * @return индекс для размещения элемента в массиве
      */
@@ -29,15 +30,16 @@ public class SimpleHashMap<K, V> implements Iterable<V> {
     private void increaseSize() {
         this.size += 16;
         Node[] newCont = new Node[size];
-        for (Node node: this.container) {
-          newCont[hash((K) node.getKey())] = node;
+        for (Node node : this.container) {
+            newCont[hash((K) node.getKey())] = node;
         }
         this.container = newCont;
     }
 
     /**
      * добавление элемента в массив
-     * @param key ключ
+     *
+     * @param key   ключ
      * @param value значение
      * @return результат добавления true, либо false
      */
@@ -77,6 +79,7 @@ public class SimpleHashMap<K, V> implements Iterable<V> {
         return new Iterator<V>() {
             int modCountIer = modCount;
             int indexIter = 0;
+
             @Override
             public boolean hasNext() {
                 if (this.modCountIer != modCount) {
@@ -112,6 +115,7 @@ public class SimpleHashMap<K, V> implements Iterable<V> {
     private static class Node<K, V> {
         K key;
         V value;
+
         public Node(K key, V value) {
             this.key = key;
             this.value = value;

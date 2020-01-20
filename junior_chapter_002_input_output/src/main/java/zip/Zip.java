@@ -16,7 +16,7 @@ public class Zip {
         Search search = new Search();
         List<File> listofFile = search.getFileWithOutExt(search.findAllFilesDirect(source.toString()), exts);
         try (ZipOutputStream zip = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(target)))) {
-            for (File file: listofFile) {
+            for (File file : listofFile) {
                 zip.putNextEntry(new ZipEntry(file.getPath()));
                 try (BufferedInputStream out = new BufferedInputStream(new FileInputStream(file))) {
                     zip.write(out.readAllBytes());

@@ -14,20 +14,24 @@ import java.util.List;
  */
 public class StoreXML {
     private final String path;
+
     /**
      * constructor
+     *
      * @param path path to save fale
      */
     public StoreXML(final String path) {
         this.path = path;
     }
+
     /**
      * convert List<Entry> to xml file
+     *
      * @param list
      */
     public void save(List<StoreSQLite.Entry> list) {
         List<Field> listF = new ArrayList<>(list.size());
-        for (StoreSQLite.Entry element: list) {
+        for (StoreSQLite.Entry element : list) {
             listF.add(new Field(element.getValue()));
         }
         try {
@@ -41,6 +45,7 @@ public class StoreXML {
             e.printStackTrace();
         }
     }
+
     @XmlRootElement
     public static class User {
         private List<Field> values;
@@ -60,6 +65,7 @@ public class StoreXML {
             this.values = values;
         }
     }
+
     @XmlRootElement
     public static class Field {
         private int value;

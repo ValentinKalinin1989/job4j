@@ -2,8 +2,6 @@ package threadpool;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 public class ThreadPool {
     int size = Runtime.getRuntime().availableProcessors();

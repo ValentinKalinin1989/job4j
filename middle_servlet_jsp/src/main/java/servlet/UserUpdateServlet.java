@@ -14,9 +14,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserUpdateServlet extends HttpServlet  {
+public class UserUpdateServlet extends HttpServlet {
     private final Store store = DbStore.getInstance();
     private List<User> userList = store.findAll();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         req.setAttribute("countries", (ArrayList<String>) store.getCountries());

@@ -8,6 +8,7 @@ package ru.job4j.array;
 public class Square {
     /**
      * Заполнение массива квадратами чисел
+     *
      * @param bound размер массива
      * @return массив из квадратов
      */

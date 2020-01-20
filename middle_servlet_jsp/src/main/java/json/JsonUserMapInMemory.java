@@ -14,10 +14,12 @@ public class JsonUserMapInMemory {
 
         jsonUserMap.put(jsonUser, jsonUser);
     }
+
     public void dellJsonUser(JsonUser jsonUser) {
 
         jsonUserMap.remove(jsonUser);
     }
+
     public ConcurrentHashMap getMap() {
         return jsonUserMap;
     }

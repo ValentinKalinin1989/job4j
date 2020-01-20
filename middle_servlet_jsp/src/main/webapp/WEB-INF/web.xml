@@ -1,6 +1,6 @@
 <web-app>
 
-     <filter>
+    <filter>
         <filter-name>AuthFilter</filter-name>
         <filter-class>servlet.AuthFilter</filter-class>
         <load-on-startup>1</load-on-startup>

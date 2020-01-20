@@ -1,12 +1,9 @@
 package menu;
+
 import java.util.*;
 
 /**
  * SimpleMenu base class
- *
- * @author Alexander Abramov (alllexe@mail.ru)
- * @version 1
- * @since 27.06.2019
  */
 public class SimpleMenu {
 
@@ -53,6 +50,7 @@ public class SimpleMenu {
 
     /**
      * get list of all children ordered hierarchy
+     *
      * @return list with all children
      */
     public List<SimpleMenu> getSubMenuTree() {
@@ -69,6 +67,7 @@ public class SimpleMenu {
 
     /**
      * Get string of numbers include all parents (4.1.1)
+     *
      * @param joiner - joiner
      * @return full number
      */
@@ -89,6 +88,7 @@ public class SimpleMenu {
 
     /**
      * Get menu name
+     *
      * @return menu name
      */
     public String getPrintName() {

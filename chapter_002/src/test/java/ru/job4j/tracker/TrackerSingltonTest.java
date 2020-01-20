@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -32,7 +33,6 @@ public class TrackerSingltonTest {
         TrackerStaticFinalClass trackerEnum2 = TrackerStaticFinalClass.getInstance();
         assertThat(trackerEnum1, is(trackerEnum2));
     }
-
 
 
 }

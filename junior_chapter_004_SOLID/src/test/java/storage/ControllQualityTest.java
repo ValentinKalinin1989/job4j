@@ -1,12 +1,7 @@
 package storage;
 
 import org.junit.Test;
-import storage.food.Cheese;
-import storage.food.Food;
-import storage.food.Meat;
-import storage.food.Milk;
-import storage.food.Flour;
-import storage.food.Potatoes;
+import storage.food.*;
 import storage.sort.ControllQuality;
 import storage.store.*;
 
@@ -14,7 +9,7 @@ import java.time.LocalDate;
 import java.util.LinkedList;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class ControllQualityTest {
     @Test
@@ -82,7 +77,6 @@ public class ControllQualityTest {
         assertThat(((Flour) trash.getFood(1)).getName(), is("SuperFlour"));
         assertThat(((Milk) trash.getFood(2)).getName(), is("MilkSuper"));
         assertThat(((Flour) restoreWare.getFood(0)).getName(), is("SuperFlour"));
-
 
 
     }

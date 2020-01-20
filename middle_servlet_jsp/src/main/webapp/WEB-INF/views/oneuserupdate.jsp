@@ -11,18 +11,20 @@
 <html>
 <head>
     <title>Title</title>
-    <style><%@include file="/css/styles.css"%></style>
+    <style>
+        <%@include file="/css/styles.css" %>
+    </style>
 </head>
 <body>
-    <form action = '${pageContext.servletContext.contextPath}/update' method = 'post'>
-        Name : <input type = 'text' name = 'name' value = '${param["name"]}'/>
-        LOGIN : <input type = 'text' name = 'login' value = '${param["login"]}'/>
-        E-MAIL : <input type = 'text' name = 'email' value = '${param["email"]}'/>
-        PASSWORD : <input type = 'text' name = 'password' value = '${param["password"]}'/>
-        <input type = 'hidden' name = 'role' value= 'User'>
-        <input type = 'hidden' name = 'id' value = '${param["id"]}'>
-        <input type = 'submit' value = 'SAVE'>
-    </form>
+<form action='${pageContext.servletContext.contextPath}/update' method='post'>
+    Name : <input type='text' name='name' value='${param["name"]}'/>
+    LOGIN : <input type='text' name='login' value='${param["login"]}'/>
+    E-MAIL : <input type='text' name='email' value='${param["email"]}'/>
+    PASSWORD : <input type='text' name='password' value='${param["password"]}'/>
+    <input type='hidden' name='role' value='User'>
+    <input type='hidden' name='id' value='${param["id"]}'>
+    <input type='submit' value='SAVE'>
+</form>
 <br/>
 
 <div class="form-style-8">

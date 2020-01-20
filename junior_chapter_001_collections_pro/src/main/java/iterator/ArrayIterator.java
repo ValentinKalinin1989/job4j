@@ -12,6 +12,7 @@ public class ArrayIterator implements Iterator {
     public ArrayIterator(final int[][] arrayInt) {
         this.arrayInt = arrayInt;
     }
+
     @Override
     public boolean hasNext() {
 

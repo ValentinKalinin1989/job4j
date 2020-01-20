@@ -24,6 +24,7 @@ public class ConvertList2ArrayTest {
         };
         assertThat(result, is(expect));
     }
+
     @Test
     public void whenListOfArrayConvertToList() {
         ConvertList2Array list = new ConvertList2Array();

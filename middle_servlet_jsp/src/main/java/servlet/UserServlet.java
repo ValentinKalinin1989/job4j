@@ -15,6 +15,7 @@ import java.util.List;
 
 public class UserServlet extends HttpServlet {
     private final Store store = DbStore.getInstance();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         List<User> userList = (ArrayList<User>) store.findAll();
@@ -23,7 +24,7 @@ public class UserServlet extends HttpServlet {
             req.setAttribute("usersFromServer", userList);
             req.getRequestDispatcher("/WEB-INF/views/users.jsp").forward(req, resp);
         } else {
-            for (User user: userList) {
+            for (User user : userList) {
                 if (req.getSession(false).getAttribute("login").toString().equals(user.getLogin())) {
                     userThisLoggin = user;
                     break;
@@ -33,6 +34,7 @@ public class UserServlet extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/views/onlyuser.jsp").forward(req, resp);
         }
     }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         store.delete(Integer.parseInt(req.getParameter("id")));

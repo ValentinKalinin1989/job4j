@@ -4,7 +4,7 @@ import java.util.function.Consumer;
 
 public class StartUI {
     /**
-     *маркер для выхода из программы в методе exit
+     * маркер для выхода из программы в методе exit
      */
     private boolean working = true;
     /**
@@ -13,14 +13,17 @@ public class StartUI {
     private static Input input;
     /**
      * Хранилище заявок.
+
      */
     private static ITracker tracker;
     /**
      * метод вводв данных
-     * */
+     */
     private static Consumer<String> output;
+
     /**
      * Конструтор инициализирующий поля.
+     *
      * @param input ввод данных.
      */
     public StartUI(Input input, ITracker tracker, Consumer<String> output) {
@@ -28,6 +31,7 @@ public class StartUI {
         this.tracker = tracker;
         this.output = output;
     }
+
     /**
      * Основой цикл программы.
      */
@@ -46,7 +50,7 @@ public class StartUI {
             //String ask = input.ask("Введите пункт меню :");
             //menu.select(Integer.valueOf(ask));
             menu.select(input.ask("Введите пункт меню", menu.getNumRangeActions()));
-            } while (this.working);
+        } while (this.working);
     }
 
     public void stop() {

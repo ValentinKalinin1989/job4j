@@ -3,7 +3,8 @@ package ru.job4j.loop;
 public class Board {
     /**
      * Построение шахматного поля из символов " " и "X"
-     * @param width ширина
+     *
+     * @param width  ширина
      * @param height высота
      * @return шахматное поле
      */

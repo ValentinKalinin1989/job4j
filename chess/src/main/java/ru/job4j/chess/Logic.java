@@ -6,8 +6,6 @@ import ru.job4j.chess.exception.OccupiedWayException;
 import ru.job4j.chess.firuges.Cell;
 import ru.job4j.chess.firuges.Figure;
 
-import java.util.Optional;
-
 /**
  * //TODO add comments.
  *
@@ -26,21 +24,20 @@ public class Logic {
     public boolean move(Cell source, Cell dest) throws FigureNotFoundException, ImpossibleMoveException, OccupiedWayException {
         boolean rst = false;
         int index = this.findBy(source);
-       if (index == -1) {
+        if (index == -1) {
             //throw new FigureNotFoundException("В данной ячейке нет фигуры");
             return false;
-       }
+        }
 
         Cell[] steps = this.figures[index].way(source, dest);
 
 
-       for (Cell cell: steps) {
-           if (this.findBy(cell) != -1) {
-               //throw new OccupiedWayException("Путь занят другой фигурой");
-               return false;
-           }
-       }
-
+        for (Cell cell : steps) {
+            if (this.findBy(cell) != -1) {
+                //throw new OccupiedWayException("Путь занят другой фигурой");
+                return false;
+            }
+        }
 
 
         if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {

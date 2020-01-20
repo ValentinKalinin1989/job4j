@@ -13,6 +13,7 @@ import java.time.LocalDate;
 
 public class UserCreateServletOld extends HttpServlet {
     private final UsersRepositoryMemory usersRepositoryMemory = UsersRepositoryMemory.getInstance();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         PrintWriter writer = new PrintWriter(resp.getOutputStream());
@@ -39,6 +40,7 @@ public class UserCreateServletOld extends HttpServlet {
         writer.append(stringBuilder);
         writer.flush();
     }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         User userToAdd = new User(usersRepositoryMemory.findAll().size() + 1,

@@ -39,6 +39,7 @@ public class User {
         User user = (User) o;
         return id == user.id;
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(id);

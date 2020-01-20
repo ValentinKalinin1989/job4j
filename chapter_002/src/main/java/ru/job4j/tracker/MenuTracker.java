@@ -22,8 +22,9 @@ public class MenuTracker {
     }
 
     public int[] getNumRangeActions() {
-        return new int[] {0, 1, 2, 3, 4, 5, 6};
+        return new int[]{0, 1, 2, 3, 4, 5, 6};
     }
+
     /**
      * заполнение массива классами реализующими работу с трекером
      */
@@ -39,6 +40,7 @@ public class MenuTracker {
 
     /**
      * выполнение операции по управляющему номеру
+     *
      * @param key - номер операции
      */
     public void select(int key) {
@@ -50,7 +52,7 @@ public class MenuTracker {
      */
     public void show() {
         output.accept("Меню.");
-        for (UserAction action: this.actions) {
+        for (UserAction action : this.actions) {
             output.accept(action.info());
         }
     }
@@ -84,7 +86,7 @@ public class MenuTracker {
         public void execute(Input input, ITracker tracker) {
             List<Item> items = tracker.findAll();
             output.accept("------------Список всех заявок-------------------");
-            for (Item item: items) {
+            for (Item item : items) {
                 output.accept(item.toString());
             }
 
@@ -157,7 +159,7 @@ public class MenuTracker {
         public void execute(Input input, ITracker tracker) {
             String name = input.ask("Введите имя заявки, по которому нужно провести поиск:");
             List<Item> items = tracker.findAll();
-            for (Item item: items) {
+            for (Item item : items) {
                 if (item != null && item.getName().equals(name)) {
                     output.accept(item.toString());
                 }

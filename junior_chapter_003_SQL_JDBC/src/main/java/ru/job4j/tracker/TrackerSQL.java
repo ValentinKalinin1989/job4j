@@ -1,11 +1,14 @@
 package ru.job4j.tracker;
 
-import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.InputStream;
 import java.sql.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+import java.util.Random;
 
 import static java.lang.Integer.parseInt;
 
@@ -33,16 +36,18 @@ public class TrackerSQL implements ITracker, AutoCloseable {
         }
         return this.connection != null;
     }
+
     @Override
     public void close() throws Exception {
         if (this.connection != null) {
-                  try {
-                     this.connection.close();
-                  } catch (SQLException e) {
-                     LOG.error(e.getMessage(), e);
-                  }
+            try {
+                this.connection.close();
+            } catch (SQLException e) {
+                LOG.error(e.getMessage(), e);
+            }
         }
     }
+
     @Override
     public Item add(Item item) {
         try (PreparedStatement st = this.connection.prepareStatement("insert into item(name_item, description, time_create) values (?, ?, ?) returning id")) {
@@ -57,6 +62,7 @@ public class TrackerSQL implements ITracker, AutoCloseable {
         }
         return item;
     }
+
     @Override
     public boolean replace(String id, Item item) {
         boolean result = false;
@@ -73,6 +79,7 @@ public class TrackerSQL implements ITracker, AutoCloseable {
         }
         return result;
     }
+
     @Override
     public boolean delete(String id) {
         boolean result = false;
@@ -86,6 +93,7 @@ public class TrackerSQL implements ITracker, AutoCloseable {
         }
         return result;
     }
+
     @Override
     public List<Item> findAll() {
         List<Item> items = new ArrayList<>();
@@ -99,6 +107,7 @@ public class TrackerSQL implements ITracker, AutoCloseable {
         }
         return items;
     }
+
     @Override
     public List<Item> findByName(String key) {
         List<Item> items = new ArrayList<>();
@@ -113,6 +122,7 @@ public class TrackerSQL implements ITracker, AutoCloseable {
         }
         return items;
     }
+
     @Override
     public Item findById(String id) {
         Item resultItem = null;
@@ -129,9 +139,11 @@ public class TrackerSQL implements ITracker, AutoCloseable {
         }
         return resultItem;
     }
+
     /**
      * add Item in List
-     * @param rs ResultSet
+     *
+     * @param rs    ResultSet
      * @param items list of Item for add finded Items
      * @throws SQLException
      */

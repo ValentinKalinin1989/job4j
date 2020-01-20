@@ -15,8 +15,8 @@ public class Figure extends Rectangle {
     }
 
     public void take(boolean markX) {
-            this.markX = markX;
-            this.markO = !markX;
+        this.markX = markX;
+        this.markO = !markX;
     }
 
     public boolean hasMarkX() {

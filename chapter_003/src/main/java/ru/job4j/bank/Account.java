@@ -1,7 +1,6 @@
 package ru.job4j.bank;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
 public class Account {
     private BigDecimal value;
@@ -11,6 +10,7 @@ public class Account {
         this.value = value;
         this.requisites = requisites;
     }
+
     public void setRequisites(String requisites) {
         this.requisites = requisites;
     }
@@ -26,6 +26,7 @@ public class Account {
     public String getRequisites() {
         return requisites;
     }
+
     /*
     перевод средств с аккаунта this на dstAccount
      */

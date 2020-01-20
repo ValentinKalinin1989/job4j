@@ -7,10 +7,12 @@ public abstract class AbstractStore<E extends Base> implements Store<E> {
     public AbstractStore(int size) {
         this.simpleArray = new SimpleArray<E>(size);
     }
+
     @Override
     public void add(E model) {
         simpleArray.add(model);
     }
+
     @Override
     public boolean replace(String id, E model) {
         boolean result = false;
@@ -22,6 +24,7 @@ public abstract class AbstractStore<E extends Base> implements Store<E> {
         }
         return result;
     }
+
     @Override
     public boolean delete(String id) {
         boolean result = false;
@@ -33,6 +36,7 @@ public abstract class AbstractStore<E extends Base> implements Store<E> {
         }
         return result;
     }
+
     @Override
     public E findById(String id) {
         E result = null;

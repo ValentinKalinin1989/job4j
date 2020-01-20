@@ -4,7 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ru.job4j.parser.vacancy.Vacancy;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 public class InteractionPostgres implements AutoCloseable {
@@ -32,13 +35,14 @@ public class InteractionPostgres implements AutoCloseable {
 
     /**
      * add vacancies of list in DB
+     *
      * @param vacancyList
      */
     public void addVacancies(List<Vacancy> vacancyList) {
         LOG.info("Начало сохранения результатов БД.");
         try (PreparedStatement st = this.connection.prepareStatement("INSERT INTO "
                 + "vacancy(name_vac, info_vac, link_vac, date_vac) values (?, ?, ?, ?)");) {
-            for (Vacancy vac: vacancyList) {
+            for (Vacancy vac : vacancyList) {
                 st.setString(1, vac.getName());
                 st.setString(2, vac.getInfo());
                 st.setString(3, vac.getLink());

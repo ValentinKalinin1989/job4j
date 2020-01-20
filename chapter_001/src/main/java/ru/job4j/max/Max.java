@@ -8,8 +8,7 @@ package ru.job4j.max;
 public class Max {
 
     /**
-     *
-     * @param first первое число
+     * @param first  первое число
      * @param second второе число
      * @return максимальное значение
      */
@@ -18,10 +17,9 @@ public class Max {
     }
 
     /**
-     *
-     * @param first первое число
+     * @param first  первое число
      * @param second второе число
-     * @param third третье число
+     * @param third  третье число
      * @return максимальное значение
      */
     public int max(int first, int second, int third) {

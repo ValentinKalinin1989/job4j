@@ -9,6 +9,7 @@ package ru.job4j.array;
 public class Check {
     /**
      * Проверка значений массива на однородность
+     *
      * @param data массив
      * @return значение true или false в зависимости от однородности массива
      */
@@ -18,7 +19,7 @@ public class Check {
         for (int i = 1; i < data.length; i++) {
             if (first != data[i]) {
                 result = false;
-            break;
+                break;
             }
         }
         return result;

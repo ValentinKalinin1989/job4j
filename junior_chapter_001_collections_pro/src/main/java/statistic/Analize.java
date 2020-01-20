@@ -1,24 +1,21 @@
 package statistic;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 
 public class Analize {
-
 
 
     public Info diff(List<User> previous, List<User> current) {
         Info result = new Info(0, 0, 0);
 
         Map<Integer, User> mapCur = new HashMap<>();
-        for (User user: current) {
+        for (User user : current) {
             mapCur.put(user.id, user);
         }
 
-        for (User userPr: previous) {
+        for (User userPr : previous) {
             if (!mapCur.containsKey(userPr.id)) {
                 result.plusDeleted();
             }
@@ -60,9 +57,9 @@ public class Analize {
         private int deleted;
 
         public Info(int added, int changed, int deleted) {
-           this.added = added;
-           this.changed = changed;
-           this.deleted = deleted;
+            this.added = added;
+            this.changed = changed;
+            this.deleted = deleted;
         }
 
         public void plusAdded() {

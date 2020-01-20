@@ -9,6 +9,7 @@ package ru.job4j.array;
 public class BubbleSort {
     /**
      * Алгоритм пузырьковой сортировки от меньшего к большему
+     *
      * @param array массив для сортировки
      * @return отсортированный массив
      */

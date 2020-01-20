@@ -11,10 +11,12 @@ public class AuthFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
 
     }
+
     @Override
     public void destroy() {
 
     }
+
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) req;
@@ -26,7 +28,7 @@ public class AuthFilter implements Filter {
                 ((HttpServletResponse) resp).sendRedirect(String.format("%s/singin", request.getContextPath()));
                 return;
             }
-        filterChain.doFilter(req, resp);
+            filterChain.doFilter(req, resp);
         }
     }
 }

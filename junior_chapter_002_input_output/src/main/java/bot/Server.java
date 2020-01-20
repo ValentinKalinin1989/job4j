@@ -35,7 +35,7 @@ public class Server {
     }
 
     public static void main(String[] args) throws IOException {
-        try (final Socket socket  = new ServerSocket(1130).accept()) {
+        try (final Socket socket = new ServerSocket(1130).accept()) {
             new Server(socket);
         } catch (IOException e) {
             e.printStackTrace();

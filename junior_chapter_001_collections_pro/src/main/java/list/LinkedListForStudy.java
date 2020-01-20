@@ -16,7 +16,7 @@ public class LinkedListForStudy<E> implements Iterable<E> {
     public void add(E data) {
         if (this.size == 0) {
             Node<E> newLink = new Node<>(data);
-           // newLink.next = this.first;
+            // newLink.next = this.first;
             //newLink.previos = this.first;
             this.first = newLink;
             this.tail = newLink;
@@ -34,6 +34,7 @@ public class LinkedListForStudy<E> implements Iterable<E> {
 
     /**
      * Получает данные по индексу
+     *
      * @param index индекс
      * @return данные
      */
@@ -59,6 +60,7 @@ public class LinkedListForStudy<E> implements Iterable<E> {
             Node<E> nodeIter = first;
             private int countIter = modCount;
             private int indexIt = 0;
+
             @Override
             public boolean hasNext() {
                 if (this.countIter != modCount) {
@@ -66,6 +68,7 @@ public class LinkedListForStudy<E> implements Iterable<E> {
                 }
                 return nodeIter != null;
             }
+
             @Override
             public E next() {
                 if (!hasNext()) {

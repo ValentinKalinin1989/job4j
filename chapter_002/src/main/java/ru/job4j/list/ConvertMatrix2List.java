@@ -10,7 +10,7 @@ public class ConvertMatrix2List {
                 : array) {
             int j = 0;
             for (int arrayNumber
-                    :array2) {
+                    : array2) {
                 list.add(arrayNumber);
             }
         }

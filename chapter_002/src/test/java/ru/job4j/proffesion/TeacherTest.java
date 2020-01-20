@@ -14,6 +14,7 @@ public class TeacherTest {
         assertThat(resultName, is("Татьяна"));
         assertThat(resultJob, is("Учитель"));
     }
+
     @Test
     public void testTeach() {
         Teacher teacher = new Teacher("Татьяна", "Учитель");

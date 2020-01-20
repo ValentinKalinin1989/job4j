@@ -2,9 +2,9 @@ package ru.job4j.bank;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.TreeMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class Bank {
     private TreeMap<User, ArrayList<Account>> usersTree = new TreeMap<>();
@@ -18,11 +18,11 @@ public class Bank {
     }
 
     public void addAccountToUser(String passport, Account account) {
-            this.usersTree.entrySet().stream()
-                    .filter(e -> e.getKey().getPassport().equals(passport))
-                    .findFirst()
-                    .map(Map.Entry::getValue)
-                    .orElse(null).add(account);
+        this.usersTree.entrySet().stream()
+                .filter(e -> e.getKey().getPassport().equals(passport))
+                .findFirst()
+                .map(Map.Entry::getValue)
+                .orElse(null).add(account);
     }
 
     public List<Account> getUserAccounts(String passport) {
@@ -43,8 +43,8 @@ public class Bank {
     }
 
     public boolean transferMoney(String srcPassport, String srcRequisite,
-                                  String destPassport, String dstRequisite,
-                                  double amount) {
+                                 String destPassport, String dstRequisite,
+                                 double amount) {
         Account srcAccount = getUserAccountForRequisite(srcPassport, srcRequisite);
         if (srcAccount.equals(null)) {
             System.out.println("Счет для снятия денег не найден.");

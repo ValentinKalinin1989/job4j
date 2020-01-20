@@ -1,13 +1,14 @@
 package iterator;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.ArrayList;
 
 public class Converter {
     Iterator<Integer> convert(Iterator<Iterator<Integer>> it) {
         return new Iterator<Integer>() {
             private Iterator<Integer> iterator = (new ArrayList<Integer>()).iterator();
+
             @Override
             public boolean hasNext() {
 
@@ -24,6 +25,7 @@ public class Converter {
                 }
                 return iterator.next();
             }
+
             @Override
             public void remove() {
                 throw new UnsupportedOperationException("Operation remove unsupported.");

@@ -10,7 +10,7 @@ public class CoffeeMachine {
         int moneyCh = value - price;
         int[] coins = new int[]{10, 5, 2, 1};
         for (int coin
-             : coins) {
+                : coins) {
             while ((moneyCh - coin) >= 0) {
                 change.add(coin);
                 moneyCh = moneyCh - coin;

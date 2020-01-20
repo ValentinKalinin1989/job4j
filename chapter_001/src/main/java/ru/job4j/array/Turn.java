@@ -9,6 +9,7 @@ package ru.job4j.array;
 public class Turn {
     /**
      * Перемена местами значений в массиве
+     *
      * @param array массив
      * @return массив с перемещенными значениями
      */

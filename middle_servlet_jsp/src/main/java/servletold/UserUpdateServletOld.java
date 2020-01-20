@@ -13,6 +13,7 @@ import java.time.LocalDate;
 
 public class UserUpdateServletOld extends HttpServlet {
     private final UsersRepositoryMemory usersRepositoryMemory = UsersRepositoryMemory.getInstance();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         PrintWriter writer = new PrintWriter(resp.getOutputStream());

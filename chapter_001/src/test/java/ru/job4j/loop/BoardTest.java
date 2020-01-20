@@ -1,11 +1,11 @@
 package ru.job4j.loop;
 
 import org.junit.Test;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 /**
- *
  * @author Valentin
  * @version 1.0
  * @since 11.01.2019

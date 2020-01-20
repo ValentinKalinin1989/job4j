@@ -1,6 +1,9 @@
 package control;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 
 public class FindDepend {
     public List load(Map<Integer, List<Integer>> map, Integer scriptId) {
@@ -12,7 +15,7 @@ public class FindDepend {
 
         while (!list4loop.isEmpty()) {
             HashSet<Integer> listIn = new HashSet<>();
-            for (Integer id: list4loop) {
+            for (Integer id : list4loop) {
                 if (map.containsKey(id)) {
                     result.addAll(map.get(id));
                     listIn.addAll(map.get(id));

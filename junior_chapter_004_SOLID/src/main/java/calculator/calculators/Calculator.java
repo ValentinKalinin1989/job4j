@@ -13,13 +13,16 @@ public class Calculator {
      * список доступных операций
      */
     private List<CalcOperation> listOper = new ArrayList<>();
+
     /**
      * добавление операций в калькулятор
+     *
      * @param calcOperation операция
      */
     public void addOperation(CalcOperation calcOperation) {
         this.listOper.add(calcOperation);
     }
+
     /**
      * старт калькулятора
      */
@@ -35,7 +38,7 @@ public class Calculator {
                     result = "";
                     continue;
                 }
-                for (CalcOperation oper: this.listOper) {
+                for (CalcOperation oper : this.listOper) {
                     if (str.contains(oper.nameOper())) {
                         result = oper.operation(str);
                     }

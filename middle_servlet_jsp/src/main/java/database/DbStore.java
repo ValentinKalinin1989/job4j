@@ -1,4 +1,5 @@
 package database;
+
 import logic.Store;
 import model.Role;
 import model.User;
@@ -64,7 +65,7 @@ public class DbStore implements Store {
              PreparedStatement st = connection.prepareStatement(
                      "UPDATE users SET name = ?, login = ?, email = ?,"
                              + " createdate = ?, password = ?, role = ?, name_country = ?, name_town = ?"
-                     + "WHERE id = ?"
+                             + "WHERE id = ?"
              );
         ) {
             st.setString(1, user.getName());
@@ -183,9 +184,9 @@ public class DbStore implements Store {
         }
 
         //for (User user: findAll()) {
-         //   if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
-         //       findedUser = user;
-         //   }
+        //   if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
+        //       findedUser = user;
+        //   }
         return findedUser;
     }
 
@@ -209,10 +210,10 @@ public class DbStore implements Store {
     public List<String> getTowns(String country) {
         List<String> listTowns = new ArrayList<>();
         try (Connection connection = SOURCE.getConnection();
-            Statement st = connection.createStatement();
-            ResultSet rs = st.executeQuery("SELECT name_town FROM town INNER JOIN country\n"
-                    + "ON town.country_id = country.id\n"
-                    + "WHERE country.name_country = '" + country + "';")
+             Statement st = connection.createStatement();
+             ResultSet rs = st.executeQuery("SELECT name_town FROM town INNER JOIN country\n"
+                     + "ON town.country_id = country.id\n"
+                     + "WHERE country.name_country = '" + country + "';")
         ) {
             while (rs.next()) {
                 listTowns.add(rs.getString("name_town"));

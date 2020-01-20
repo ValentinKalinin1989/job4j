@@ -1,10 +1,7 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
-import ru.job4j.list.ConvertMatrix2List;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 

@@ -3,6 +3,7 @@ package ru.job4j.magnit;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ru.job4j.tracker.UsageLog4j2;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ public class StoreSQLite implements AutoCloseable {
     private final ConfigSQLite config;
     private Connection connect;
     private int size;
+
     /***
      * constuctor
      * @param config
@@ -44,7 +46,7 @@ public class StoreSQLite implements AutoCloseable {
     public List<Entry> load() {
         List<Entry> list = new ArrayList<Entry>(size);
         try (Statement st = this.connect.createStatement()) {
-            ResultSet rs =  st.executeQuery("select *from entry");
+            ResultSet rs = st.executeQuery("select *from entry");
             while (rs.next()) {
                 list.add(new Entry(rs.getInt("field")));
             }
@@ -63,12 +65,15 @@ public class StoreSQLite implements AutoCloseable {
 
     public class Entry {
         private int value;
+
         public Entry(int value) {
             this.value = value;
         }
+
         public int getValue() {
             return value;
         }
+
         public void setValue(int value) {
             this.value = value;
         }

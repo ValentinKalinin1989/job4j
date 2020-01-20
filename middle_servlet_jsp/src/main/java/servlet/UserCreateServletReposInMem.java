@@ -1,7 +1,5 @@
 package servlet;
 
-import database.DbStore;
-import logic.Store;
 import logic.UsersRepositoryMemory;
 import model.Role;
 import model.User;
@@ -18,6 +16,7 @@ import java.util.List;
 
 public class UserCreateServletReposInMem extends HttpServlet {
     private final UsersRepositoryMemory store = UsersRepositoryMemory.getInstance();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         if (req.getSession(false).getAttribute("role").toString().equals("Admin")) {
@@ -25,6 +24,7 @@ public class UserCreateServletReposInMem extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/views/create.jsp").forward(req, resp);
         }
     }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String name = req.getParameter("name");

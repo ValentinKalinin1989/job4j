@@ -1,8 +1,5 @@
 package ru.job4j.parser.vacancy;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -73,10 +70,12 @@ public class Vacancy extends Object implements Comparable {
         Vacancy vacancy = (Vacancy) o;
         return link == vacancy.link; //ссылка на каждую вакансию уникальна
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(name);
     }
+
     @Override
     public String toString() {
         return "Вакансия " + LN

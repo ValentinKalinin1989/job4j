@@ -41,6 +41,7 @@ public class EvenNumbersIterator implements Iterator {
 
     /**
      * проверка наличия четного элементв по идексу
+     *
      * @param indexElement индес элемента
      * @return четный элемент или нет
      */

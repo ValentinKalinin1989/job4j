@@ -23,6 +23,6 @@ public class SumArray {
                 j++;
             }
         }
-       return sum;
+        return sum;
     }
 }

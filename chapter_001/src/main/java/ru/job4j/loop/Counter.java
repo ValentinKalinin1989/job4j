@@ -1,14 +1,17 @@
 package ru.job4j.loop;
+
 /**
  * Package for point
- *@author Valentin
- *@version 1.00
- *@since 08/01/2019
+ *
+ * @author Valentin
+ * @version 1.00
+ * @since 08/01/2019
  */
 public class Counter {
     /**
      * Расчет суммы четных чисел от числа start до finish
-     * @param start первое число
+     *
+     * @param start  первое число
      * @param finish последее число
      * @return сумма четных чисел
      */

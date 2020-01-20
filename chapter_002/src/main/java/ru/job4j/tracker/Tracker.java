@@ -1,7 +1,7 @@
 package ru.job4j.tracker;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
@@ -73,6 +73,6 @@ public class Tracker implements ITracker {
     }
 
     public String getItemToString(int i) {
-        return  this.items.get(i).toString();
+        return this.items.get(i).toString();
     }
 }

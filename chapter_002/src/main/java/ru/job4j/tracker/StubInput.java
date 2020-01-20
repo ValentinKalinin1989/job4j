@@ -7,6 +7,7 @@ public class StubInput implements Input {
     public StubInput(final String[] answers) {
         this.value = answers;
     }
+
     public String ask(String question) {
         return this.value[position++];
     }
@@ -15,7 +16,7 @@ public class StubInput implements Input {
     public int ask(String question, int[] range) throws RuntimeException {
         int key = Integer.valueOf(this.ask(value[position]));
         boolean exists = false;
-        for (int value: range) {
+        for (int value : range) {
             if (value == key) {
                 exists = true;
                 break;

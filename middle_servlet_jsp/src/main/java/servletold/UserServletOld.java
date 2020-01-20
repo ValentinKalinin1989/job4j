@@ -12,6 +12,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class UserServletOld extends HttpServlet {
     private final UsersRepositoryMemory usersRepositoryMemory = UsersRepositoryMemory.getInstance();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         CopyOnWriteArrayList<User> userList = usersRepositoryMemory.findAll();
@@ -24,7 +25,7 @@ public class UserServletOld extends HttpServlet {
         stringBuilder.append("</head>");
         stringBuilder.append("<body>");
         stringBuilder.append("<table>");
-        for (User user: userList) {
+        for (User user : userList) {
             stringBuilder.append("<tr> <form action = ' ");
             stringBuilder.append(req.getContextPath().concat("/update"));
             stringBuilder.append(" ' method = 'get'>");
@@ -63,6 +64,7 @@ public class UserServletOld extends HttpServlet {
         printWriter.append(stringBuilder);
         printWriter.flush();
     }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         usersRepositoryMemory.delete(Integer.parseInt(req.getParameter("id")));

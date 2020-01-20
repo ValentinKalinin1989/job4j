@@ -12,6 +12,7 @@ public class Triangle {
 
     /**
      * Конструктор
+     *
      * @param a точка a
      * @param b точка b
      * @param c точка c
@@ -21,8 +22,10 @@ public class Triangle {
         this.b = b;
         this.c = c;
     }
+
     /**
      * Расчет полупериметра
+     *
      * @param ab расстояние от a до b
      * @param ac расстояние от a до c
      * @param bc расстояние от b до c
@@ -31,8 +34,10 @@ public class Triangle {
     public double period(double ab, double ac, double bc) {
         return (ab + ac + bc) / 2;
     }
+
     /**
      * Проверка вырожденности треугольника
+     *
      * @param ab расстояние от a до b
      * @param ac расстояние от a до c
      * @param bc расстояние от b до c
@@ -41,8 +46,10 @@ public class Triangle {
     private boolean exist(double ab, double ac, double bc) {
         return ((ab + ac == bc) || (ab + bc == ac) || (ac + bc == ab)) ? false : true;
     }
+
     /**
      * расчет площади треугольника
+     *
      * @return площадь треугольника, -1 если треугольник не возможно построить (вырожденный)
      */
     public double area() {

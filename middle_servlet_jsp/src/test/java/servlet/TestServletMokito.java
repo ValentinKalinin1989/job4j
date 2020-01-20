@@ -22,7 +22,8 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @PowerMockIgnore({"com.sun.org.apache.xerces.*", "javax.xml.*", "org.xml.*", "org.w3c.*", "javax.management.*"})
 @RunWith(PowerMockRunner.class)
@@ -47,7 +48,7 @@ public class TestServletMokito {
         new UserCreateServletReposInMem().doPost(request, response);
         List<User> userList = dbStore.findAll();
         User addedUser = null;
-        for (User user: userList) {
+        for (User user : userList) {
             if (user.getName().equals("Jonh Dow")) {
                 addedUser = user;
                 break;
@@ -61,12 +62,11 @@ public class TestServletMokito {
     }
 
 
-
     @Test
     public void justTest() {
-       Store store = DbStore.getInstance();
-       List<String> list = store.getTowns("Russia");
-        for (String string: list) {
+        Store store = DbStore.getInstance();
+        List<String> list = store.getTowns("Russia");
+        for (String string : list) {
             System.out.println(string);
         }
         System.out.println(new Gson().toJson(list));

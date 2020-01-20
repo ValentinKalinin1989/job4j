@@ -9,6 +9,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
     /**
      * конструктор
+     *
      * @param size число объектов
      */
     public SimpleArray(int size) {
@@ -17,6 +18,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
     /**
      * добавление объектов
+     *
      * @param model объект для добавления
      * @return true если операция успешна
      */
@@ -30,6 +32,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
     /**
      * проверка выхода индекса за границы диапазона массива
+     *
      * @param index индекс оъекта
      * @return true - если такой инденкс есть в массиве
      */
@@ -42,6 +45,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
     /**
      * замена объекта
+     *
      * @param index индекс заменяемого объекта
      * @param model объект
      * @return true если операция успешна
@@ -54,6 +58,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
     /**
      * удаление объекта из массива
+     *
      * @param index индекс удаляемого объекта
      * @return true если операция успешна
      */
@@ -67,6 +72,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
     /**
      * получение объекта из массива
+     *
      * @param index идекс объекта
      * @return объект
      */
@@ -77,6 +83,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
     /**
      * получение индекса элемента
+     *
      * @return индекс элемента
      */
     public int getIndexE() {
@@ -87,6 +94,7 @@ public class SimpleArray<T> implements Iterable<T> {
     public Iterator<T> iterator() {
         return new Iterator<T>() {
             private int idexIter = 0;
+
             @Override
             public boolean hasNext() {
                 return idexIter < index;

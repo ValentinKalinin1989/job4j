@@ -48,7 +48,7 @@ public class UserStore<E> {
 
     private synchronized User findById(int id) {
         User findedUser = null;
-        for (User user: this.listUsers) {
+        for (User user : this.listUsers) {
             if (user.getId() == id) {
                 findedUser = user;
             }

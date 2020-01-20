@@ -5,10 +5,6 @@ import java.util.*;
 
 /**
  * Menu base class
- *
- * @author Alexander Abramov (alllexe@mail.ru)
- * @version 1
- * @since 27.06.2019
  */
 public abstract class Menu {
 
@@ -55,6 +51,7 @@ public abstract class Menu {
 
     /**
      * get list of all children ordered hierarchy
+     *
      * @return list with all children
      */
     public List<Menu> getSubMenuTree() {
@@ -71,6 +68,7 @@ public abstract class Menu {
 
     /**
      * Get string of numbers include all parents (4.1.1)
+     *
      * @param joiner - joiner
      * @return full number
      */
@@ -91,6 +89,7 @@ public abstract class Menu {
 
     /**
      * Get menu name
+     *
      * @return menu name
      */
     public String getPrintName() {

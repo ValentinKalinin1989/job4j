@@ -1,7 +1,6 @@
 package search;
 
 
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,14 +21,17 @@ public class Search {
             return result;
         }
     };
+
     public List<File> files(String parent, List<String> exts) {
 
         List<File> allFiles = findAllFilesDirect(parent);
 
         return getFileWithExt(allFiles, exts);
     }
+
     /**
      * поиск всех файлов в каталогах и подкаталогах, которые не являюся директориями
+     *
      * @param parent путь к каталогу , в котором надо произвести поиск
      * @return список файлов не являющихся директориями
      */
@@ -39,7 +41,7 @@ public class Search {
         allFiles.add(new File(parent));
         while (!allFiles.isEmpty()) {
             List<File> whileList = new ArrayList<>();
-            for (File file: allFiles) {
+            for (File file : allFiles) {
                 File[] forList = file.listFiles();
                 if (forList != null) {
                     for (File fileFor : forList) {

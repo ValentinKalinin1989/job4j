@@ -1,6 +1,6 @@
 import list.ArrayListForStudy;
-import net.jcip.annotations.ThreadSafe;
 import net.jcip.annotations.GuardedBy;
+import net.jcip.annotations.ThreadSafe;
 
 import java.util.Iterator;
 

@@ -7,6 +7,7 @@ public class Teacher extends Proffesion {
 
     /**
      * Обучение
+     *
      * @param student студент
      * @return Student после получения знаний
      */

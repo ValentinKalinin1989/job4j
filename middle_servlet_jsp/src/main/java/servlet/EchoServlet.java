@@ -20,7 +20,7 @@ public class EchoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/html");
         StringBuilder sb = new StringBuilder("<table>");
-        for (User user: usersRepositoryMemory.findAll()) {
+        for (User user : usersRepositoryMemory.findAll()) {
             sb.append("<tr><td>");
             sb.append(user.getLogin());
             sb.append("</td></tr>");

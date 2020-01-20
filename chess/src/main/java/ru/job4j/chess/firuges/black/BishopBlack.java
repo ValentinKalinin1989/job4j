@@ -5,7 +5,6 @@ import ru.job4j.chess.firuges.Cell;
 import ru.job4j.chess.firuges.Figure;
 
 /**
- *
  * @author Petr Arsentev (parsentev@yandex.ru)
  * @version $Id$
  * @since 0.1
@@ -27,7 +26,7 @@ public class BishopBlack implements Figure {
     public Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException {
         if (!isDiagonal(source, dest)) {
             return new Cell[]{source};
-           // throw new ImpossibleMoveException ("Движение по данному пути не возможно");
+            // throw new ImpossibleMoveException ("Движение по данному пути не возможно");
         }
         int deltaX = Integer.compare(dest.x, source.x);
         int deltaY = Integer.compare(dest.y, source.y);
@@ -36,7 +35,7 @@ public class BishopBlack implements Figure {
         steps = new Cell[move];
         steps[0] = Cell.findCell(source.x + deltaX, source.y + deltaY);
         for (int index = 1; index < steps.length; index++) {
-            steps[index] = Cell.findCell(steps[index - 1].x + deltaX, steps[index - 1 ].y + deltaY);
+            steps[index] = Cell.findCell(steps[index - 1].x + deltaX, steps[index - 1].y + deltaY);
         }
         return steps;
     }

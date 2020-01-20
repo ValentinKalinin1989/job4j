@@ -12,6 +12,7 @@ public class Proffesion {
     public String getName() {
         return this.name;
     }
+
     public String getJob() {
         return this.job;
     }

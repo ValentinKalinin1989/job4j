@@ -9,7 +9,7 @@ public class ConvertList2Array {
         int[][] array = new int[rows][cells];
         int index = 0;
         for (int numOfList
-                :list) {
+                : list) {
             array[(int) index / rows][(int) index % rows] = numOfList;
             index++;
         }
@@ -20,7 +20,7 @@ public class ConvertList2Array {
     public List<Integer> convert(List<int[]> list) {
         List<Integer> resultList = new ArrayList<Integer>();
         for (int[] arrayInt
-                :list) {
+                : list) {
             for (int numbberOfArray
                     : arrayInt) {
                 resultList.add(numbberOfArray);

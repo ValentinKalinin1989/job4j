@@ -1,6 +1,7 @@
 package ru.job4j.proffesion;
 
 import org.junit.Test;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -13,6 +14,7 @@ public class EngineerTest {
         assertThat(resultName, is("Федя"));
         assertThat(resultJob, is("Инженер"));
     }
+
     @Test
     public void testBuild() {
         Engineer engineer = new Engineer("Федя", "Инженер");

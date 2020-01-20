@@ -19,7 +19,7 @@ public class Config {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        for (String string: list) {
+        for (String string : list) {
             if (string.contains("=")) {
                 String[] stringIn = string.split("=");
                 values.put(stringIn[0], stringIn[1]);

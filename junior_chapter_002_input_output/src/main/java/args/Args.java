@@ -7,6 +7,7 @@ import java.util.NoSuchElementException;
 public class Args {
 
     private Map<String, String> args = new HashMap<>(6);
+
     public Args(String[] args) {
         if (args == null) {
             throw new NoSuchElementException("Отсутствуют аргументы командной строки");
@@ -36,6 +37,7 @@ public class Args {
     public String directory() {
         return this.args.get("-d");
     }
+
     public String excule() {
         String ext = this.args.get("-e");
         ext.replaceAll("[*.]", "");

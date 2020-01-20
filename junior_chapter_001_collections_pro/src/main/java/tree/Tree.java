@@ -1,7 +1,6 @@
 package tree;
 
 import java.util.*;
-import java.util.Optional;
 
 public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
 
@@ -10,6 +9,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
 
     /**
      * конструктор инициализирует корень дерева
+     *
      * @param value
      */
     public Tree(E value) {
@@ -56,14 +56,15 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     }
 
 
-
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
             private ArrayList<Node<E>> arrayList = new ArrayList<>();
+
             {
                 arrayList.add(root);
             }
+
             private int index = 0;
             private int modIter = modCount;
 
@@ -75,7 +76,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
                 }
                 if (index == arrayList.size()) {
                     ArrayList<Node<E>> arrayChildre = new ArrayList<>();
-                    for (Node<E> node: arrayList) {
+                    for (Node<E> node : arrayList) {
                         arrayChildre.addAll(node.children);
                     }
                     arrayList = arrayChildre;
@@ -107,10 +108,10 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         boolean result = true;
         Iterator iterBin = this.iterator();
         while (iterBin.hasNext()) {
-                if (findBy((E) iterBin.next()).get().children.stream().count() > 2) {
-                    result = false;
-                    break;
-               }
+            if (findBy((E) iterBin.next()).get().children.stream().count() > 2) {
+                result = false;
+                break;
+            }
         }
         return result;
     }

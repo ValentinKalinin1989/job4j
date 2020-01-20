@@ -1,4 +1,5 @@
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.FileOutputStream;
 import java.net.URL;
 import java.time.LocalDateTime;
 
@@ -22,7 +23,7 @@ public class Wget implements Runnable {
             LocalDateTime dateEnd;
             int waitTime;
             int secCount = 0;
-            while (in.read(data, 0, size) !=  -1) {
+            while (in.read(data, 0, size) != -1) {
                 dateStrat = LocalDateTime.now();
                 out.write(data, 0, size);
                 dateEnd = LocalDateTime.now();

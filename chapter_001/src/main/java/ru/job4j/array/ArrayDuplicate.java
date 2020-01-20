@@ -4,11 +4,13 @@ package ru.job4j.array;
  * @version 1.0
  * @since 13.01.2019
  */
+
 import java.util.Arrays;
 
 public class ArrayDuplicate {
     /**
      * Удаление дубликатов в массиве
+     *
      * @param array массив
      * @return массив без дубликатов
      */

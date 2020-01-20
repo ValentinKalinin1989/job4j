@@ -1,9 +1,11 @@
 package ru.job4j.loop;
+
 import java.util.function.BiPredicate;
 
 public class Paint {
     /**
      * Построение треугольника в право
+     *
      * @param height высота
      * @return треугольник в право
      */
@@ -14,8 +16,10 @@ public class Paint {
                 (row, column) -> row >= column
         );
     }
+
     /**
      * Построение треугольника в лево
+     *
      * @param height высота
      * @return треугольник в лево
      */
@@ -26,8 +30,10 @@ public class Paint {
                 (row, column) -> row >= height - column - 1
         );
     }
+
     /**
      * Построение пирамиды
+     *
      * @param height высота
      * @return пирамида
      */
@@ -38,10 +44,12 @@ public class Paint {
                 (row, column) -> row >= height - column - 1 && row + height - 1 >= column
         );
     }
+
     /**
      * Построение фигуры по заданным параметрам
-     * @param height высота
-     * @param weight ширина
+     *
+     * @param height  высота
+     * @param weight  ширина
      * @param predict парматры для фигуры
      * @return выбранная фигуры
      */

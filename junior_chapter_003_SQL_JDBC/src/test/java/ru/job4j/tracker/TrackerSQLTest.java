@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Properties;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class TrackerSQLTest {
 
@@ -29,6 +29,7 @@ public class TrackerSQLTest {
             throw new IllegalStateException(e);
         }
     }
+
     @Test
     public void createItem() throws SQLException {
         try (TrackerSQL tracker = new TrackerSQL(ConnectionRollback.create(this.init()))) {
@@ -38,6 +39,7 @@ public class TrackerSQLTest {
             e.printStackTrace();
         }
     }
+
     @Test
     public void testAddItem() {
         try (TrackerSQL tracker = new TrackerSQL(ConnectionRollback.create(this.init()))) {
@@ -50,6 +52,7 @@ public class TrackerSQLTest {
             e.printStackTrace();
         }
     }
+
     @Test
     public void testFindAllItem() {
         try (TrackerSQL tracker = new TrackerSQL(ConnectionRollback.create(this.init()))) {
@@ -74,6 +77,7 @@ public class TrackerSQLTest {
             e.printStackTrace();
         }
     }
+
     @Test
     public void testFindByName() {
         try (TrackerSQL tracker = new TrackerSQL(ConnectionRollback.create(this.init()))) {
@@ -92,6 +96,7 @@ public class TrackerSQLTest {
             e.printStackTrace();
         }
     }
+
     @Test
     public void testReplaceItemAndDell() {
         try (TrackerSQL tracker = new TrackerSQL(ConnectionRollback.create(this.init()))) {

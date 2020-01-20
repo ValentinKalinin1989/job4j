@@ -8,6 +8,7 @@ public class SimpleQueue<T> {
 
     /**
      * добавление объекта в список для довления
+     *
      * @param value
      */
     public void push(T value) {
@@ -17,6 +18,7 @@ public class SimpleQueue<T> {
 
     /**
      * разворачивает список наоборот, удаляет значение, и опять разворачивает список
+     *
      * @param
      */
     public T poll() {

@@ -12,13 +12,13 @@ public class ArrayListForStudy<E> implements Iterable<E> {
     private int modCount = 0;
 
     public ArrayListForStudy() {
-       this.container = new Object[size];
+        this.container = new Object[size];
     }
 
     public void add(E value) {
         this.container[this.index++] = value;
         if (this.index == this.size) {
-           contanierIncrease();
+            contanierIncrease();
         }
         modCount++;
     }
@@ -40,6 +40,7 @@ public class ArrayListForStudy<E> implements Iterable<E> {
         return new Iterator<E>() {
             private int countIter = modCount;
             private int indexIt = 0;
+
             @Override
             public boolean hasNext() {
                 if (this.countIter != modCount) {
@@ -47,6 +48,7 @@ public class ArrayListForStudy<E> implements Iterable<E> {
                 }
                 return this.indexIt < index;
             }
+
             @Override
             public E next() {
                 if (!hasNext()) {

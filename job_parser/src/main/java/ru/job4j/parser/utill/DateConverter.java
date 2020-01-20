@@ -1,6 +1,7 @@
 package ru.job4j.parser.utill;
 
 import java.time.LocalDate;
+
 /**
  * convert date format(сегодня, вчера, 23 авг 15)
  * to java.sql.Date
@@ -8,6 +9,7 @@ import java.time.LocalDate;
 public class DateConverter {
     /**
      * convert date of String to java.time.LocalDate
+     *
      * @param date date format(сегодня, вчера, 23 авг 15) in String
      * @return Date
      */

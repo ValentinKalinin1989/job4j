@@ -8,8 +8,9 @@ package ru.job4j.array;
 public class FindLoop {
     /**
      * Поиск значения в массиве
+     *
      * @param data массив
-     * @param el значение для поиска
+     * @param el   значение для поиска
      * @return номер элемента массива, которое содержит заданное значение; если значение не найдено: -1
      */
     public int indexOf(int[] data, int el) {

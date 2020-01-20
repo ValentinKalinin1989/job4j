@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 
-public class Chat  {
+public class Chat {
     private List<String> answers = new ArrayList<>();
     private List<String> log = new ArrayList<>();
     private boolean ask = true;
@@ -19,6 +19,7 @@ public class Chat  {
 
     /**
      * конструктор
+     *
      * @param path путь к файлу с ответами
      */
     public Chat(String path) {
@@ -27,11 +28,12 @@ public class Chat  {
 
     /**
      * загрузка ответов в буфер обмена
+     *
      * @param path путь к файлу с ответами
      */
     public void loadtxt(String path) {
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
-            reader.lines().forEach(this.answers ::add);
+            reader.lines().forEach(this.answers::add);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -39,13 +41,16 @@ public class Chat  {
 
     /**
      * сохранение строки в лог сообщений
+     *
      * @param string
      */
     public void safeStringInLog(String string) {
         log.add(string);
     }
+
     /**
      * получение случайного ответа из листа ответов
+     *
      * @return строка
      */
     public String getAnswer() {
@@ -54,8 +59,10 @@ public class Chat  {
         safeStringInLog(answer);
         return answer;
     }
+
     /**
      * анализ сообщений пользователя
+     *
      * @param request
      * @return
      */
@@ -77,18 +84,20 @@ public class Chat  {
         }
         return result;
     }
+
     /**
      * Сохранение лога сообщений
      */
     public void safeLog() {
         try (BufferedWriter write = new BufferedWriter(new FileWriter("logExample.txt"))) {
-            for (String string: this.log) {
+            for (String string : this.log) {
                 write.write(string + "\n");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     /**
      * запуск чата
      */
@@ -109,6 +118,7 @@ public class Chat  {
 
     /**
      * запуск чата для теста
+     *
      * @param strings ввод пользователя
      * @return содержимое лога
      */
@@ -116,17 +126,17 @@ public class Chat  {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         boolean end = true;
         String request = null;
-            do {
-                for (String string: strings) {
+        do {
+            for (String string : strings) {
 
-                    System.out.println("Введите сообщение:");
-                    request = string;
-                    end = analyziRequest(request);
-                    if (!end) {
-                        break;
-                    }
+                System.out.println("Введите сообщение:");
+                request = string;
+                end = analyziRequest(request);
+                if (!end) {
+                    break;
                 }
-            } while (end);
+            }
+        } while (end);
         return log;
     }
 }

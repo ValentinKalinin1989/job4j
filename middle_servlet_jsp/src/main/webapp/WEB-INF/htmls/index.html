@@ -41,8 +41,8 @@
             $.ajax({
                 method: "post",
                 url: "http://localhost:8080/middle_servlet_jsp_war_exploded/json",
-                data: JSON.stringify ({
-                    "name":  nameV,
+                data: JSON.stringify({
+                    "name": nameV,
                     "surname": surnameV,
                     "descrip": descripV,
                     "sex": sexV
@@ -54,56 +54,56 @@
 </head>
 <body>
 <div class="container">
-<form action="">
-    <div class="form-group">
-        <label for="name">Name:</label>
-        <input type="text" class="form-control" id="name">
-    </div>
-    <div class="form-group">
-        <label for="surname">Surname:</label>
-        <input type="text" class="form-control" id="surname">
-    </div>
-    <div>
-    Sex:
-        <label><input type="radio" name = "sexR" value="Male"> Male </label>
-        <label><input type="radio" name = "sexR" value="Female"> Female </label>
-        <label><input type="radio" name = "sexR" value="Third gender"> Third gender </label>
-    </div>
-    <div class="form-group">
-        <label for="descrip">Description:</label>
-        <input type="text" class="form-control" id="descrip">
-    </div>
-    <button type="button" class="btn btn-default" onclick = "return sentDatatoServer();">AddRow </button>
-</form>
+    <form action="">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name">
+        </div>
+        <div class="form-group">
+            <label for="surname">Surname:</label>
+            <input type="text" class="form-control" id="surname">
+        </div>
+        <div>
+            Sex:
+            <label><input type="radio" name="sexR" value="Male"> Male </label>
+            <label><input type="radio" name="sexR" value="Female"> Female </label>
+            <label><input type="radio" name="sexR" value="Third gender"> Third gender </label>
+        </div>
+        <div class="form-group">
+            <label for="descrip">Description:</label>
+            <input type="text" class="form-control" id="descrip">
+        </div>
+        <button type="button" class="btn btn-default" onclick="return sentDatatoServer();">AddRow</button>
+    </form>
 
-<table class="table table-condensed" id = "table">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Surname</th>
-        <th>Sex</th>
-        <th>Description</th>
-    </tr>
-    <tr>
-        <td>Martin</td>
-        <td>Iden</td>
-        <td>Male</td>
-        <td>American, 35 years</td>
-    </tr>
-    <tr>
-        <td>Jonh</td>
-        <td>Wick</td>
-        <td>Male</td>
-        <td>American, 50 years, pensioner, boogerman</td>
-    </tr>
-    <tr>
-        <td>Erick</td>
-        <td>Ponti</td>
-        <td>Male</td>
-        <td>Swede, 16 years</td>
-    </tr>
-    </thead>
-</table>
+    <table class="table table-condensed" id="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Sex</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>Martin</td>
+            <td>Iden</td>
+            <td>Male</td>
+            <td>American, 35 years</td>
+        </tr>
+        <tr>
+            <td>Jonh</td>
+            <td>Wick</td>
+            <td>Male</td>
+            <td>American, 50 years, pensioner, boogerman</td>
+        </tr>
+        <tr>
+            <td>Erick</td>
+            <td>Ponti</td>
+            <td>Male</td>
+            <td>Swede, 16 years</td>
+        </tr>
+        </thead>
+    </table>
 </div>
 </body>
 </html>

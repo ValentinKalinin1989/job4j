@@ -9,6 +9,7 @@ package ru.job4j.array;
 public class MatrixCheck {
     /**
      * Проверка диагоналей массива на однородность
+     *
      * @param data массив
      * @return true или false
      */

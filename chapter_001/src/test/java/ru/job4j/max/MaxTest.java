@@ -1,12 +1,14 @@
 package ru.job4j.max;
 
 import org.junit.Test;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+
 /**
- *@author Valentin
- *@version 1.00
- *@since 08/01/2019
+ * @author Valentin
+ * @version 1.00
+ * @since 08/01/2019
  */
 
 public class MaxTest {
@@ -16,6 +18,7 @@ public class MaxTest {
         int result = maxim.max(1, 2);
         assertThat(result, is(2));
     }
+
     @Test
     public void whenFirstMoreSecondAndThird() {
         Max maximum = new Max();

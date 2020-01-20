@@ -1,7 +1,6 @@
 package servletjson;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import database.DbStore;
 import json.JsonUser;
 import json.JsonUserMapInMemory;
 import org.apache.logging.log4j.LogManager;
@@ -18,10 +17,12 @@ public class JSONservlet extends HttpServlet {
     private ObjectMapper objectMapper = new ObjectMapper();
     private JsonUserMapInMemory jsonMap = JsonUserMapInMemory.getInstance();
     private static final Logger LOG = LogManager.getLogger(JSONservlet.class.getName());
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/WEB-INF/htmls/index.html").forward(req, resp);
     }
+
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         BufferedReader reader = req.getReader();

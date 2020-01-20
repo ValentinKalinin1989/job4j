@@ -1,6 +1,9 @@
 package analize;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,10 +42,10 @@ public class Analizy {
         }
 
         try (BufferedWriter write = new BufferedWriter(new FileWriter(target))) {
-            for (String string: listRes) {
+            for (String string : listRes) {
                 write.write(string);
             }
-            } catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -5,7 +5,7 @@
   Time: 14:37
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" pageEncoding="UTF-8" session="true"%>
+<%@ page language="java" pageEncoding="UTF-8" session="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +32,8 @@
             <tr valign="top">
                 <td><a href="${pageContext.servletContext.contextPath}/download?name=${image}">Download</a></td>
                 <td>
-                    <img src="${pageContext.servletContext.contextPath}/download?name=${image}" width="100px" height="100px"/>
+                    <img src="${pageContext.servletContext.contextPath}/download?name=${image}" width="100px"
+                         height="100px"/>
                 </td>
             </tr>
         </c:forEach>
