@@ -23,7 +23,7 @@ create table category (
 );
 
 create table state (
-    id serial primary key,
+    id serial primary key,()
     state_desk varchar(2000),
     item_id int references item(id)
 );
