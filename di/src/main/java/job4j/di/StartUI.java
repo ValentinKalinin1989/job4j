@@ -1,8 +1,11 @@
 package job4j.di;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class StartUI {
-    private Store store;
-    private ConsoleInput consoleInput;
+    private final Store store;
+    private final ConsoleInput consoleInput;
 
     public StartUI(Store store, ConsoleInput consoleInput) {
         this.store = store;
@@ -14,17 +17,17 @@ public class StartUI {
     }
 
     public void addFormConsole() {
-        consoleInput.add();
+        consoleInput.addFromConsole();
     }
 
     public void print() {
-        for(String value: store.getAll()) {
+        for (String value : store.getAll()) {
             System.out.println(value);
         }
     }
 
     public void printFromConsole() {
-        for(String value: consoleInput.getAll()) {
+        for (String value : consoleInput.getAllFromConsole()) {
             System.out.println(value);
         }
     }
