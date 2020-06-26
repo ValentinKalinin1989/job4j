@@ -1,5 +1,6 @@
 package job4j.di;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 @Component
+@Scope("prototype")
 public class ConsoleInput {
     private List<String> data = new ArrayList<String>();
     private Scanner scanner = new Scanner(System.in);
