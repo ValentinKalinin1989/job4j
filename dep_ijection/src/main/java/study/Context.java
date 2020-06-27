@@ -1,4 +1,4 @@
-package job4j.di;
+package study;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
@@ -20,14 +20,14 @@ public class Context {
         Constructor constructor = constructors[0];
         List<Object> args = new ArrayList<Object>();
         for (Class arg: constructor.getParameterTypes()) {
-            if(! els.containsKey(arg.getCanonicalName())) {
+            if (!els.containsKey(arg.getCanonicalName())) {
                 throw new IllegalStateException("Object doesn't gound in context: "
                 + arg.getCanonicalName());
             }
             args.add(els.get(arg.getCanonicalName()));
         }
 
-        try{
+        try {
             els.put(cl.getCanonicalName(), constructor.newInstance(args.toArray()));
         } catch (Exception e) {
             throw new IllegalStateException("Coun't create an instance of: "

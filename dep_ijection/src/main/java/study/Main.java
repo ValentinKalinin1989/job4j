@@ -1,4 +1,4 @@
-package job4j.di;
+package study;
 
 public class Main {
     public static void main(String[] args) {

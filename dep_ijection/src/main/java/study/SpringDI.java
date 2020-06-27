@@ -1,4 +1,4 @@
-package job4j.di;
+package study;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
