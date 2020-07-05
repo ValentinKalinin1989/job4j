@@ -14,15 +14,15 @@ public class Context {
         Constructor[] constructors = cl.getConstructors();
         if (constructors.length > 1) {
             throw new IllegalStateException("Class has multi constructors: "
-            + cl.getCanonicalName());
+                    + cl.getCanonicalName());
         }
 
         Constructor constructor = constructors[0];
         List<Object> args = new ArrayList<Object>();
-        for (Class arg: constructor.getParameterTypes()) {
+        for (Class arg : constructor.getParameterTypes()) {
             if (!els.containsKey(arg.getCanonicalName())) {
                 throw new IllegalStateException("Object doesn't gound in context: "
-                + arg.getCanonicalName());
+                        + arg.getCanonicalName());
             }
             args.add(els.get(arg.getCanonicalName()));
         }
@@ -31,7 +31,7 @@ public class Context {
             els.put(cl.getCanonicalName(), constructor.newInstance(args.toArray()));
         } catch (Exception e) {
             throw new IllegalStateException("Coun't create an instance of: "
-            + cl.getCanonicalName(), e);
+                    + cl.getCanonicalName(), e);
         }
     }
 
